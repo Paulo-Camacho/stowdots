@@ -1,0 +1,39 @@
+general 
+{
+  output_format = "i3bar"
+    colors = true
+    color_good = "#9FFF95"
+    color_degraded = "#FFDF92"
+    color_bad = "#FF9595"
+    interval = 1
+    separator = ""
+}
+
+# find where battery is
+#ls /sys/class/power_supply/
+#find /sys -type d -name "*BAT*"
+#cat /sys/class/power_supply/BAT1/uevent
+
+order += "tztime local"
+order += "battery 0"
+order += "disk /"
+order += "cpu_usage"
+
+tztime local 
+{
+    format = " %Y-%m-%d %H:%M:%S "
+}
+
+battery 0 {
+  path = "/sys/class/power_supply/BAT1/uevent"
+    format = "| %status %percentage |"
+    format_down = "| No battery |"
+}
+
+disk "/" {
+  format = " /: %free "
+}
+
+cpu_usage {
+    format = "| CPU: %usage |"
+}
