@@ -1,8 +1,8 @@
 return { 
-    "Mofiqul/dracula.nvim",
-	name = "dracula",
+    "rose-pine/neovim",
+	name = "rose-pine",
 	config = function()
-		vim.cmd("colorscheme dracula")
+		vim.cmd("colorscheme rose-pine")
 
 			--      vim.cmd([[
 			-- 	hi Normal guibg=NONE ctermbg=NONE

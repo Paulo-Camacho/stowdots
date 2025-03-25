@@ -1,26 +1,12 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
-
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets. It is optional.
-;; (setq user-full-name "John Doe"
-;;       user-mail-address "john@doe.com")
-
-;; Doom exposes five (optional) variables for controlling fonts in Doom:
-;;
-;; - `doom-font' -- the primary font to use
-;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
-;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;; - `doom-symbol-font' -- for symbols
-;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
 ;;
 ;; See 'C-h v doom-font' for documentation and more examples of what they
-;; accept. For example:
+;;
+
+;; COSMETIC ;;;;;
 (setq doom-theme 'doom-monokai-classic)
+
 ;; M-x nerd-icons-install-fonts
 (setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 32 :weight 'regular)
       doom-big-font (font-spec :family "RobotoMono Nerd Font" :size 38 :weight 'regular))
@@ -31,15 +17,17 @@
   '(font-lock-comment-face :slant italic)
   '(font-lock-comment-face :slant italic))
 
+;; line-numbers
 (setq display-line-numbers-type 'relative)
 
-(assoc-delete-all "Open private configuration" +doom-dashboard-menu-sections)
+;; doom spash
 (assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
 (assoc-delete-all "Open org-agenda" +doom-dashboard-menu-sections)
+(assoc-delete-all "Open private configuration" +doom-dashboard-menu-sections)
 
+;; anime
 (defun weeb ()
   (let* ((banner '(
-"⡿⣡⣿⣿⡟⡼⡁⠁⣰⠂⡾⠉⢨⣿⠃⣿⡿⠍⣾⣟⢤⣿⢇⣿⢇⣿⣿⢿⣿⣿⣿⣿⣿"
 "⣱⣿⣿⡟⡐⣰⣧⡷⣿⣴⣧⣤⣼⣯⢸⡿⠁⣰⠟⢀⣼⠏⣲⠏⢸⣿⡟⣿⣿⣿⣿⣿⣿"
 "⣿⣿⡟⠁⠄⠟⣁⠄⢡⣿⣿⣿⣿⣿⣿⣦⣼⢟⢀⡼⠃⡹⠃⡀⢸⡿⢸⣿⣿⣿⣿⣿⡟"
 "⣿⣿⠃⠄⢀⣾⠋⠓⢰⣿⣿⣿⣿⣿⣿⠿⣿⣿⣾⣅⢔⣕⡇⡇⡼⢁⣿⣿⣿⣿⣿⣿⢣"
@@ -49,7 +37,6 @@
 "⢹⣿⢸⣿⣿⠟⠻⢿⣿⣿⣿⣿⣿⣿⣿⣶⣭⣉⣤⣿⢈⣼⣿⣿⣿⣿⣿⣿⠏⣾⣹⣿⣿"
 "⢸⠇⡜⣿⡟⠄⠄⠄⠈⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟⣱⣻⣿⣿⣿⣿⣿⠟⠁⢳⠃⣿⣿⣿"
 "⠄⣰⡗⠹⣿⣄⠄⠄⠄⢀⣿⣿⣿⣿⣿⣿⠟⣅⣥⣿⣿⣿⣿⠿⠋⠄⠄⣾⡌⢠⣿⡿⠃"
-"⠜⠋⢠⣷⢻⣿⣿⣶⣾⣿⣿⣿⣿⠿⣛⣥⣾⣿⠿⠟⠛⠉⠄⠄          "
                    ))
          (longest-line (apply #'max (mapcar #'length banner))))
     (put-text-property
@@ -61,9 +48,15 @@
                "\n"))
      'face 'doom-dashboard-banner)))
 (setq +doom-dashboard-ascii-banner-fn #'weeb)
-;; This determines the style of line numbers in effect. If set to `nil', line
+
 ;; transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 . 95)) (add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+;;(set-frame-parameter (selected-frame) 'alpha '(96 . 96)) (add-to-list 'default-frame-alist '(alpha . (96 . 96)))
+
+
+;; show hidden files within dired
+(after! dired
+  (add-hook 'dired-mode-hook #'dired-omit-mode))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq org-directory "~/org/")
 
@@ -77,7 +70,6 @@
 (add-hook 'server-after-make-frame-hook
           (lambda ()
             (my/revert-buffer-no-confirm)))
-
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
