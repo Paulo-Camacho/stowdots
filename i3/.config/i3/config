@@ -120,7 +120,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Paulo, do you really want to exit i3? ' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window
-mode "resize" {
+mode "resize"
+{
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym j resize shrink height 10 px or 10 ppt
@@ -134,6 +135,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bar {
+bar
+{
         status_command i3status
 }
