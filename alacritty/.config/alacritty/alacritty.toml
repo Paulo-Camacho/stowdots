@@ -24,31 +24,43 @@ style = { blinking = "Always"}
 [selection]
 save_to_clipboard = true
 
-# XTerm's default colors
 
-# Default colors
 [colors.primary]
-background = '#222222'
-foreground = '#ffffff'
+background = '#2e3440'
+foreground = '#d8dee9'
+dim_foreground = '#a5abb6'
 
-# Normal colors
+[colors.cursor]
+text = '#2e3440'
+cursor = '#d8dee9'
+
+
 [colors.normal]
-black   = '#191724'
-red     = '#eb6f92'
-green   = '#31748f'
-yellow  = '#f6c177'
-blue    = '#9ccfd8'
-magenta = '#c4a7e7'
-cyan    = '#9ccfd8'
-white   = '#e0def4'
+black   = '#3b4252'
+red     = '#bf616a'
+green   = '#a3be8c'
+yellow  = '#ebcb8b'
+blue    = '#81a1c1'
+magenta = '#b48ead'
+cyan    = '#88c0d0'
+white   = '#e5e9f0'
 
-# Bright colors
 [colors.bright]
-black   = '#7f7f7f'
-red     = '#ff0000'
-green   = '#00ff00'
-yellow  = '#ffff00'
-blue    = '#5c5cff'
-magenta = '#ff00ff'
-cyan    = '#00ffff'
-white   = '#ffffff'
+black   = '#4c566a'
+red     = '#bf616a'
+green   = '#a3be8c'
+yellow  = '#ebcb8b'
+blue    = '#81a1c1'
+magenta = '#b48ead'
+cyan    = '#8fbcbb'
+white   = '#eceff4'
+
+[colors.dim]
+black   = '#373e4d'
+red     = '#94545d'
+green   = '#809575'
+yellow  = '#b29e75'
+blue    = '#68809a'
+magenta = '#8c738c'
+cyan    = '#6d96a5'
+white   = '#aeb3bb'
