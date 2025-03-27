@@ -1,7 +1,7 @@
 # https://i3wm.org/docs/userguide.html
 set $mod Mod1
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
-font pango: RobotoMono Nerd Font 22
+font pango: RobotoMono Nerd Font 20
 
 ### system applications ###
 # Start XDG autostart .desktop files using dex. See also
@@ -30,9 +30,9 @@ tiling_drag modifier titlebar
 #exec --no-startup-id polybar example
 ## lockscreen
 bindsym $mod+p exec i3lock
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'RobotoMono Nerd Font-22'
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'RobotoMono Nerd Font-25'
 ## feh
-exec_always feh --bg-fill ~/data/art/osaka.png
+exec_always feh --bg-fill ~/data/art/flowers.jpg
 ## emacs
 exec --no-startup-id emacs --daemon
 bindsym $mod+y exec emacsclient -c -n
@@ -51,6 +51,7 @@ exec redshift -O 3000
 gaps inner 20
 gaps outer 5
 smart_borders on
+smart_gaps on
 for_window [class=".*"] border none
 
 ### movement/keybinds ###

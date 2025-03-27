@@ -1,0 +1,54 @@
+[font]
+normal = { family = "RobotoMono Nerd Font", style = "Regular" }
+size = 12.0
+[env]
+TERM = "xterm-256color"
+
+[window]
+dynamic_padding = true
+opacity = 0.99 
+padding = { x = 0, y = 0 }
+blur = true
+#decorations = "none"
+dimensions = { columns = 300, lines = 100}
+
+[keyboard]
+bindings = [
+  { key = "C", mods = "Control", action = "Copy" },
+  { key = "V", mods = "Control", action = "Paste" }
+]
+
+[cursor]
+style = { blinking = "Always"}
+
+[selection]
+save_to_clipboard = true
+
+# XTerm's default colors
+
+# Default colors
+[colors.primary]
+background = '#222222'
+foreground = '#ffffff'
+
+# Normal colors
+[colors.normal]
+black   = '#191724'
+red     = '#eb6f92'
+green   = '#31748f'
+yellow  = '#f6c177'
+blue    = '#9ccfd8'
+magenta = '#c4a7e7'
+cyan    = '#9ccfd8'
+white   = '#e0def4'
+
+# Bright colors
+[colors.bright]
+black   = '#7f7f7f'
+red     = '#ff0000'
+green   = '#00ff00'
+yellow  = '#ffff00'
+blue    = '#5c5cff'
+magenta = '#ff00ff'
+cyan    = '#00ffff'
+white   = '#ffffff'

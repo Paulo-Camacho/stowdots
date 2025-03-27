@@ -5,17 +5,11 @@
 ;;
 
 ;; COSMETIC ;;;;;
-(setq doom-theme 'doom-monokai-classic)
+(setq doom-theme 'doom-nord)
 
 ;; M-x nerd-icons-install-fonts
-(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 32 :weight 'regular)
-      doom-big-font (font-spec :family "RobotoMono Nerd Font" :size 38 :weight 'regular))
-(after! doom-themes
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t))
-(custom-set-faces!
-  '(font-lock-comment-face :slant italic)
-  '(font-lock-comment-face :slant italic))
+(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 30 :weight 'regular)
+      doom-big-font (font-spec :family "RobotoMono Nerd Font" :size 34 :weight 'regular))
 
 ;; line-numbers
 (setq display-line-numbers-type 'relative)
@@ -50,7 +44,7 @@
 (setq +doom-dashboard-ascii-banner-fn #'weeb)
 
 ;; transparency
-;;(set-frame-parameter (selected-frame) 'alpha '(96 . 96)) (add-to-list 'default-frame-alist '(alpha . (96 . 96)))
+(set-frame-parameter (selected-frame) 'alpha '(95 . 95)) (add-to-list 'default-frame-alist '(alpha . (95 . 95)))
 
 
 ;; show hidden files within dired
