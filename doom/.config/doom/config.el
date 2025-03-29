@@ -49,7 +49,6 @@
 
 (setq org-startup-folded 'overview)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq org-directory "~/org/")

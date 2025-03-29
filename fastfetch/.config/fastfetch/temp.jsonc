@@ -1,0 +1,36 @@
+{
+    "modules": [
+        "break",
+        "title",
+        "separator",
+        "os",
+        {
+            "type": "host",
+            "format": "{/2}{-}{/}{2}{?3} {3}{?}"
+        },
+        "wm",
+        "shell",
+        "terminal",
+        "font",
+        "cpu",
+        {
+            "type": "gpu",
+            "key": "GPU"
+        },
+        "memory",
+        {
+            "type": "cpu",
+            "key": "CPU Temperature",
+            "temp": true,
+            "format": "{temperature}"
+        },
+        {
+            "type": "gpu",
+            "key": "GPU Temperature",
+            "temp": true,
+            "format": "{temperature}"
+        },
+        "break",
+        "colors"
+    ]
+}
