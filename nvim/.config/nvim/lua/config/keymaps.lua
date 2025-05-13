@@ -25,7 +25,7 @@ map("n", "<leader>bk", ":BufferClose<CR>")
 map("n", "<leader>pd", "<cmd>pu=strftime('%c')<cr>", { desc = "Pasting today's date" })
 
 -- Print tick box -- 
-map("n", "<leader>pt", "o- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
+map("n", "<leader>pt", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
 
 -- Oil -- 
 map("n", "-", "<CMD>Oil<CR>", { desc = "Open current directory with Oil"})
