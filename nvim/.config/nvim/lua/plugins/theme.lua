@@ -25,9 +25,11 @@ return {
     priority = 1000,
     config = function()
       require("ayu").setup({
-        mirage = false, -- Use `mirage` variant if true
-        terminal = true, -- Let ayu manage terminal colors
-        overrides = {},  -- Custom highlight group overrides
+        mirage = false,
+        terminal = true,
+        overrides = {
+          LineNr = { fg = "#999999" }, -- light gray line numbers
+        },
       })
       vim.cmd("colorscheme ayu")
     end,

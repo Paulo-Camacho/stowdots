@@ -45,7 +45,7 @@
 ;; (setq +doom-dashboard-ascii-banner-fn #'weeb)
 
 ;; transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 . 95)) (add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+;; (set-frame-parameter (selected-frame) 'alpha '(95 . 95)) (add-to-list 'default-frame-alist '(alpha . (95 . 95)))
 
 (setq org-startup-folded 'overview)
 
