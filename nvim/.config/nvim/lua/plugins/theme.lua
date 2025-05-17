@@ -17,21 +17,26 @@
 -- 	end
 -- }
 
-
 return {
   {
-    "Shatur/neovim-ayu",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("ayu").setup({
-        mirage = false,
-        terminal = true,
-        overrides = {
-          LineNr = { fg = "#999999" }, -- light gray line numbers
+      require("tokyonight").setup({
+        style = "storm", -- options: "storm", "moon", "night", "day"
+        transparent = false,
+        terminal_colors = true,
+        styles = {
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = {},
+          variables = {},
+          sidebars = "dark",
+          floats = "dark",
         },
       })
-      vim.cmd("colorscheme ayu")
+      vim.cmd("colorscheme tokyonight-storm")
     end,
   },
 }

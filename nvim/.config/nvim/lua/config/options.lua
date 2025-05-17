@@ -5,7 +5,6 @@ local options =
 	ruler = false, --disable extra numbering
 	showcmd = true,
 	showmode = true,
-	wrap = true, --toggle bound to leader W
 	mouse = "a", --enable mouse
 	history = 100, --command line history
 	swapfile = false, --swap just gets in the way, usually
@@ -13,6 +12,8 @@ local options =
 	undofile = true, -- THIS KEEPS UNDO AND REDOS PERSISTENT AFTER CLOSING
 	ttyfast = true, --faster scrolling
 	smoothscroll = true,
+	wrap = true,
+    linebreak = true,
 
     clipboard = "unnamedplus",
 	number = true, --numbering lines
