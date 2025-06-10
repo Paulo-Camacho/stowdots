@@ -5,7 +5,7 @@
 ;;
 
 ;; COSMETIC ;;;;;
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-gruvbox-dark-variant)
 
 ;; M-x nerd-icons-install-fonts
 (setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 30 :weight 'regular)
@@ -48,6 +48,13 @@
 ;; (set-frame-parameter (selected-frame) 'alpha '(95 . 95)) (add-to-list 'default-frame-alist '(alpha . (95 . 95)))
 
 (setq org-startup-folded 'overview)
+
+(add-to-list 'default-frame-alist '(undecorated . t))
+
+;; Start Doom Emacs in fullscreen on launch
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;; Ensure any new frames also open fullscreen
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

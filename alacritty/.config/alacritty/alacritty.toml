@@ -6,7 +6,7 @@ TERM = "xterm-256color"
 
 [window]
 dynamic_padding = true
-opacity = 0.97 
+opacity = 0.80
 padding = { x = 0, y = 0 }
 blur = true
 decorations = "none"
@@ -24,43 +24,33 @@ style = { blinking = "Always"}
 [selection]
 save_to_clipboard = true
 
+# Colors (Alabaster Dark)
+# author tonsky
 
 [colors.primary]
-background = '#000000'
-foreground = '#d8dee9'
-dim_foreground = '#a5abb6'
+background = '#0E1415'
+foreground = '#CECECE'
 
 [colors.cursor]
-text = '#2e3440'
-cursor = '#d8dee9'
-
+text = '#0E1415'
+cursor = '#CECECE'
 
 [colors.normal]
-black   = '#3b4252'
-red     = '#bf616a'
-green   = '#a3be8c'
-yellow  = '#ebcb8b'
-blue    = '#81a1c1'
-magenta = '#b48ead'
-cyan    = '#88c0d0'
-white   = '#e5e9f0'
+black = '#0E1415'
+red = '#e25d56'
+green = '#73ca50'
+yellow = '#e9bf57'
+blue = '#4a88e4'
+magenta = '#915caf'
+cyan = '#23acdd'
+white = '#f0f0f0'
 
 [colors.bright]
-black   = '#4c566a'
-red     = '#bf616a'
-green   = '#a3be8c'
-yellow  = '#ebcb8b'
-blue    = '#81a1c1'
-magenta = '#b48ead'
-cyan    = '#8fbcbb'
-white   = '#eceff4'
-
-[colors.dim]
-black   = '#373e4d'
-red     = '#94545d'
-green   = '#809575'
-yellow  = '#b29e75'
-blue    = '#68809a'
-magenta = '#8c738c'
-cyan    = '#6d96a5'
-white   = '#aeb3bb'
+black = '#777777'
+red = '#f36868'
+green = '#88db3f'
+yellow = '#f0bf7a'
+blue = '#6f8fdb'
+magenta = '#e987e9'
+cyan = '#4ac9e2'
+white = '#FFFFFF'
