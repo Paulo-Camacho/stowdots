@@ -32,7 +32,7 @@ tiling_drag modifier titlebar
 bindsym $mod+p exec i3lock
 bindsym $mod+d exec --no-startup-id dmenu_run -fn 'RobotoMono Nerd Font-25'
 ## feh
-exec_always feh --bg-fill ~/data/art/flowers.jpg
+exec_always feh --bg-fill ~/data/art/let.jpeg
 ## emacs
 exec --no-startup-id emacs --daemon
 bindsym $mod+y exec emacsclient -c -n
@@ -40,12 +40,12 @@ bindsym $mod+y exec emacsclient -c -n
 
 #bindsym $mod+y exec --no-startup-id emacs
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+t exec alacritty
 bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+e exec --no-startup-id env GDK_SCALE=2 GDK_DPI_SCALE=1 nemo
 bindsym $mod+w exec --no-startup-id env GDK_SCALE=2 GDK_DPI_SCALE=1 chromium
 ## warm screen
-exec redshift -O 3000
+exec redshift -O 4000
 
 ## eye-candy
 gaps inner 20
