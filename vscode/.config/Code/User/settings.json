@@ -1,0 +1,42 @@
+{
+    "window.titleBarStyle": "custom",  
+    "window.menuBarVisibility": "classic",
+    "editor.fontSize": 14,
+    "vim.useSystemClipboard": true,
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.color": "yellow",
+    "window.customTitleBarVisibility": "never",
+
+    "security.workspace.trust.untrustedFiles": "open",
+    "cmake.showOptionsMovedNotification": false,
+    "editor.suggest.insertMode": "replace",
+    "launch": {},
+    "[json]": {},
+    "update.showReleaseNotes": false,
+    "vim.leader": "<Space>",
+    "vim.hlsearch": true,
+    "workbench.sideBar.location": "left",
+    "editor.fontVariations": false,
+    "redhat.telemetry.enabled": false,
+    "cmake.configureOnOpen": true,
+    "editor.minimap.enabled": false,
+    "git.openRepositoryInParentFolders": "never",
+    "editor.fontLigatures": true,
+    "files.insertFinalNewline": true,
+
+    "C_Cpp.default.cppStandard": "c++20",
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "makefile.configureOnOpen": true,
+    "workbench.colorTheme": "Catppuccin Frappé",
+    "workbench.iconTheme": "catppuccin-frappe",
+    "workbench.editor.enablePreview": false,
+    "python.analysis.typeCheckingMode": "standard",
+    "python.defaultInterpreterPath": "/home/waifu/projects/python/rov-2024/.venv",
+    "window.openFilesInNewWindow": "on",
+    "explorer.confirmDelete": false,
+    
+
+}
