@@ -9,8 +9,9 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
 -- telescope -- 
-map("n", "<leader>.", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "telescope find all files" })
+map("n", "<leader>.", "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "telescope find all files" })
 
+map("n", "<leader>bk", "<CMD>bd<CR>")
 
 -- macros --
 -- print the working date --
