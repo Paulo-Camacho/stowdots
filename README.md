@@ -1,7 +1,8 @@
-<nameOfProgram>/.config/<nvim 
-or 
-<nameOfprogram/.bashrc for example
+# notes
+* inside the stowdots mimic structure of the local system(stowdots/.config/<nameOfprogram>)
+    from here gnu <nameOfprogram>, this will generate appriopriate files
 
+<<<<<<< HEAD
 
 * tips
 
@@ -45,3 +46,7 @@ alias coinpp="/home/waifu/projects/coinpp/coinpp"
 
 fastfetch -c ~/.config/fastfetch/temp.jsonc -l debian
 
+=======
+# fastfetch
+alias fast='fastfetch -c ~/.config/fastfetch/temp.jsonc -l arch'
+>>>>>>> nvchad
