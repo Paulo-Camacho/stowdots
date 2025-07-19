@@ -11,7 +11,7 @@ map("i", "jk", "<ESC>")
 -- telescope -- 
 map("n", "<leader>.", "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "telescope find all files" })
 
-map("n", "<leader>bk", "<CMD>bd<CR>")
+map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope marks" })
 
 -- macros --
 -- print the working date --
