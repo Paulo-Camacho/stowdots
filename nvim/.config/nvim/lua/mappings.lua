@@ -8,11 +8,11 @@ local api = vim.api.nvim_set_keymap
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
--- telescope -- 
-map("n", "<leader>.", "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "telescope find all files" })
-
+-- custom --
 map("n", "<leader>bx", "<Cmd>bwipeout<CR>", { desc = "kill current buffer" })
 
+-- telescope -- 
+map("n", "<leader>.", "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "telescope find all files" })
 map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope marks" })
 
 -- macros --
