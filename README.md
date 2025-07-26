@@ -2,8 +2,6 @@
 * inside the stowdots mimic structure of the local system(stowdots/.config/<nameOfprogram>)
     from here gnu <nameOfprogram>, this will generate appriopriate files
 
-<<<<<<< HEAD
-
 * tips
 
   - You could delete the local .config file and restore from github using stow without having to make 
@@ -42,11 +40,7 @@ fastfetch -c ~/.config/fastfetch/temp.jsonc -l debian
 alias coinpp="/home/waifu/projects/coinpp/coinpp"
 
 
-
-
 fastfetch -c ~/.config/fastfetch/temp.jsonc -l debian
 
-=======
 # fastfetch
 alias fast='fastfetch -c ~/.config/fastfetch/temp.jsonc -l arch'
->>>>>>> nvchad

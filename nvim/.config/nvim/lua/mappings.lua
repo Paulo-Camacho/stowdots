@@ -1,6 +1,5 @@
 require "nvchad.mappings"
 
--- add yours here
 
 local map = vim.keymap.set
 local api = vim.api.nvim_set_keymap
@@ -17,8 +16,7 @@ map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope m
 
 -- macros --
 -- print the working date --
-
-map("n", "<leader>pd", "<cmd>pu=strftime('%c')<cr>", { desc = "Pasting today's date" })
+map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's date" })
 
 -- print tick box -- 
 map("n", "<leader>pt", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
