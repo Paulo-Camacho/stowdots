@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -15,12 +15,8 @@ return {
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
-<<<<<<< HEAD
-  {
-=======
   --
 {
->>>>>>> WEBDEV_NEOVIM
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
@@ -29,19 +25,6 @@ return {
     --@type render.md.UserConfig
     lazy = false,
     opts = {},
-<<<<<<< HEAD
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "vim", "lua", "vimdoc",
-        "html", "css", "java"
-      },
-    },
-  },
-=======
 },
 
   -- {
@@ -52,5 +35,4 @@ return {
         "html", "css"
    		},
    	},
->>>>>>> WEBDEV_NEOVIM
 }

@@ -6,11 +6,7 @@
 local M = {}
 
 M.base46 = {
-<<<<<<< HEAD
-	theme = "gruvbox",
-=======
   theme = "eldritch",
->>>>>>> WEBDEV_NEOVIM
 
   -- hl_override = {
   -- 	Comment = { italic = true },
