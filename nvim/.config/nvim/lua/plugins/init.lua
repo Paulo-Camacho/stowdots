@@ -15,7 +15,12 @@ return {
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
+<<<<<<< HEAD
   {
+=======
+  --
+{
+>>>>>>> WEBDEV_NEOVIM
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
@@ -24,6 +29,7 @@ return {
     --@type render.md.UserConfig
     lazy = false,
     opts = {},
+<<<<<<< HEAD
   },
 
   {
@@ -35,4 +41,16 @@ return {
       },
     },
   },
+=======
+},
+
+  -- {
+   	"nvim-treesitter/nvim-treesitter",
+   	opts = {
+   		ensure_installed = {
+   			"vim", "lua", "vimdoc",
+        "html", "css"
+   		},
+   	},
+>>>>>>> WEBDEV_NEOVIM
 }
