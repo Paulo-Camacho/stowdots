@@ -13,7 +13,7 @@ map("n", "<leader>bx", "<Cmd>bwipeout<CR>", { desc = "kill current buffer" })
 
 map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope marks" })
 
--- macros --
+-- MACROS --
 -- print the working date --
 map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's date" })
 
