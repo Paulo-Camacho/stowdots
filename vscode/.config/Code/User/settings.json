@@ -30,8 +30,8 @@
         "workbench.action.tasks.runTask"
     ],
     "makefile.configureOnOpen": true,
-    "workbench.colorTheme": "Catppuccin Frappé",
-    "workbench.iconTheme": "catppuccin-frappe",
+    "workbench.colorTheme": "Tokyo Night Storm",
+    "workbench.iconTheme": "catppuccin-mocha",
     "workbench.editor.enablePreview": false,
     "python.analysis.typeCheckingMode": "standard",
     "python.defaultInterpreterPath": "/home/waifu/projects/python/rov-2024/.venv",
@@ -40,3 +40,4 @@
     
 
 }
+
