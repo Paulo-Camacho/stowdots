@@ -1,5 +1,5 @@
 # https://i3wm.org/docs/userguide.html
-set $mod Mod1
+set $mod Mod4
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 font pango: RobotoMono Nerd Font 20
 
@@ -43,7 +43,8 @@ bindsym $mod+y exec emacsclient -c -n
 
 #bindsym $mod+y exec --no-startup-id emacs
 # start a terminal
-bindsym $mod+t exec alacritty
+# bindsym $mod+t exec alacritty
+bindsym $mod+Return exec alacritty
 bindsym Print exec --no-startup-id flameshot gui -c
 bindsym $mod+e exec --no-startup-id env GDK_SCALE=1 GDK_DPI_SCALE=1 nemo
 bindsym $mod+w exec --no-startup-id env GDK_SCALE=1 GDK_DPI_SCALE=1 firefox

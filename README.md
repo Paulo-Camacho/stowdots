@@ -3,13 +3,12 @@
     from here gnu <nameOfprogram>, this will generate appriopriate files
 
 * tips
-
   - You could delete the local .config file and restore from github using stow without having to make 
     the dir or file on the local system.
 
-* bash alias
 
-#navigating configs
+* bash alias
+# navigating configs
 alias evim='cd ~/.config/nvim/'
 alias ala='nvim ~/.config/alacritty/alacritty.toml'
 alias poly='nvim ~/.config/polybar/config.ini'
@@ -38,7 +37,6 @@ alias steam='flatpak run com.valvesoftware.Steam'
 alias discord='flatpak run com.discordapp.Discord'
 fastfetch -c ~/.config/fastfetch/temp.jsonc -l debian
 alias coinpp="/home/waifu/projects/coinpp/coinpp"
-
 
 fastfetch -c ~/.config/fastfetch/temp.jsonc -l debian
 

@@ -30,13 +30,16 @@
         "workbench.action.tasks.runTask"
     ],
     "makefile.configureOnOpen": true,
-    "workbench.colorTheme": "Tokyo Night Storm",
-    "workbench.iconTheme": "catppuccin-mocha",
+    "workbench.colorTheme": "Noctis High Contrast",
+    "workbench.iconTheme": "catppuccin-latte",
     "workbench.editor.enablePreview": false,
     "python.analysis.typeCheckingMode": "standard",
     "python.defaultInterpreterPath": "/home/waifu/projects/python/rov-2024/.venv",
     "window.openFilesInNewWindow": "on",
     "explorer.confirmDelete": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     
 
 }
