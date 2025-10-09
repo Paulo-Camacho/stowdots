@@ -21,6 +21,7 @@ map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's d
 map("n", "<leader>pc", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
 -- print check tick box -- 
 map("n", "<leader>px", "F[lrx<ESC>", { noremap = true, silent = true, desc = "Check a TODO tick box" })
+map("n", "<leader>px", "f[lrx<ESC>", { noremap = true, silent = true, desc = "Check a TODO tick box" })
 
 -- move entire lines --
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"}) 
