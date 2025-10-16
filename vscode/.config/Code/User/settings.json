@@ -30,7 +30,7 @@
         "workbench.action.tasks.runTask"
     ],
     "makefile.configureOnOpen": true,
-    "workbench.colorTheme": "Noctis High Contrast",
+    "workbench.colorTheme": "Atom One Dark",
     "workbench.iconTheme": "catppuccin-latte",
     "workbench.editor.enablePreview": false,
     "python.analysis.typeCheckingMode": "standard",
