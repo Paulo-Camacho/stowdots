@@ -34,12 +34,19 @@
     "workbench.iconTheme": "catppuccin-latte",
     "workbench.editor.enablePreview": false,
     "python.analysis.typeCheckingMode": "standard",
-    "python.defaultInterpreterPath": "/home/waifu/projects/python/rov-2024/.venv",
+    "python.defaultInterpreterPath": "/home/waifu/shared/shared-notes/school_notes/design-cst205/cst205env",
     "window.openFilesInNewWindow": "on",
     "explorer.confirmDelete": false,
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "files.autoSave": "afterDelay",
     
 
 }

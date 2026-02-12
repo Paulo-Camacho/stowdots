@@ -15,6 +15,7 @@ map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope m
 
 -- MACROS --
 -- print the working date --
+-- remember when toast did with the date command and then used something to read it into neovim?
 map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's date" })
 
 -- print tick box -- 
