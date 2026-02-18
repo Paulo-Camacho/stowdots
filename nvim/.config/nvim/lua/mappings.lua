@@ -16,13 +16,16 @@ map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope m
 -- MACROS --
 -- print the working date --
 -- remember when toast did with the date command and then used something to read it into neovim?
-map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's date" })
+-- map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's date" })
+
+-- Shout out Bread On Penguins!
+map("n", "<leader>pd", "<cmd>r!dateCR>", { desc = "Using terminal date command and injecting into Neovim" })
+
 
 -- print tick box -- 
 map("n", "<leader>pc", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
 -- print check tick box -- 
 map("n", "<leader>px", "F[lrx<ESC>", { noremap = true, silent = true, desc = "Check a TODO tick box" })
-map("n", "<leader>px", "f[lrx<ESC>", { noremap = true, silent = true, desc = "Check a TODO tick box" })
 
 -- move entire lines --
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"}) 
