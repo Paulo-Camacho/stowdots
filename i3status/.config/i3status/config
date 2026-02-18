@@ -28,12 +28,12 @@ tztime local
 
 battery 0 {
   path = "/sys/class/power_supply/BAT1/uevent"
-    format = "| %status %percentage |"
+    format = "%status %percentage |"
     format_down = "| No battery |"
 }
 
 disk "/" {
-  format = " disk amount used: %free "
+  format = "disk amount used: %free"
 }
 
 cpu_usage {

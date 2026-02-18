@@ -1,4 +1,4 @@
-# https://i3wm.org/docs/userguide.html
+# ------------ "leader key" ------------------
 set $mod Mod4
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 font pango: RobotoMono Nerd Font 20
@@ -7,7 +7,8 @@ font pango: RobotoMono Nerd Font 20
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-
+# ----------- warm screen ------------
+exec redshift -O 4000
 
 # ---------- terminal ------------
 # bindsym $mod+t exec alacritty
@@ -21,10 +22,21 @@ bindsym $mod+w exec --no-startup-id env GDK_SCALE=1 GDK_DPI_SCALE=1 brave-browse
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 
-
 # ------------- adjusting brightness using brightnessctl --------------
 bindsym F7 exec --no-startup-id brightnessctl set 10%-
 bindsym F8 exec --no-startup-id brightnessctl set +10%
+
+# ------------- adjusting volumejusing pactl --------------
+bindsym F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 
 
@@ -49,8 +61,6 @@ bindsym $mod+y exec emacsclient -c -n
 #bindsym $mod+y exec --no-startup-id emacs
 
 
-## warm screen
-exec redshift -O 4000
 
 ## eye-candy
 gaps inner 20
@@ -59,7 +69,7 @@ smart_borders on
 smart_gaps on
 for_window [class=".*"] border none
 
-### movement/keybinds ###
+# ---------------- movement/keybinds ----------------------- 
 # kill focused window
 bindsym $mod+Shift+q kill
 # change focus
@@ -72,9 +82,9 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-#split in horizontal orientation
+# split in horizontal orientation
 bindsym $mod+s split h
-#split in vertical orientation
+# split in vertical orientation
 bindsym $mod+a split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
