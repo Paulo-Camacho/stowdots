@@ -14,15 +14,16 @@ general
 #find /sys -type d -name "*BAT*"
 #cat /sys/class/power_supply/BAT1/uevent
 
-order += "tztime local"
 order += "battery 0"
 order += "disk /"
 order += "cpu_usage"
+order += "tztime local"
+
 
 tztime local 
 {
-    #format = " %Y-%m-%d %H:%M:%S "
-    format = " %Y-%m-%d %I:%M:%S %p "
+    format = " %Y-%m-%d %H:%M:%S "
+    # format = " %Y-%m-%d %I:%M:%S %p "
 }
 
 battery 0 {
@@ -32,9 +33,10 @@ battery 0 {
 }
 
 disk "/" {
-  format = " /: %free "
+  format = " disk amount used: %free "
 }
 
 cpu_usage {
     format = "| CPU: %usage |"
 }
+
