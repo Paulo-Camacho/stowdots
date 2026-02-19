@@ -32,15 +32,15 @@ battery 0
 {
   path = "/sys/class/power_supply/BAT1/uevent"
   format = "%status %percentage |"
-  status_chr = "⚡ charging"
-  status_bat = "🔋 battery"
-  status_full = "☻ fully charged"
-  format_down = "| No battery |"
+  status_chr = "⚡ cha:"
+  status_bat = "🔋 bat:"
+  status_full = "☻ ful:"
+  format_down = "na:|"
 }
 
 disk "/" 
 {
-  format = "disk amount used: %free |"
+  format = "disk_amount_used: %free |"
 }
 
 # cpu_usage 
