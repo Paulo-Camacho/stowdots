@@ -15,17 +15,21 @@ inside the stowdots mimic structure of the local system(stowdots/.config/<nameOf
     the dir or file on the local system.
 
 # xinput
-  bit@slayer:~/stowdots$ xinput list
-⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
-⎜   ↳ Virtual core XTEST pointer              	id=4	[slave  pointer  (2)]
-⎜   ↳ FRMW0004:00 32AC:0006 Consumer Control  	id=9	[slave  pointer  (2)]
-⎜   ↳ PIXA3854:00 093A:0274 Mouse             	id=10	[slave  pointer  (2)]
-⎜   ↳ PIXA3854:00 093A:0274 Touchpad          	id=11	[slave  pointer  (2)]
-⎣ Virtual core keyboard                   	id=3	[master keyboard (2)]
-    ↳ Virtual core XTEST keyboard             	id=5	[slave  keyboard (3)]
-    ↳ Video Bus                               	id=6	[slave  keyboard (3)]
-    ↳ Power Button                            	id=7	[slave  keyboard (3)]
-    ↳ FRMW0004:00 32AC:0006 Wireless Radio Control	id=8	[slave  keyboard (3)]
-    ↳ AT Translated Set 2 keyboard            	id=12	[slave  keyboard (3)]
-    ↳ FRMW0004:00 32AC:0006 Consumer Control  	id=13	[slave  keyboard (3)]
-bit@slayer:~/stowdots$ xinput set-prop 11 "libinput Accel Speed" 0.6
+  this is to adjust the tracking speed of the cursor
+    bit@slayer:~/stowdots$ xinput list
+  ⎡ Virtual core pointer                    	id=2	[master pointer  (3)]
+  ⎜   ↳ PIXA3854:00 093A:0274 Touchpad          	id=11	[slave  pointer  (2)]
+  ⎣ Virtual core keyboard                   	id=3	[master keyboard (2)]
+      ....
+
+        /etc/X11/xorg.conf.d/30-touchpad.conf
+            Section "InputClass"
+            Identifier "Framework Touchpad"
+            MatchProduct "PIXA3854:00 093A:0274 Touchpad"
+            Driver "libinput"
+            Option "AccelSpeed" "0.5"
+            Option "Tapping" "on"
+            Option "NaturalScrolling" "true"
+            Option "ClickMethod" "clickfinger"
+          EndSection
+

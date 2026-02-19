@@ -2,12 +2,20 @@
 set $mod Mod4
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 font pango: RobotoMono Nerd Font 20
+# ------------- xinput ------------
+# exec --no-startup-id xinput set-prop 11 "libinput Accel Speed" 0.4
 
-# -------------- system applications -----------------------
+# -------------- system applications/programs -----------------------
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# ----------- warm screen ------------
+# ---------- using i3lock to have a lockscreen ---------------------------
+bindsym $mod+p exec i3lock
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'RobotoMono Nerd Font-25'
+# ----------------------- using feh to display background wallpaper -----
+exec_always feh --bg-fill ~/shared/inspo/hans.jpg
+
+# ----------- warm screen --------------------------
 exec redshift -O 4000
 
 # ---------- terminal ------------
@@ -20,19 +28,15 @@ bindsym Print exec --no-startup-id flameshot gui -c
 bindsym $mod+e exec --no-startup-id env GDK_SCALE=1 GDK_DPI_SCALE=1 nemo
 bindsym $mod+w exec --no-startup-id env GDK_SCALE=1 GDK_DPI_SCALE=1 brave-browser 
 
-# --------------- bluetooth ---------------------------------
+# --------------- using blue man for bluetooth --------
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 
+# notice how we are using XF86
 # ------------- adjusting brightness using brightnessctl --------------
-# bindsym F7 exec --no-startup-id brightnessctl set 10%-
-# bindsym F8 exec --no-startup-id brightnessctl set +10%
-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
-
-# notice how we are using XF86
 # ----------- using playerctl to control video player ----------------
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -45,21 +49,14 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 
-
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 # I want to be apply to resize when floating and holding a mod instead
 floating_modifier $mod
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
-# programs
-#exec --no-startup-id polybar example
-## lockscreen
-bindsym $mod+p exec i3lock
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'RobotoMono Nerd Font-25'
-## feh
-exec_always feh --bg-fill ~/data/art/let.jpeg
+# ----------------------- using feh to display background wallpaper -----
+exec_always feh --bg-fill ~/shared/inspo/hans.jpg
 ## emacs
 exec --no-startup-id emacs --daemon
 bindsym $mod+y exec emacsclient -c -n
