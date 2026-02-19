@@ -16,9 +16,10 @@ general
 
 order += "battery 0"
 order += "disk /"
-order += "cpu_usage"
+# order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "cpu_temperature 1"
 order += "tztime local"
-
 
 tztime local 
 {
@@ -27,17 +28,35 @@ tztime local
     format = "%Y/%m/%d | %I:%M:%S"
 }
 
-battery 0 {
+battery 0 
+{
   path = "/sys/class/power_supply/BAT1/uevent"
-    format = "%status %percentage |"
-    format_down = "| No battery |"
+  format = "%status %percentage |"
+  status_chr = "⚡ charging"
+  status_bat = "🔋 battery"
+  status_full = "☻ fully charged"
+  format_down = "| No battery |"
 }
 
-disk "/" {
-  format = "disk amount used: %free"
+disk "/" 
+{
+  format = "disk amount used: %free |"
 }
 
-cpu_usage {
-    format = "| CPU: %usage |"
+# cpu_usage 
+#{
+#   format = "| cpu_usage: %usage |"
+#}
+
+cpu_temperature 0 
+{
+    path = "/sys/class/hwmon/hwmon7/temp1_input"
+    format = "cpu_temperature: %degrees°C"
 }
 
+
+cpu_temperature 1 
+{
+    path = "/sys/class/hwmon/hwmon8/temp1_input"
+    format = "| gpu_temperature: %degrees°C |"
+}
