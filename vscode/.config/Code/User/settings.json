@@ -47,6 +47,7 @@
         "scminput": false
     },
     "files.autoSave": "afterDelay",
+    "workbench.secondarySideBar.defaultVisibility": "visible",
     
 
 }
