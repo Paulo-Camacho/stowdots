@@ -15,7 +15,9 @@ exec_always feh --bg-fill ~/shared/inspo/hans.jpg
 
 # ---------- using i3lock to have a lockscreen ---------------------------
 bindsym $mod+p exec i3lock
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'RobotoMono Nerd Font-25'
+# bindsym $mod+d exec --no-startup-id dmenu_run -fn 'RobotoMono Nerd Font-25'
+
+bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#a188f7' -sf '#EEEEEE' -fn 'RobotoMono Nerd Font-12' -p 'dmenu prompt &gt;'"
 # ----------------------- using feh to display background wallpaper -----
 exec_always feh --bg-fill ~/shared/inspo/hans.jpg
 
@@ -154,7 +156,18 @@ bindsym $mod+r mode "resize"
 
 bar
 {
-        status_command i3status
-        font pango:RobotoMono Nerd Font 10
-        position top
+  status_command i3status
+    font pango:RobotoMono Nerd Font 9
+    position top
+    colors {
+      background #000000
+        statusline #FFFFFF
+        separator  #666666
+
+        focused_workspace  #A188F7 #A188F7 #FFFFFF
+        active_workspace   #333333 #222222 #FFFFFF
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2F343A #900000 #FFFFFF
+        binding_mode       #2F343A #900000 #FFFFFF
+    }
 }

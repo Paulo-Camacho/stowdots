@@ -48,6 +48,8 @@
     },
     "files.autoSave": "afterDelay",
     "workbench.secondarySideBar.defaultVisibility": "visible",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     
 
 }
