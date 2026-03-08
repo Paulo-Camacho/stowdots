@@ -9,7 +9,7 @@ map("i", "jk", "<ESC>")
 -- telescope -- 
 map("n", "<leader>.", "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "telescope find all files" })
 
-map("n", "<leader>bx", "<Cmd>bwipeout<CR>", { desc = "kill current buffer" })
+map("n", "<leader>bk", "<Cmd>bwipeout<CR>", { desc = "kill current buffer" })
 
 map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope marks" })
 

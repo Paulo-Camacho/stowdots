@@ -26,40 +26,36 @@
 --    		},
 --    	},
 -- }
-
 return {
   {
     "stevearc/conform.nvim",
     opts = require "configs.conform",
   },
-
   {
     "neovim/nvim-lspconfig",
     config = function()
       require "configs.lspconfig"
     end,
   },
-
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    lazy = false,
-    opts = {},
-  },
-
+  -- {
+  --   'MeanderingProgrammer/render-markdown.nvim',
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+  --   lazy = false,
+  --   opts = {},
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
         "vim", "lua", "vimdoc",
-        "html", "css", "java"
+        "html", "css", "java",
+        "python", "cpp",
       },
     },
   },
-
   {
     "HiPhish/rainbow-delimiters.nvim",
-    lazy = false;
+    lazy = false,
     config = function()
       ---@type rainbow_delimiters.config
       vim.g.rainbow_delimiters = {
@@ -67,16 +63,22 @@ return {
           [''] = 'rainbow-delimiters.strategy.global',
           vim = 'rainbow-delimiters.strategy.local',
           java = 'rainbow-delimiters.strategy.global',
+          python = 'rainbow-delimiters.strategy.global',
+          cpp = 'rainbow-delimiters.strategy.global',
         },
         query = {
           [''] = 'rainbow-delimiters',
           lua = 'rainbow-blocks',
           java = 'rainbow-delimiters',
+          python = 'rainbow-delimiters',
+          cpp = 'rainbow-delimiters',
         },
         priority = {
           [''] = 110,
           lua = 210,
           java = 120,
+          python = 120,
+          cpp = 120,
         },
         highlight = {
           'RainbowDelimiterRed',
