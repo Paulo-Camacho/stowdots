@@ -25,7 +25,7 @@ M.nvdash = {
     " gg    gg    gg  gg   I8 dP  I8 dP ",
     " I8    I8    88  88   I8dP   I8dP  ",
     " I8    I8    8I  88   I8P    I8P   ",
-    "P''Y88P''Y88P' 8P''Y88P''Y888P''Y88",
+    " ''Y88P''Y88P' 8P''Y88P''Y888P''Y88",
     "",
     "",
   },

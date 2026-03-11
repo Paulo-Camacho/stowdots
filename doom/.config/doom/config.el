@@ -1,76 +1,65 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;;
+
 ;; See 'C-h v doom-font' for documentation and more examples of what they
-;;
 
-;; COSMETIC ;;;;;
-(setq doom-theme 'doom-gruvbox-dark-variant)
 
-;; M-x nerd-icons-install-fonts
-(setq doom-font (font-spec :family "RobotoMono Nerd Font" :size 30 :weight 'regular)
-      doom-big-font (font-spec :family "RobotoMono Nerd Font" :size 34 :weight 'regular))
-
-;; line-numbers
+; line-numbers
 (setq display-line-numbers-type 'relative)
 
-;; doom spash
-(assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
-(assoc-delete-all "Open org-agenda" +doom-dashboard-menu-sections)
-(assoc-delete-all "Open private configuration" +doom-dashboard-menu-sections)
-(assoc-delete-all "Open project" +doom-dashboard-menu-sections)
-
-;; anime
-;; (defun weeb ()
-;;   (let* ((banner '(
-;; "⣱⣿⣿⡟⡐⣰⣧⡷⣿⣴⣧⣤⣼⣯⢸⡿⠁⣰⠟⢀⣼⠏⣲⠏⢸⣿⡟⣿⣿⣿⣿⣿⣿"
-;; "⣿⣿⡟⠁⠄⠟⣁⠄⢡⣿⣿⣿⣿⣿⣿⣦⣼⢟⢀⡼⠃⡹⠃⡀⢸⡿⢸⣿⣿⣿⣿⣿⡟"
-;; "⣿⣿⠃⠄⢀⣾⠋⠓⢰⣿⣿⣿⣿⣿⣿⠿⣿⣿⣾⣅⢔⣕⡇⡇⡼⢁⣿⣿⣿⣿⣿⣿⢣"
-;; "⣿⡟⠄⠄⣾⣇⠷⣢⣿⣿⣿⣿⣿⣿⣿⣭⣀⡈⠙⢿⣿⣿⡇⡧⢁⣾⣿⣿⣿⣿⣿⢏⣾"
-;; "⣿⡇⠄⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⢻⠇⠄⠄⢿⣿⡇⢡⣾⣿⣿⣿⣿⣿⣏⣼⣿"
-;; "⣿⣷⢰⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⢰⣧⣀⡄⢀⠘⡿⣰⣿⣿⣿⣿⣿⣿⠟⣼⣿⣿"
-;; "⢹⣿⢸⣿⣿⠟⠻⢿⣿⣿⣿⣿⣿⣿⣿⣶⣭⣉⣤⣿⢈⣼⣿⣿⣿⣿⣿⣿⠏⣾⣹⣿⣿"
-;; "⢸⠇⡜⣿⡟⠄⠄⠄⠈⠙⣿⣿⣿⣿⣿⣿⣿⣿⠟⣱⣻⣿⣿⣿⣿⣿⠟⠁⢳⠃⣿⣿⣿"
-;; "⠄⣰⡗⠹⣿⣄⠄⠄⠄⢀⣿⣿⣿⣿⣿⣿⠟⣅⣥⣿⣿⣿⣿⠿⠋⠄⠄⣾⡌⢠⣿⡿⠃"
-;;                    ))
-;;          (longest-line (apply #'max (mapcar #'length banner))))
-;;     (put-text-property
-;;      (point)
-;;      (dolist (line banner (point))
-;;        (insert (+doom-dashboard--center
-;;                 +doom-dashboard--width
-;;                 (concat line (make-string (max 0 (- longest-line (length line))) 32)))
-;;                "\n"))
-;;      'face 'doom-dashboard-banner)))
-;; (setq +doom-dashboard-ascii-banner-fn #'weeb)
-
 ;; transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(95 . 95)) (add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+(set-frame-parameter (selected-frame) 'alpha '(99 . 99)) (add-to-list 'default-frame-alist '(alpha . (95 . 95)))
 
-(setq org-startup-folded 'overview)
-
-(add-to-list 'default-frame-alist '(undecorated . t))
-
-;; Start Doom Emacs in fullscreen on launch
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-;; Ensure any new frames also open fullscreen
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(setq org-directory "~/org/")
+;; adding notes to menu
+(after! doom-dashboard
+  (add-to-list '+doom-dashboard-menu-sections
 
 
+    '("Open notes"
+      :icon (nerd-icons-octicon "nf-oct-file_directory" :face 'doom-dashboard-menu-title)
+      :key "SPC n n"
+      :action (lambda () (dired "~/shared/shared_notes/notes/")))))
 
-(defun my/revert-buffer-no-confirm ()
-  "Revert buffer without confirmation."
-  (interactive)
-  (when (buffer-file-name)
-    (revert-buffer :ignore-auto :noconfirm)))
+(map! :leader
+      :desc "Open notes" "n n"
+      (lambda () (interactive) (dired "~/shared/shared_notes/notes/")))
 
-(add-hook 'server-after-make-frame-hook
-          (lambda ()
-            (my/revert-buffer-no-confirm)))
+(map! :leader
+      :desc "Search notes" "n n"
+      (lambda () (interactive)(dired "~/shared/shared_notes/notes/")))
+        ;; (consult-ripgrep "~/shared/shared_notes/notes/")))
+(map! :leader
+      :desc "Search notes" "s n"
+      (lambda () (interactive)(dired "~/shared/shared_notes/school_notes/")))
+
+
+
+;; collapse all headings of files
+;; (setq org-startup-folded 'overview)
+
+;; (add-to-list 'default-frame-alist '(undecorated . t))
+
+; Start Doom Emacs in fullscreen on launch
+; 
+; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
+; ;; Ensure any new frames also open fullscreen
+; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;-------------------------------------------------------------
+
+; (setq org-directory "~/org/")
+;
+;
+;
+; (defun my/revert-buffer-no-confirm ()
+;   "Revert buffer without confirmation."
+;   (interactive)
+;   (when (buffer-file-name)
+;     (revert-buffer :ignore-auto :noconfirm)))
+;
+; (add-hook 'server-after-make-frame-hook
+;           (lambda ()
+;             (my/revert-buffer-no-confirm)))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
