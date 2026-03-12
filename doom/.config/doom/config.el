@@ -1,14 +1,12 @@
 ;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-
 ;; See 'C-h v doom-font' for documentation and more examples of what they
-
 
 ; line-numbers
 (setq display-line-numbers-type 'relative)
 
 ;; transparency
-(set-frame-parameter (selected-frame) 'alpha '(99 . 99)) (add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+(set-frame-parameter (selected-frame) 'alpha '(97 . 97)) (add-to-list 'default-frame-alist '(alpha . (97 . 97)))
 
 ;; adding notes to menu
 (after! doom-dashboard
@@ -20,46 +18,33 @@
       :key "SPC n n"
       :action (lambda () (dired "~/shared/shared_notes/notes/")))))
 
+; shortcuts for commonly used dirs
+; notes dir
 (map! :leader
-      :desc "Open notes" "n n"
-      (lambda () (interactive) (dired "~/shared/shared_notes/notes/")))
-
+      :desc "Search notes" "n n"(lambda () (interactive)(dired "~/shared/shared_notes/notes/")))
+        ; example - this rip greps the dir
+        ; (consult-ripgrep "~/shared/shared_notes/notes/")))
+         
+; school notes dir
 (map! :leader
-      :desc "Search notes" "n n"
-      (lambda () (interactive)(dired "~/shared/shared_notes/notes/")))
-        ;; (consult-ripgrep "~/shared/shared_notes/notes/")))
-(map! :leader
-      :desc "Search notes" "s n"
+      :desc "Search notes" "n s"
       (lambda () (interactive)(dired "~/shared/shared_notes/school_notes/")))
 
+; jot file
+(map! :leader
+      :desc "Search notes" "n j"(lambda () (interactive)(find-file "~/shared/shared_notes/notes/jot.org")))
+
+; config dir
+(map! :leader
+      :desc "Search notes" "f P"(lambda () (interactive)(dired "~/.config/doom/")))
 
 
-;; collapse all headings of files
-;; (setq org-startup-folded 'overview)
+; school notes
+(map! :leader
+      :desc "Search notes" "n d" (lambda () (interactive)(dired "~/shared/shared_notes/school_notes/design_cst205/")))
+(map! :leader
+      :desc "Search notes" "n a" (lambda () (interactive)(dired "~/shared/shared_notes/school_notes/algorithms_cst370/")))
 
-;; (add-to-list 'default-frame-alist '(undecorated . t))
-
-; Start Doom Emacs in fullscreen on launch
-; 
-; (add-to-list 'initial-frame-alist '(fullscreen . maximized))
-; ;; Ensure any new frames also open fullscreen
-; (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-;-------------------------------------------------------------
-
-; (setq org-directory "~/org/")
-;
-;
-;
-; (defun my/revert-buffer-no-confirm ()
-;   "Revert buffer without confirmation."
-;   (interactive)
-;   (when (buffer-file-name)
-;     (revert-buffer :ignore-auto :noconfirm)))
-;
-; (add-hook 'server-after-make-frame-hook
-;           (lambda ()
-;             (my/revert-buffer-no-confirm)))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
