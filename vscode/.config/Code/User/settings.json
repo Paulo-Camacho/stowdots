@@ -30,7 +30,7 @@
         "workbench.action.tasks.runTask"
     ],
     "makefile.configureOnOpen": true,
-    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.colorTheme": "Atom One Dark",
     "workbench.iconTheme": "catppuccin-latte",
     "workbench.editor.enablePreview": false,
     "python.analysis.typeCheckingMode": "standard",
@@ -40,16 +40,10 @@
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "github.copilot.enable": {
-        "*": false,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false
-    },
-    "files.autoSave": "afterDelay",
     "workbench.secondarySideBar.defaultVisibility": "visible",
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
     
 
 }
