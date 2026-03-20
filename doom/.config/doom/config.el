@@ -1,5 +1,11 @@
 ;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+
+
+;; transparency
+(set-frame-parameter (selected-frame) 'alpha '(98 . 98))
+;;(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+
 ;; line-numbers
 (setq display-line-numbers-type 'relative)
 
