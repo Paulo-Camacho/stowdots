@@ -3,8 +3,11 @@
 
 
 ;; transparency
-(set-frame-parameter (selected-frame) 'alpha '(98 . 98))
-;;(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+;; (set-frame-parameter (selected-frame) 'alpha '(99 . 99))
+;; (add-to-list 'default-frame-alist '(alpha . (99 . 99)))
+
+;; spawns new instance at this size
+(setq default-frame-alist '((width . 150) (height . 50)))
 
 ;; line-numbers
 (setq display-line-numbers-type 'relative)
@@ -12,13 +15,13 @@
 ;; shortcuts for commonly visted dirs
 (map! :leader
       (:prefix-map ("n" . "notes")
-       :desc "notes files"  "n" (lambda () (interactive) (dired "~/shared/shared_notes/notes/"))
-       :desc "jot note"     "j" (lambda () (interactive) (find-file "~/shared/shared_notes/notes/jot.org"))
-       :desc "todo notes"   "t" (lambda () (interactive) (find-file "~/shared/shared_notes/notes/todo.org"))
-       :desc "emacs notes"  "e" (lambda () (interactive) (find-file "~/shared/shared_notes/notes/jot.org"))
-       :desc "school files" "s" (lambda () (interactive) (dired "~/shared/shared_notes/school_notes/"))
-       :desc "CST205"       "d" (lambda () (interactive) (dired "~/shared/shared_notes/school_notes/design_cst205/"))
-       :desc "CST370"       "a" (lambda () (interactive) (dired "~/shared/shared_notes/school_notes/algorithms_cst370/"))
+       :desc "notes files"  "n" (lambda () (interactive) (dired "~/shared/shared_notes/"))
+       :desc "jot note"     "j" (lambda () (interactive) (find-file "~/shared/shared_notes/jot.org"))
+       :desc "todo notes"   "t" (lambda () (interactive) (find-file "~/shared/shared_notes/todo.org"))
+       :desc "emacs notes"  "e" (lambda () (interactive) (find-file "~/shared/shared_notes/jot.org"))
+       :desc "school files" "s" (lambda () (interactive) (dired "~/shared/school_notes/"))
+       :desc "CST205"       "d" (lambda () (interactive) (dired "~/shared/school_notes/design_cst205/"))
+       :desc "CST370"       "a" (lambda () (interactive) (dired "~/shared/school_notes/algorithms_cst370/"))
        :desc "config"       "P" (lambda () (interactive) (find-file "~/.config/doom/config.el"))))
 
 ;; removes "Open project" from the splash screen

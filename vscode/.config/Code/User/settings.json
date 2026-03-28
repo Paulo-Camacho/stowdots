@@ -34,7 +34,7 @@
     "workbench.iconTheme": "catppuccin-latte",
     "workbench.editor.enablePreview": false,
     "python.analysis.typeCheckingMode": "standard",
-    "python.defaultInterpreterPath": "/home/waifu/shared/shared-notes/school_notes/design-cst205/cst205env",
+    "python.defaultInterpreterPath": "/usr/bin/python3",
     "window.openFilesInNewWindow": "on",
     "explorer.confirmDelete": false,
     "[javascript]": {
@@ -44,6 +44,13 @@
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "cpp": false
+    },
     
 
 }
