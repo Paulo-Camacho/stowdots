@@ -5,7 +5,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "onedark",
+  theme = "ayu_light",
 
   -- hl_override = {
   --   Comment = { italic = true },
@@ -26,7 +26,6 @@ M.nvdash = {
     " I8    I8    88  88   I8dP   I8dP  ",
     " I8    I8    8I  88   I8P    I8P   ",
     " ''Y88P''Y88P' 8P''Y88P''Y888P''Y88",
-    "",
     "",
   },
 }

@@ -7,7 +7,7 @@
 ;; (add-to-list 'default-frame-alist '(alpha . (99 . 99)))
 
 ;; spawns new instance at this size
-(setq default-frame-alist '((width . 150) (height . 50)))
+(setq default-frame-alist '((width . 220) (height . 50)))
 
 ;; line-numbers
 (setq display-line-numbers-type 'relative)

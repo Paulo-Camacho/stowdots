@@ -18,9 +18,10 @@ map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope m
 -- remember when toast did with the date command and then used something to read it into neovim?
 -- map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's date" })
 
--- Shout out Bread On Penguins!
+-- Shout out Bread On Penguins! ( this injects the date command into neovim )
 map("n", "<leader>pd", "<cmd>r!date<CR>", { desc = "Using terminal date command and injecting into Neovim" })
 
+map("n", "-", "<cmd>Nvdash<CR>", { desc = "Open Dashboard" })
 
 -- print tick box -- 
 map("n", "<leader>pc", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
