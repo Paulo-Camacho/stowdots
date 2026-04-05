@@ -5,29 +5,21 @@
 local M = {}
 
 M.base46 = {
-  theme = "ayu_light",
-
-  -- hl_override = {
-  --   Comment = { italic = true },
-  --   ["@comment"] = { italic = true },
-  -- },
+  theme = "catppuccin",
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+  },
 }
 
 M.nvdash = {
   load_on_startup = true,
+M.nvdash = {
+  load_on_startup = true,
   header = {
     "",
-    "",
-    "                      ,dPYb, ,dPYb,",
-    "                      IP'`Yb IP'`Yb",
-    "                 gg   I8  8I I8  8I",
-    "                      I8  8' I8  8'",
-    " gg    gg    gg  gg   I8 dP  I8 dP ",
-    " I8    I8    88  88   I8dP   I8dP  ",
-    " I8    I8    8I  88   I8P    I8P   ",
-    " ''Y88P''Y88P' 8P''Y88P''Y888P''Y88",
-    "",
   },
+}
 }
 
 M.ui = {
@@ -47,27 +39,6 @@ M.ui = {
   tabufline = {
     lazyload = false,
   },
-
 }
 return M
 
--- M.nvdash = {
---   load_on_startup = true,
---   header = {
---     "",
---     "",
---     "",
---     "",
---     "",
---     "                                   ",
---     "                      _/  _/  _/   ",
---     " _/      _/      _/      _/  _/    ",
---     "_/      _/      _/  _/  _/  _/     ",
---     " _/  _/  _/  _/    _/  _/  _/      ",
---     "  _/      _/      _/  _/  _/       ",
---     "                                   ",
---     "",
---     "",
---     "",
---   },
--- }
