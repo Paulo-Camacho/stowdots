@@ -4,7 +4,7 @@
     "window.customTitleBarVisibility": "never",
     "window.openFilesInNewWindow": "on",
 
-    "workbench.colorTheme": "GitHub Light",
+    "workbench.colorTheme": "Solarized Light",
     "workbench.sideBar.location": "left",
     "workbench.secondarySideBar.defaultVisibility": "visible",
     "workbench.editor.enablePreview": false,
@@ -22,7 +22,6 @@
     "explorer.confirmDelete": false,
 
     "security.workspace.trust.untrustedFiles": "open",
-    "update.showReleaseNotes": false,
     "redhat.telemetry.enabled": false,
     "git.openRepositoryInParentFolders": "never",
 
