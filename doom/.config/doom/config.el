@@ -1,60 +1,75 @@
-;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
+;; Place your private configuration here! Remember, you do not need to run 'doom
+;; sync' after modifying this file!
 
 
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets. It is optional.
+;; (setq user-full-name "John Doe"
+;;       user-mail-address "john@doe.com")
 
-;; transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(99 . 99))
-;; (add-to-list 'default-frame-alist '(alpha . (99 . 99)))
+;; Doom exposes five (optional) variables for controlling fonts in Doom:
+;;
+;; - `doom-font' -- the primary font to use
+;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
+;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;; - `doom-symbol-font' -- for symbols
+;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
+;;
+;; See 'C-h v doom-font' for documentation and more examples of what they
+;; accept. For example:
+;;
+;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+;;
+;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
+;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
+;; refresh your font settings. If Emacs still can't find your font, it likely
+;; wasn't installed correctly. Font issues are rarely Doom issues!
 
-;; spawns new instance at this size
-(setq default-frame-alist '((width . 220) (height . 50)))
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-one)
 
-;; line-numbers
-(setq display-line-numbers-type 'relative)
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setq display-line-numbers-type t)
 
-;; shortcuts for commonly visted dirs
-(map! :leader
-      (:prefix-map ("n" . "notes")
-       :desc "notes files"  "n" (lambda () (interactive) (dired "~/shared/shared_notes/"))
-       :desc "jot note"     "j" (lambda () (interactive) (find-file "~/shared/shared_notes/jot.org"))
-       :desc "todo notes"   "t" (lambda () (interactive) (find-file "~/shared/shared_notes/todo.org"))
-       :desc "emacs notes"  "e" (lambda () (interactive) (find-file "~/shared/shared_notes/jot.org"))
-       :desc "school files" "s" (lambda () (interactive) (dired "~/shared/school_notes/"))
-       :desc "CST205"       "d" (lambda () (interactive) (dired "~/shared/school_notes/design_cst205/"))
-       :desc "CST370"       "a" (lambda () (interactive) (dired "~/shared/school_notes/algorithms_cst370/"))
-       :desc "config"       "P" (lambda () (interactive) (find-file "~/.config/doom/config.el"))))
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/org/")
 
-;; removes "Open project" from the splash screen
-(assoc-delete-all "Open project" +doom-dashboard-menu-sections)
 
-;; this function calls of the definition below it to add notes to the splashscreen
-(defun my/open-notes ()
-  (interactive)
-  (dired "~/shared/shared_notes/notes/"))
-
-(add-hook 'doom-after-init-hook
-  (lambda ()
-    (add-to-list '+doom-dashboard-menu-sections
-      '("Open notes"
-        :icon (nerd-icons-faicon "nf-fa-folder_open" :face 'doom-dashboard-menu-title)
-        :key "SPC n n"
-        :face 'doom-dashboard-menu-title
-        :action my/open-notes))))
-
-;; this function calls of the definition below it to add emacs to the splashscreen
-(defun my/open-emacs-notes ()
-  (interactive)
-  (find-file "~/shared/shared_notes/notes/emacs.org"))
-
-(add-hook 'doom-after-init-hook
-  (lambda ()
-    (add-to-list '+doom-dashboard-menu-sections
-      '("Open emacs notes"
-        :icon (nerd-icons-devicon"nf-dev-emacs" :face 'doom-dashboard-menu-title)
-        :key "SPC n e"
-        :face 'doom-dashboard-menu-title
-        :action my/open-emacs-notes))))
-
-;; this adds rainbow delimiters
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
+;; Whenever you reconfigure a package, make sure to wrap your config in an
+;; `with-eval-after-load' block, otherwise Doom's defaults may override your
+;; settings. E.g.
+;;
+;;   (with-eval-after-load 'PACKAGE
+;;     (setq x y))
+;;
+;; The exceptions to this rule:
+;;
+;;   - Setting file/directory variables (like `org-directory')
+;;   - Setting variables which explicitly tell you to set them before their
+;;     package is loaded (see 'C-h v VARIABLE' to look them up).
+;;   - Setting doom variables (which start with 'doom-' or '+').
+;;
+;; Here are some additional functions/macros that will help you configure Doom.
+;;
+;; - `load!' for loading external *.el files relative to this one
+;; - `add-load-path!' for adding directories to the `load-path', relative to
+;;   this file. Emacs searches the `load-path' when you load packages with
+;;   `require' or `use-package'.
+;; - `map!' for binding new keys
+;;
+;; To get information about any of these functions/macros, move the cursor over
+;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+;; This will open documentation for it, including demos of how they are used.
+;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
+;; etc).
+;;
+;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+;; they are implemented.
