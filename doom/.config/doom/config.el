@@ -73,3 +73,32 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+
+
+;; Transparency
+(set-frame-parameter (selected-frame) 'alpha '(95 . 95))
+(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+
+;;; Sort newest files first
+;; Treemacs: newest modified files first.
+(after! treemacs
+  (setq treemacs-sorting 'mod-time-desc))
+;; Dired: newest modified files first.
+(after! dired
+  (setq dired-listing-switches "-alht"))
+
+
+;; Notes shortcut
+;; This will open the notes dir inside of dired with SPC n n from anywhere
+(defvar my/notes-dir (expand-file-name "~/shared/notes/")
+  "Portable notes directory.")
+
+(defun my/open-notes ()
+  "Open notes directory."
+  (interactive)
+  (dired my/notes-dir))
+
+(map! :leader
+      :desc "Open notes directory"
+      "n n" #'my/open-notesj
