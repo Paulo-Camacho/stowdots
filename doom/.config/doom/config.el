@@ -77,10 +77,10 @@
 
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(95 . 95))
-(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+(set-frame-parameter (selected-frame) 'alpha '(98 . 98))
+(add-to-list 'default-frame-alist '(alpha . (98 . 98)))
 
-;;; Sort newest files first
+;; Sort newest files first
 ;; Treemacs: newest modified files first.
 (after! treemacs
   (setq treemacs-sorting 'mod-time-desc))
@@ -89,8 +89,9 @@
   (setq dired-listing-switches "-alht"))
 
 
+
 ;; Notes shortcut
-;; This will open the notes dir inside of dired with SPC n n from anywhere
+;; Opens notes directory with SPC n n.
 (defvar my/notes-dir (expand-file-name "~/shared/notes/")
   "Portable notes directory.")
 
@@ -101,4 +102,12 @@
 
 (map! :leader
       :desc "Open notes directory"
-      "n n" #'my/open-notesj
+      "n n" #'my/open-notes)
+
+;; Add notes shortcut to dashboard.
+(add-to-list '+dashboard-menu-sections
+             '("Open notes"
+	       :icon (nerd-icons-faicon "nf-fa-sticky_note"
+                                         :face '+dashboard-menu-title)
+               :key "SPC n n"
+               :action my/open-notes))
