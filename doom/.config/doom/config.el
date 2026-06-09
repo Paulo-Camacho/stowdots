@@ -77,8 +77,8 @@
 
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(98 . 98))
-(add-to-list 'default-frame-alist '(alpha . (98 . 98)))
+(set-frame-parameter (selected-frame) 'alpha '(100. 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
 ;; Sort newest files first
 ;; Treemacs: newest modified files first.
