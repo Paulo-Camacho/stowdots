@@ -90,24 +90,14 @@
 
 
 
-;; Notes shortcut
-;; Opens notes directory with SPC n n.
-(defvar my/notes-dir (expand-file-name "~/shared/notes/")
-  "Portable notes directory.")
+
+(defvar my/notes-dir (expand-file-name "~/shared/notes/"))
 
 (defun my/open-notes ()
-  "Open notes directory."
   (interactive)
+  (make-directory my/notes-dir t)
   (dired my/notes-dir))
 
 (map! :leader
       :desc "Open notes directory"
       "n n" #'my/open-notes)
-
-;; Add notes shortcut to dashboard.
-(add-to-list '+dashboard-menu-sections
-             '("Open notes"
-	       :icon (nerd-icons-faicon "nf-fa-sticky_note"
-                                         :face '+dashboard-menu-title)
-               :key "SPC n n"
-               :action my/open-notes))
