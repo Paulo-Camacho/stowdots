@@ -32,11 +32,59 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-monokai-spectrum)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
+
+;; Auto save buffer
+(setq auto-save-visited-interval 1)
+(auto-save-visited-mode +1)
+
+;; Initial window boot size perfect for m1 macbook air
+;; (setq initial-frame-alist
+;;       '((top . 50)          ; Pixels from the top of the screen
+;;         (left . 50)         ; Pixels from the left of the screen
+;;         (width . 170)       ; Width in character columns
+;;         (height . 50)))     ; Height in character rows
+;;
+;;
+;; (defun frame-center ()
+;;   "Center the current frame."
+;;   (interactive)
+;;   (let* ((dw (display-pixel-width))
+;;          (dh (display-pixel-height))
+;;          (f  (selected-frame))
+;;          (fw (frame-pixel-width f))
+;;          (fh (frame-pixel-height f))
+;;          (x  (- (/ dw 2) (/ fw 2)))
+;;          (y  (- (/ dh 2) (/ fh 2))))
+;;     (message (format "dw %d dh %d fw %d fh %d x %d y %d" dw dh fw fh x y))
+;;     (set-frame-position f x y)))
+(defun frame-center ()
+  ;; Someones's code using Polish notation that I modifed to recieve a scalar of two
+  (interactive)
+  (let* ((dw (display-pixel-width))
+         (dh (display-pixel-height))
+         (f  (selected-frame))
+         ;; Force precision pixel sizing on macOS
+         (_  (setq frame-resize-pixelwise t))
+         ;; 1. Scale the width and height by 2 using Polish notation
+         (fw (* (frame-pixel-width f) 2))
+         (fh (* (frame-pixel-height f) 2))
+         ;; 2. Set the frame size to the new doubled values
+         (_  (set-frame-size f fw fh t))
+         ;; 3. Calculate centering math based on the new doubled size
+         (x  (- (/ dw 2) (/ fw 2)))
+         (y  (- (/ dh 2) (/ fh 2))))
+    (message (format "dw %d dh %d fw %d fh %d x %d y %d" dw dh fw fh x y))
+    (set-frame-position f x y)))
+
+(frame-center)
+
+;; (add-hook 'doom-after-init-modules-hook #'frame-center)
+
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -74,23 +122,20 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-
-
-;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(100. 100))
-(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
+;; Transparency (This might be overrated as I always seem to add it and get rid of it after the fact)
+;; (set-frame-parameter (selected-frame) 'alpha '(98. 98))
+;; (add-to-list 'default-frame-alist '(alpha . (98. 98)))
 
 ;; Sort newest files first
 ;; Treemacs: newest modified files first.
-(after! treemacs
-  (setq treemacs-sorting 'mod-time-desc))
-;; Dired: newest modified files first.
+;; (after! treemacs
+;;   (setq treemacs-sorting 'mod-time-desc))
+
+;; Dired lists newest modified files first
 (after! dired
   (setq dired-listing-switches "-alht"))
 
-
-
-
+;; Function to key stroke to add SPC n n to open my notes
 (defvar my/notes-dir (expand-file-name "~/shared/notes/"))
 
 (defun my/open-notes ()
