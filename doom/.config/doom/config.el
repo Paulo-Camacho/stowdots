@@ -32,11 +32,11 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-monokai-spectrum)
+(setq doom-theme 'doom-gruvbox)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 't)
 
 ;; Auto save buffer
 (setq auto-save-visited-interval 1)
@@ -62,6 +62,7 @@
 ;;          (y  (- (/ dh 2) (/ fh 2))))
 ;;     (message (format "dw %d dh %d fw %d fh %d x %d y %d" dw dh fw fh x y))
 ;;     (set-frame-position f x y)))
+
 (defun frame-center ()
   ;; Someones's code using Polish notation that I modifed to recieve a scalar of two
   (interactive)
