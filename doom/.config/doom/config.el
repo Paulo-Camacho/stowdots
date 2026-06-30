@@ -21,8 +21,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
+;;       doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -36,32 +36,12 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 't)
+(setq display-line-numbers-type 'relative)
 
 ;; Auto save buffer
 (setq auto-save-visited-interval 1)
 (auto-save-visited-mode +1)
 
-;; Initial window boot size perfect for m1 macbook air
-;; (setq initial-frame-alist
-;;       '((top . 50)          ; Pixels from the top of the screen
-;;         (left . 50)         ; Pixels from the left of the screen
-;;         (width . 170)       ; Width in character columns
-;;         (height . 50)))     ; Height in character rows
-;;
-;;
-;; (defun frame-center ()
-;;   "Center the current frame."
-;;   (interactive)
-;;   (let* ((dw (display-pixel-width))
-;;          (dh (display-pixel-height))
-;;          (f  (selected-frame))
-;;          (fw (frame-pixel-width f))
-;;          (fh (frame-pixel-height f))
-;;          (x  (- (/ dw 2) (/ fw 2)))
-;;          (y  (- (/ dh 2) (/ fh 2))))
-;;     (message (format "dw %d dh %d fw %d fh %d x %d y %d" dw dh fw fh x y))
-;;     (set-frame-position f x y)))
 
 (defun frame-center ()
   ;; Someones's code using Polish notation that I modifed to recieve a scalar of two
@@ -72,7 +52,9 @@
          ;; Force precision pixel sizing on macOS
          (_  (setq frame-resize-pixelwise t))
          ;; 1. Scale the width and height by 2 using Polish notation
-         (fw (* (frame-pixel-width f) 2))
+         (fw (- (display-pixel-width f) 100))
+         ;; (fw (* (frame-pixel-width f) 2)) This scales default Emacs X length frame x2
+         ;; (fh (* (frame-pixel-height f) 2)) This scales default Emacs X length frame x2
          (fh (* (frame-pixel-height f) 2))
          ;; 2. Set the frame size to the new doubled values
          (_  (set-frame-size f fw fh t))
@@ -147,3 +129,30 @@
 (map! :leader
       :desc "Open notes directory"
       "n n" #'my/open-notes)
+
+
+
+
+
+
+
+;; Initial window boot size perfect for m1 macbook air
+;; (setq initial-frame-alist
+;;       '((top . 50)          ; Pixels from the top of the screen
+;;         (left . 50)         ; Pixels from the left of the screen
+;;         (width . 170)       ; Width in character columns
+;;         (height . 50)))     ; Height in character rows
+;;
+;;
+;; (defun frame-center ()
+;;   "Center the current frame."
+;;   (interactive)
+;;   (let* ((dw (display-pixel-width))
+;;          (dh (display-pixel-height))
+;;          (f  (selected-frame))
+;;          (fw (frame-pixel-width f))
+;;          (fh (frame-pixel-height f))
+;;          (x  (- (/ dw 2) (/ fw 2)))
+;;          (y  (- (/ dh 2) (/ fh 2))))
+;;     (message (format "dw %d dh %d fw %d fh %d x %d y %d" dw dh fw fh x y))
+;;     (set-frame-position f x y)))
