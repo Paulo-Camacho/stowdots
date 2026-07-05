@@ -1,17 +1,12 @@
-require "nvchad.mappings"
-
 local map = vim.keymap.set
-local api = vim.api.nvim_set_keymap
+vim.g.mapleader = " "
 
+
+
+map("n", "<leader>.", "<cmd>Ex<CR>", { desc = 'Open netrw with leader .' })
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
--- telescope -- 
-map("n", "<leader>.", "<Cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", { desc = "telescope find all files" })
-
-map("n", "<leader>bk", "<Cmd>bwipeout<CR>", { desc = "kill current buffer" })
-
-map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope marks" })
 
 -- MACROS --
 -- print the working date --
@@ -20,9 +15,6 @@ map("n", "<leader>fm", require("telescope.builtin").marks, { desc = "telescope m
 
 -- Shout out Bread On Penguins! ( this injects the date command into neovim )
 map("n", "<leader>pd", "<cmd>r!date<CR>", { desc = "Using terminal date command and injecting into Neovim" })
-
-map("n", "-", "<cmd>Nvdash<CR>", { desc = "Open Dashboard" })
-
 -- print tick box -- 
 map("n", "<leader>pc", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
 -- print check tick box -- 
@@ -32,4 +24,8 @@ map("n", "<leader>px", "F[lrx<ESC>", { noremap = true, silent = true, desc = "Ch
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"}) 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "shift selected line down"})
 map("n", ";", ":", { desc = "CMD enter command mode" })
+
+
+
+
 

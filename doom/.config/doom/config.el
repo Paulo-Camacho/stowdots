@@ -32,8 +32,8 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-gruvbox)
-
+;; (setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-rose-pine-moon)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
@@ -42,29 +42,34 @@
 (setq auto-save-visited-interval 1)
 (auto-save-visited-mode +1)
 
+(setq frame-resize-pixelwise t)
 
-(defun frame-center ()
-  ;; Someones's code using Polish notation that I modifed to recieve a scalar of two
-  (interactive)
-  (let* ((dw (display-pixel-width))
-         (dh (display-pixel-height))
-         (f  (selected-frame))
-         ;; Force precision pixel sizing on macOS
-         (_  (setq frame-resize-pixelwise t))
-         ;; 1. Scale the width and height by 2 using Polish notation
-         (fw (- (display-pixel-width f) 100))
-         ;; (fw (* (frame-pixel-width f) 2)) This scales default Emacs X length frame x2
-         ;; (fh (* (frame-pixel-height f) 2)) This scales default Emacs X length frame x2
-         (fh (* (frame-pixel-height f) 2))
-         ;; 2. Set the frame size to the new doubled values
-         (_  (set-frame-size f fw fh t))
-         ;; 3. Calculate centering math based on the new doubled size
-         (x  (- (/ dw 2) (/ fw 2)))
-         (y  (- (/ dh 2) (/ fh 2))))
-    (message (format "dw %d dh %d fw %d fh %d x %d y %d" dw dh fw fh x y))
-    (set-frame-position f x y)))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(frame-center)
+(set-frame-parameter nil 'fullscreen 'maximized)
+
+;; (defun frame-center ()
+;;   ;; Someones's code using Polish notation that I modifed to recieve a scalar of two
+;;   (interactive)
+;;   (let* ((dw (display-pixel-width))
+;;          (dh (display-pixel-height))
+;;          (f  (selected-frame))
+;;          ;; Force precision pixel sizing on macOS
+;;          (_  (setq frame-resize-pixelwise t))
+;;          ;; This scales default Emacs X length frame x2
+;;          (fw (* (frame-pixel-width f) 2))
+;;          ;; This scales default Emacs X length frame x2
+;;          (fh (* (frame-pixel-height f) 2))
+;;          ;; 2. Set the frame size to the new doubled values
+;;          (_  (set-frame-size f fw fh t))
+;;          ;; 3. Calculate centering math based on the new doubled size
+;;          (x  (- (/ dw 2) (/ fw 2)))
+;;          (y  (- (/ dh 2) (/ fh 2))))
+;;     (message (format "dw %d dh %d fw %d fh %d x %d y %d" dw dh fw fh x y))
+;;     (set-frame-position f x y)))
+
+;; (frame-center)
 
 ;; (add-hook 'doom-after-init-modules-hook #'frame-center)
 
@@ -129,12 +134,6 @@
 (map! :leader
       :desc "Open notes directory"
       "n n" #'my/open-notes)
-
-
-
-
-
-
 
 ;; Initial window boot size perfect for m1 macbook air
 ;; (setq initial-frame-alist

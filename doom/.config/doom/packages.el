@@ -15,15 +15,15 @@
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
-;; https://github.com/radian-software/straight.el#the-recipe-format
+;; straight.el recipe format documentation
 ;; (package! another-package
-;;   :recipe (:host github :repo "username/repo"))
+;;   :recipe (:host some-host :repo "username/repo"))
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
 ;; `:files' in the `:recipe':
 ;; (package! this-package
-;;   :recipe (:host github :repo "username/repo"
+;;   :recipe (:host some-host :repo "username/repo"
 ;;            :files ("some-file.el" "src/lisp/*.el")))
 
 ;; If you'd like to disable a package included with Doom, you can do so here
