@@ -33,17 +33,19 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-gruvbox)
-(setq doom-theme 'doom-rose-pine-moon)
+(setq doom-theme 'doom-rose-pine)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
-;; Auto save buffer
-(setq auto-save-visited-interval 1)
-(auto-save-visited-mode +1)
+;; Auto save visited files every 1 second
+(setq auto-save-visited-interval 1
+      auto-save-no-message t)
+
+(auto-save-visited-mode 1)
+
 
 (setq frame-resize-pixelwise t)
-
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
