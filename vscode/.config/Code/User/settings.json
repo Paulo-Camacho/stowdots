@@ -28,5 +28,10 @@
   "vim.smartRelativeLine": true,
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.filePath": "on",
+  "breadcrumbs.symbolPath": "on",
+  "workbench.editor.labelFormat": "long",
+  "window.title": "${dirty}${activeEditorLong}${separator}${appName}"
 }

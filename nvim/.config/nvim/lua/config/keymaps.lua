@@ -1,12 +1,9 @@
 local map = vim.keymap.set
 vim.g.mapleader = " "
 
-
-
 map("n", "<leader>.", "<cmd>Ex<CR>", { desc = 'Open netrw with leader .' })
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
-
 
 -- MACROS --
 -- print the working date --
@@ -23,9 +20,5 @@ map("n", "<leader>px", "F[lrx<ESC>", { noremap = true, silent = true, desc = "Ch
 -- move entire lines --
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"}) 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "shift selected line down"})
+
 map("n", ";", ":", { desc = "CMD enter command mode" })
-
-
-
-
-
