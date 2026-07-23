@@ -1,1 +1,4 @@
 .DS_Store
+
+# Zed prompt-library state (binary LMDB, machine-local)
+zed/.config/zed/prompts/

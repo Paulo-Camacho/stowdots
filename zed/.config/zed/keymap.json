@@ -1,0 +1,54 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      ";": ["workspace::SendKeystrokes", ":"],
+      "space .": "project_panel::ToggleFocus",
+      "space p c": ["workspace::SendKeystrokes", "0i- [ ] "],
+      "space p x": ["workspace::SendKeystrokes", "F[lrx"]
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "vim_mode == visual && !menu",
+    "bindings": {
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown"
+    }
+  },
+  {
+    // Wrapped line navigation: j/k walk display lines, g j / g k jump real lines.
+    // Scoped to normal + visual so operator-pending (d j, y j) still acts on whole real lines.
+    "context": "VimControl && (vim_mode == normal || vim_mode == visual) && !menu",
+    "bindings": {
+      "j": ["vim::Down", { "display_lines": true }],
+      "k": ["vim::Up", { "display_lines": true }],
+      "g j": "vim::Down",
+      "g k": "vim::Up"
+    }
+  }
+]

@@ -24,14 +24,15 @@
   "git.autofetch": true,
   "claudeCode.preferredLocation": "panel",
   "security.workspace.trust.untrustedFiles": "open",
-  "workbench.colorTheme": "Dark Modern",
   "vim.smartRelativeLine": true,
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
   "redhat.telemetry.enabled": false,
-  "breadcrumbs.enabled": true,
-  "breadcrumbs.filePath": "on",
-  "breadcrumbs.symbolPath": "on",
-  "workbench.editor.labelFormat": "long",
-  "window.title": "${dirty}${activeEditorLong}${separator}${appName}"
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "editor.lineNumbers": "relative",
+  "window.title": "${activeEditorLong}${separator}${rootName}${separator}${appName}",
+  "scm.diffDecorations": "all",
+  "scm.diffDecorationsGutterWidth": 3,
+  "explorer.decorations.colors": true,
+  "explorer.decorations.badges": true
 }

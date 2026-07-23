@@ -33,7 +33,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-gruvbox)
-(setq doom-theme 'doom-rose-pine)
+(setq doom-theme 'doom-one)
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
@@ -114,9 +114,9 @@
 
 ;; Transparency (This might be overrated as I always seem to add it and get rid of it after the fact)
 ;; Select current frame grab the parameter that being alpha followed by active transparency value vs(.) inactive
-(set-frame-parameter (selected-frame) 'alpha '(99. 80))
-;; Frames created in the future
-(add-to-list 'default-frame-alist '(alpha . (99. 80)))
+;; (set-frame-parameter (selected-frame) 'alpha '(99. 80))
+;; ;; Frames created in the future
+;; (add-to-list 'default-frame-alist '(alpha . (99. 80)))
 
 ;; Sort newest files first
 ;; Treemacs: newest modified files first.
@@ -159,3 +159,7 @@
 ;;          (y  (- (/ dh 2) (/ fh 2))))
 ;;     (message (format "dw %d dh %d fw %d fh %d x %d y %d" dw dh fw fh x y))
 ;;     (set-frame-position f x y)))
+
+;; rss feed
+(after! elfeed-org
+  (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))

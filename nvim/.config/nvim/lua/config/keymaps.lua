@@ -18,7 +18,13 @@ map("n", "<leader>pc", "0i- [ ] ", { noremap = true, silent = true, desc = "Inse
 map("n", "<leader>px", "F[lrx<ESC>", { noremap = true, silent = true, desc = "Check a TODO tick box" })
 
 -- move entire lines --
-map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"}) 
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"})
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "shift selected line down"})
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
+
+-- wrapped line navigation --
+-- bare j/k walk display lines; a count (5j) still jumps real lines to match the gutter
+-- mode list omits operator-pending on purpose so dj/yj keep working on whole real lines
+map({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "Down by display line" })
+map({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "Up by display line" })

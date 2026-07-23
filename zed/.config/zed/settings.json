@@ -6,49 +6,104 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
-
 {
-  "vim_mode": true,
+  "soft_wrap": "editor_width",
+  "relative_line_numbers": "wrapped",
+  "cli_default_open_behavior": "new_window",
+  "diff_view_style": "unified",
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "bypassPermissions",
+        "model": "sonnet",
+        "effort": "high"
+      },
+      "type": "registry"
+    },
+    "codex-acp": {
+      "default_config_options": {
+        "model": "gpt-5.5"
+      },
+      "type": "registry"
+    }
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git": {
+    "git_gutter": "tracked_files",
+    "gutter_debounce": 100
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "show_edit_predictions": false,
   "colorize_brackets": true,
-  "format_on_save": "on",
+  "prettier": {
+    "allowed": true,
+    "singleQuote": true,
+    "semi": false,
+  },
+  "agent": {
+    "dock": "right",
+    "default_model": {
+      "provider": "openai",
+      "model": "gpt-5.5-pro",
+      "enable_thinking": true,
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "vim_mode": true,
+
+  "vim": {
+    "highlight_on_yank_duration": 500
+  },
+  "theme_overrides": {
+      "One Dark": {
+        // Try making editor selection yellow.
+        // This may also affect normal selection, not only yank.
+        "players": [
+          {
+            "selection": "#facc15"
+          }
+        ],
+  
+        // Make search/document highlights yellow-ish too.
+        // This can affect other editor highlights.
+        "search.match_background": "#facc1555",
+        "editor.document_highlight.read_background": "#facc1533",
+        "editor.document_highlight.write_background": "#facc1544"
+      }
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
   "ui_font_size": 16,
   "buffer_font_size": 15,
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Ayu Mirage"
+    "dark": "One Dark",
   },
-  "languages": {
-    "C": {
-      "tab_size": 2,
-      "hard_tabs": false,
-      "format_on_save": "on",
-      "formatter": {
-        "external": {
-          "command": "clang-format",
-          "arguments": ["--style=file", "--assume-filename={buffer_path}"]
-        }
-      }
-    },
-    "C++": {
-      "tab_size": 2,
-      "hard_tabs": false,
-      "format_on_save": "on",
-      "formatter": {
-        "external": {
-          "command": "clang-format",
-          "arguments": ["--style=file", "--assume-filename={buffer_path}"]
-        }
-      }
-    }
-  },
-  "agent": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4",
-      "enable_thinking": false
-    },
-    "favorite_models": [],
-    "model_parameters": []
-  }
 }
