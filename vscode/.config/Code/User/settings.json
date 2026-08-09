@@ -29,7 +29,7 @@
   "explorer.decorations.badges": true,
   "workbench.settings.applyToAllProfiles": [],
   "editor.fontSize": 14,
-  // "window.zoomLevel": 0.5,
+  "window.zoomLevel": 0.5,
   "github.copilot.nextEditSuggestions.eagerness": "medium",
   "vim.useSystemClipboard": true,
   "vim.normalModeKeyBindings": [

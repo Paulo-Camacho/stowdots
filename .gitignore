@@ -1,4 +1,9 @@
 .DS_Store
 
+# Emacs generated state.
+emacs/.emacs.d/auto-save-list/
+emacs/.emacs.d/elpa/
+emacs/.emacs.d/tree-sitter/
+
 # Zed prompt-library state (binary LMDB, machine-local)
 zed/.config/zed/prompts/
