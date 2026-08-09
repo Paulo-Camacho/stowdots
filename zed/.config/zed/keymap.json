@@ -6,31 +6,23 @@
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
-  {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    },
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      // "j k": "vim::NormalBefore"
-    },
-  },
+  
   {
     "context": "vim_mode == normal && !menu",
     "bindings": {
       ";": ["workspace::SendKeystrokes", ":"],
       "space .": "project_panel::ToggleFocus",
       "space p c": ["workspace::SendKeystrokes", "0i- [ ] "],
-      "space p x": ["workspace::SendKeystrokes", "F[lrx"]
+      "space p x": ["workspace::SendKeystrokes", "F[lrx"],
+      "shift-h": "vim::StartOfLine",
+      "shift-l": "vim::EndOfLine"
     }
+
   },
   {
     "context": "vim_mode == insert",
     "bindings": {
-      "j k": "vim::NormalBefore"
+      "jk": "vim::NormalBefore"
     }
   },
   {
@@ -41,8 +33,6 @@
     }
   },
   {
-    // Wrapped line navigation: j/k walk display lines, g j / g k jump real lines.
-    // Scoped to normal + visual so operator-pending (d j, y j) still acts on whole real lines.
     "context": "VimControl && (vim_mode == normal || vim_mode == visual) && !menu",
     "bindings": {
       "j": ["vim::Down", { "display_lines": true }],

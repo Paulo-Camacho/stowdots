@@ -7,14 +7,14 @@
   "terminal.integrated.enableMultiLinePasteWarning": "never",
   "window.autoDetectColorScheme": false,
   "git.autofetch": true,
-  "vim.smartRelativeLine": true,
   "workbench.settings.applyToAllProfiles": [
     "vim.smartRelativeLine"
   ],
   "diffEditor.ignoreTrimWhitespace": true,
-  "workbench.colorTheme": "One Dark Pro Darker",
   "scm.diffDecorations": "all",
   "scm.diffDecorationsGutterWidth": 3,
   "explorer.decorations.colors": true,
-  "explorer.decorations.badges": true
+  "explorer.decorations.badges": true,
+  "claudeCode.preferredLocation": "panel",
+  "editor.wordWrap": "on"
 }

@@ -3,9 +3,14 @@ vim.g.mapleader = " "
 
 map("n", "<leader>.", "<cmd>Ex<CR>", { desc = 'Open netrw with leader .' })
 map("n", ";", ":", { desc = "CMD enter command mode" })
+
+-- exit insert mode with jk
 map("i", "jk", "<ESC>")
 
--- MACROS --
+-- moving to the start or end of a line with either H or L for quick access --
+map("n", "H", "0")
+map("n", "L", "$")
+
 -- print the working date --
 -- remember when toast did with the date command and then used something to read it into neovim?
 -- map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's date" })
@@ -21,6 +26,7 @@ map("n", "<leader>px", "F[lrx<ESC>", { noremap = true, silent = true, desc = "Ch
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"})
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "shift selected line down"})
 
+-- just type ; to go into command mode --
 map("n", ";", ":", { desc = "CMD enter command mode" })
 
 -- wrapped line navigation --
