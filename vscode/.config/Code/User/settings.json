@@ -21,7 +21,6 @@
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
   "redhat.telemetry.enabled": false,
-  "workbench.colorTheme": "Dracula Theme",
   "window.title": "${activeEditorLong}${separator}${rootName}${separator}${appName}",
   "scm.diffDecorations": "all",
   "scm.diffDecorationsGutterWidth": 3,
@@ -29,7 +28,7 @@
   "explorer.decorations.badges": true,
   "workbench.settings.applyToAllProfiles": [],
   "editor.fontSize": 15,
-  "window.zoomLevel": 0.5,
+  "window.zoomLevel": 0.8,
   "github.copilot.nextEditSuggestions.eagerness": "medium",
   "vim.useSystemClipboard": true,
   "vim.normalModeKeyBindings": [
