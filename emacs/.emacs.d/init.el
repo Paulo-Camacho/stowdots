@@ -106,7 +106,10 @@
 ;; (set-face-attribute 'default nil :font "Fira Code-12")
 (set-face-attribute 'default nil :font "Iosevka Nerd Font Mono-15")
 
-;;; init.el ends here
+;; theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/atom-one-dark-theme")
+(load-theme 'atom-one-dark t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -119,6 +122,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
- ;; theme
- (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/atom-one-dark-theme")
-(load-theme 'atom-one-dark t)
+
+;;; init.el ends here

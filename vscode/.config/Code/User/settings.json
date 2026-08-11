@@ -23,12 +23,12 @@
   "redhat.telemetry.enabled": false,
   "window.title": "${activeEditorLong}${separator}${rootName}${separator}${appName}",
   "scm.diffDecorations": "all",
-  "scm.diffDecorationsGutterWidth": 3,
+  "scm.diffDecorationsGutterWidth": 5,
   "explorer.decorations.colors": true,
   "explorer.decorations.badges": true,
   "workbench.settings.applyToAllProfiles": [],
   "editor.fontSize": 15,
-  "window.zoomLevel": 0.8,
+  // "window.zoomLevel": 0.5,
   "github.copilot.nextEditSuggestions.eagerness": "medium",
   "vim.useSystemClipboard": true,
   "vim.normalModeKeyBindings": [
@@ -61,4 +61,5 @@
   // "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
   "vim.highlightedyank.duration": 300,
   "workbench.colorTheme": "Atom One Dark",
+  "files.autoSaveDelay": 100,
 }
