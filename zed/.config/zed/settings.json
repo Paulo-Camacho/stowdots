@@ -106,9 +106,9 @@
   "icon_theme": {
     "mode": "system",
     "light": "Zed (Default)",
-    "dark": "Zed (Default)"
+    "dark": "VSCode Icons for Zed (Dark Angular)"
   },
-  "ui_font_size": 14,
+  "ui_font_size": 15,
   "buffer_font_size": 12,
   "theme": {
     "mode": "dark",

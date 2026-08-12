@@ -62,4 +62,5 @@
   "vim.highlightedyank.duration": 300,
   "workbench.colorTheme": "Atom One Dark",
   "files.autoSaveDelay": 100,
+  "workbench.iconTheme": "vscode-icons",
 }

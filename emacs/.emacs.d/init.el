@@ -35,6 +35,82 @@
   :config
   (evil-collection-init))
 
+;; Doom-style leader keys.  SPC is the leader in Evil states; M-SPC makes
+;; the same bindings available while inserting text or in Emacs state.
+(use-package which-key
+  :config
+  (which-key-mode 1))
+
+(use-package recentf
+  :ensure nil
+  :config
+  (recentf-mode 1))
+
+(use-package general
+  :after evil
+  :config
+  (general-create-definer my/leader
+    :states '(normal visual motion)
+    :keymaps 'override
+    :prefix "SPC"
+    :non-normal-prefix "M-SPC")
+
+  (my/leader
+    "SPC" '(execute-extended-command :which-key "M-x")
+    "."   '(find-file :which-key "find file")
+    ","   '(switch-to-buffer :which-key "switch buffer")
+    "`"   '(mode-line-other-buffer :which-key "last buffer")
+
+    "b"   '(:ignore t :which-key "buffer")
+    "bb"  '(switch-to-buffer :which-key "switch buffer")
+    "bd"  '(kill-current-buffer :which-key "kill buffer")
+    "bk"  '(kill-current-buffer :which-key "kill buffer")
+    "bn"  '(next-buffer :which-key "next buffer")
+    "bp"  '(previous-buffer :which-key "previous buffer")
+    "bS"  '(save-some-buffers :which-key "save all buffers")
+
+    "c"   '(:ignore t :which-key "code")
+    "ca"  '(eglot-code-actions :which-key "code action")
+    "cd"  '(xref-find-definitions :which-key "definition")
+    "cD"  '(xref-find-references :which-key "references")
+    "cr"  '(eglot-rename :which-key "rename")
+    "cf"  '(apheleia-format-buffer :which-key "format buffer")
+
+    "f"   '(:ignore t :which-key "file")
+    "ff"  '(find-file :which-key "find file")
+    "fR"  '(rename-visited-file :which-key "rename file")
+    "fr"  '(recentf-open-files :which-key "recent files")
+    "fs"  '(save-buffer :which-key "save file")
+    "fS"  '(save-some-buffers :which-key "save all files")
+    "fe"  '(find-file :which-key "open file")
+
+    "h"   '(:ignore t :which-key "help")
+    "hf"  '(describe-function :which-key "function")
+    "hk"  '(describe-key :which-key "key")
+    "hm"  '(describe-mode :which-key "mode")
+    "hv"  '(describe-variable :which-key "variable")
+
+    "p"   '(:ignore t :which-key "project")
+    "pp"  '(project-switch-project :which-key "switch project")
+    "pf"  '(project-find-file :which-key "find file")
+    "pd"  '(project-dired :which-key "dired")
+    "pk"  '(project-kill-buffers :which-key "kill buffers")
+    "ps"  '(project-find-regexp :which-key "search project")
+
+    "q"   '(:ignore t :which-key "quit/session")
+    "qq"  '(save-buffers-kill-emacs :which-key "quit Emacs")
+
+    "w"   '(:ignore t :which-key "window")
+    "w="  '(balance-windows :which-key "balance windows")
+    "wc"  '(delete-window :which-key "close window")
+    "wd"  '(delete-window :which-key "delete window")
+    "wh"  '(windmove-left :which-key "window left")
+    "wj"  '(windmove-down :which-key "window down")
+    "wk"  '(windmove-up :which-key "window up")
+    "wl"  '(windmove-right :which-key "window right")
+    "ws"  '(split-window-below :which-key "split below")
+    "wv"  '(split-window-right :which-key "split right")))
+
 ;; Fast, precise syntax highlighting via built-in tree-sitter modes.
 (use-package treesit-auto
   :custom
@@ -123,4 +199,11 @@
  ;; If there is more than one, they won't work right.
  )
 
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (dired-hide-details-mode 1)))
+
+(auto-save-visited-mode 1)
+(setq auto-save-visited-interval 1)
+(setq after-focus-change-function (lambda () (save-some-buffers t)))
 ;;; init.el ends here
