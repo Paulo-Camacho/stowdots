@@ -5,6 +5,8 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 // Hello world
 {
+  "accessible_mode": true,
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "edit_predictions": {
     "allow_data_collection": "no"
   },
@@ -13,7 +15,7 @@
   },
   "proxy": "",
   "terminal": {
-    "font_family": "Iosevka Nerd Font",
+    "font_family": "JetBrainsMono Nerd Font Mono",
     "font_size": 15.0
   },
   "soft_wrap": "editor_width",
@@ -22,17 +24,12 @@
   "diff_view_style": "unified",
   "agent_servers": {
     "claude-acp": {
-      "default_config_options": {
-        "mode": "bypassPermissions",
-        "model": "sonnet",
-        "effort": "max"
-      },
       "type": "registry"
     },
     "codex-acp": {
       "default_config_options": {
         "mode": "read-only",
-        "reasoning_effort": "max",
+        "reasoning_effort": "ultra",
         "model": "gpt-5.6-sol"
       },
       "type": "registry"
@@ -52,6 +49,7 @@
     "gutter_debounce": 100
   },
   "git_panel": {
+    "group_by": "status",
     "dock": "left"
   },
   "autosave": {
@@ -88,31 +86,149 @@
   "vim": {
     "highlight_on_yank_duration": 200
   },
-  "theme_overrides": {
-      "One Dark": {
-        // This adds yellow highlighting inside of the Zed
-        "players": [
-          {
-            // "selection": "#facc15"
-          }
-        ],
-        // Make search/document highlights yellow-ish too.
-        // This can affect other editor highlights.
-        "search.match_background": "#facc1555",
-        "editor.document_highlight.read_background": "#facc1533",
-        "editor.document_highlight.write_background": "#facc1544"
-      }
-  },
+  // "theme_overrides": {
+//     "One Dark": {
+//       // GMK 8008-inspired cool black, slate gray, pink, and teal palette.
+//       "background": "#0F1116",
+//       "surface.background": "#20252F",
+//       "elevated_surface.background": "#2C2F38",
+
+//       "editor.background": "#20252F",
+//       "editor.foreground": "#D8D8DA",
+//       "editor.gutter.background": "#20252F",
+//       "editor.active_line.background": "#242A34",
+//       "editor.line_number": "#59616C",
+//       "cursor": "#8EC9DB",
+//       "editor.active_line_number": "#F26D6D",
+//       "editor.indent_guide": "#333A46",
+//       "editor.indent_guide_active": "#59616C",
+//       "editor.document_highlight.read_background": "#59A9C533",
+//       "editor.document_highlight.write_background": "#E28A7644",
+
+//       "panel.background": "#282D36",
+//       "tab_bar.background": "#171B23",
+//       "tab.inactive_background": "#171B23",
+//       "tab.active_background": "#20252F",
+//       "title_bar.background": "#171B23",
+//       "status_bar.background": "#171B23",
+//       "toolbar.background": "#20252F",
+
+//       "border": "#3A414D",
+//       "border.variant": "#2C333E",
+//       "border.focused": "#",
+//       "border.selected": "#67A8BB",
+
+//       "text": "#D8D8DA",
+//       "text.muted": "#939BA6",
+//       "text.placeholder": "#727C8A",
+//       "text.accent": "#F26D6D",
+
+//       "icon": "#A5ACB5",
+//       "icon.muted": "#727C8A",
+//       "icon.accent": "#F26D6D",
+
+//       "element.background": "#2C333E",
+//       "element.hover": "#333A46",
+//       "element.selected": "#939BA633",
+//       "ghost_element.hover": "#2C333E",
+//       "ghost_element.selected": "#939BA633",
+
+//       "search.match_background": "#67A8BB55",
+//       "search.active_match_background": "#DB6E7366",
+
+//       "scrollbar.thumb.background": "#59616C55",
+//       "scrollbar.thumb.hover_background": "#727C8A77",
+//       "scrollbar.track.background": "#00000000",
+
+//       "error": "#F26D6D",
+//       "warning": "#F0C66F",
+//       "success": "#63B7D1",
+//       "created": "#63B7D1",
+//       "modified": "#F0C66F",
+//       "deleted": "#",
+//       "info": "#7DAED2",
+// // #F26D6D
+// // #63B7D1
+// // #F0C66F
+//       "accents": [
+//         "#F26D6D",
+//         "#63B7D1",
+//         "#F0C66F",
+//         "#F26D6D",
+//         "#63B7D1",
+//         "#F0C66F"
+//       ],
+
+//       "syntax": {
+//         "comment": {
+//           "color": "#5C6570",
+//           "font_style": "italic"
+//         },
+//         "keyword": {
+//           "color": "#F26D6D"
+//         },
+//         "function": {
+//           "color": "#8F9AA6"
+//         },
+//         "constructor": {
+//           "color": "#F3F4F6"
+//         },
+//         "type": {
+//           "color": "#F3F4F6"
+//         },
+//         "string": {
+//           "color": "#8EC9DB"
+//         },
+//         "number": {
+//           "color": "#F0C66F"
+//         },
+//         "boolean": {
+//           "color": "#F0C66F"
+//         },
+//         "constant": {
+//           "color": "#F26D6D"
+//         },
+//         "property": {
+//           "color": "#8F9AA6"
+//         },
+//         "variable": {
+//           "color": "#F3F4F6"
+//         },
+//         "variable.parameter": {
+//           "color": "#F3F4F6"
+//         },
+//         "operator": {
+//           "color": "#F26D6D"
+//         },
+//         "punctuation": {
+//           "color": "#F26D6D"
+//         },
+//         "tag": {
+//           "color": "#F26D6D"
+//         },
+//         "attribute": {
+//           "color": "#63B7D1"
+//         },
+//         "title": {
+//           "color": "#F26D6D",
+//           "font_weight": 700
+//         },
+//         "link_text": {
+//           "color": "#63B7D1"
+//         }
+//       }
+//     }
+//   },
   "icon_theme": {
-    "mode": "system",
-    "light": "Zed (Default)",
+    "mode": "light",
+    "light": "VSCode Icons for Zed (Light Angular)",
     "dark": "Zed (Default)"
   },
-  "ui_font_size": 14,
-  "buffer_font_size": 12,
+  "ui_font_size": 16,
+  "buffer_font_size": 14,
   "theme": {
-    "mode": "dark",
-    "light": "One Light",
-    "dark": "Cursor Dark",
+    "mode": "light",
+    "light": "8008 Light",
+    "dark": "8008 Dark",
   },
 }

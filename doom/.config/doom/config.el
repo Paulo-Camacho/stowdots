@@ -8,12 +8,19 @@
 ;; wasn't installed correctly. Font issues are rarely Doom issues!
 
 (setq doom-font
+      ;; (font-spec :family "Inter Nerd Font"
       (font-spec :family "Iosevka Nerd Font Mono"
+      ;; (font-spec :family "JetbrainsMono Nerd Font"
+      ;; (font-spec :family "Atkinson Hyperlegible Mono"
                  :size 14
-                 :weight 'normal))
+                 :weight 'normal)
+      ;; doom-big-font (font-spec :family "Atkinson Hyperlegible Mono" :size 20)
+      ;; Homebrew did not intsall the pitch font
+      ;; doom-variable-pitch-font (font-spec :family "Atkinson Hyperlegible Next" :size 15)
+)
+
 
 (setq doom-theme 'doom-one)
-
 ;; Auto save visited files every 1 second
 (setq auto-save-visited-interval 1
       auto-save-no-message t)
@@ -77,17 +84,12 @@
 
 ;; optimizing emacs*
 ;; Increase line length and file size limits before disabling features
-(setq large-file-warning-threshold 10000000) ; 10MB
-;; Automatically turn off heavy features for large buffers
-(add-hook 'find-file-hook
-          (lambda ()
-            (when (> (buffer-size) 10000) ; 1MB threshold
-              ;; (hl-line-mode -1)
-              ;; (font-lock-mode -1)
-              ;; (lsp-disconnect)
-              ;; (flycheck-mode -1)
-              ))
-          )
 
 (setq display-line-numbers-type 't)
-(global-so-long-mode 1)
+
+(add-hook 'doom-first-input-hook
+          (lambda ()
+            (setq-default mode-line-format nil)
+            (setq mode-line-format nil)))
+
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)

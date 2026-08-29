@@ -12,6 +12,7 @@ opt.wrap = true            -- Enable visual wrapping
 opt.linebreak = true       -- Wrap at word boundaries
 opt.textwidth = 0          -- Prevent Neovim from inserting physical line breaks
 opt.clipboard = "unnamedplus" -- Share Neovim clipboard with the system clipboard
+opt.virtualedit = "all"
 
 -- netrw
 vim.g.netrw_sort_by = "time"          -- Sort files by modification time

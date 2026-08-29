@@ -1,17 +1,11 @@
 {
-  "editor.fontFamily": "'Iosevka Nerd Font Mono', monospace",
-  "terminal.integrated.fontFamily": "Iosevka Nerd Font Mono",
-  // "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
-  // "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
   "editor.fontLigatures": true,
   "debug.onTaskErrors": "debugAnyway",
   "workbench.editorAssociations": {
     "*.copilotmd": "vscode.markdown.preview.editor",
   },
-  // "chat.viewSessions.orientation": "stacked",
   "svelte.enable-ts-plugin": true,
   "files.autoSave": "afterDelay",
-  // "workbench.iconTheme": "material-icon-theme",
   "editor.minimap.enabled": false,
   "terminal.integrated.initialHint": false,
   "workbench.startupEditor": "none",
@@ -21,17 +15,41 @@
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
   "redhat.telemetry.enabled": false,
-  "workbench.colorTheme": "cursor anysphere theme",
   "window.title": "${activeEditorLong}${separator}${rootName}${separator}${appName}",
   "scm.diffDecorations": "all",
   "scm.diffDecorationsGutterWidth": 3,
   "explorer.decorations.colors": true,
   "explorer.decorations.badges": true,
   "workbench.settings.applyToAllProfiles": [],
-  "editor.fontSize": 14,
   // "window.zoomLevel": 0.5,
   "github.copilot.nextEditSuggestions.eagerness": "medium",
   "vim.useSystemClipboard": true,
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        "H"
+      ],
+      "after": [
+        "^"
+      ]
+    },
+    {
+      "before": [
+        "L"
+      ],
+      "after": [
+        "$"
+      ]
+    },
+    {
+      "before": [
+        ";"
+      ],
+      "after": [
+        ":"
+      ]
+    }
+  ],
   "vim.normalModeKeyBindings": [
     {
       "before": [
@@ -61,4 +79,17 @@
   "vim.highlightedyank.enable": true,
   // "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
   "vim.highlightedyank.duration": 300,
+  "explorer.confirmDragAndDrop": false,
+"workbench.iconTheme": "bearded-icons",
+"editor.fontFamily": "''Iosevka Nerd Font Mono', JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+"editor.fontSize": 12,
+"chat.fontSize": 12,
+"terminal.integrated.fontFamily": "Iosevka Nerd Font Mono",
+"github.copilot.enable": {
+  "*": false,
+  "plaintext": false,
+  "markdown": false,
+  "scminput": false
+},
+"workbench.colorTheme": "Bearded Theme Milkshake Vanilla Banana",
 }
