@@ -1,60 +1,95 @@
-;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+
+;; See 'C-h v doom-font' for documentation and more examples of what they
+;; accept. For example:
+;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
+;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
+;; refresh your font settings. If Emacs still can't find your font, it likely
+;; wasn't installed correctly. Font issues are rarely Doom issues!
+
+(setq doom-font
+      ;; (font-spec :family "Inter Nerd Font"
+      (font-spec :family "Iosevka Nerd Font Mono"
+      ;; (font-spec :family "JetbrainsMono Nerd Font"
+      ;; (font-spec :family "Atkinson Hyperlegible Mono"
+                 :size 14
+                 :weight 'normal)
+      ;; doom-big-font (font-spec :family "Atkinson Hyperlegible Mono" :size 20)
+      ;; Homebrew did not intsall the pitch font
+      ;; doom-variable-pitch-font (font-spec :family "Atkinson Hyperlegible Next" :size 15)
+)
 
 
+(setq doom-theme 'doom-one)
+;; Auto save visited files every 1 second
+(setq auto-save-visited-interval 1
+      auto-save-no-message t)
 
-;; transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(99 . 99))
-;; (add-to-list 'default-frame-alist '(alpha . (99 . 99)))
+(auto-save-visited-mode 1)
 
-;; spawns new instance at this size
-(setq default-frame-alist '((width . 220) (height . 50)))
+(setq frame-resize-pixelwise t)
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; line-numbers
-(setq display-line-numbers-type 'relative)
+(set-frame-parameter nil 'fullscreen 'maximized)
 
-;; shortcuts for commonly visted dirs
-(map! :leader
-      (:prefix-map ("n" . "notes")
-       :desc "notes files"  "n" (lambda () (interactive) (dired "~/shared/shared_notes/"))
-       :desc "jot note"     "j" (lambda () (interactive) (find-file "~/shared/shared_notes/jot.org"))
-       :desc "todo notes"   "t" (lambda () (interactive) (find-file "~/shared/shared_notes/todo.org"))
-       :desc "emacs notes"  "e" (lambda () (interactive) (find-file "~/shared/shared_notes/jot.org"))
-       :desc "school files" "s" (lambda () (interactive) (dired "~/shared/school_notes/"))
-       :desc "CST205"       "d" (lambda () (interactive) (dired "~/shared/school_notes/design_cst205/"))
-       :desc "CST370"       "a" (lambda () (interactive) (dired "~/shared/school_notes/algorithms_cst370/"))
-       :desc "config"       "P" (lambda () (interactive) (find-file "~/.config/doom/config.el"))))
+;; If you use `org' and don't want your org files in the default location below,
+(setq org-directory "~/org/")
 
-;; removes "Open project" from the splash screen
-(assoc-delete-all "Open project" +doom-dashboard-menu-sections)
-
-;; this function calls of the definition below it to add notes to the splashscreen
+;; maps
+;; I defined a var then defined a function, then a map that calls that function
+;; (defvar my/notes-dir
+;;   (expand-file-name "~/shared/notes/"))
 (defun my/open-notes ()
+  "Open the notes directory in Dired."
   (interactive)
-  (dired "~/shared/shared_notes/notes/"))
+  (make-directory "~/shared/notes/" t)
+  (dired "~/shared/notes/"))
+(map! :leader
+      :desc "Open notes directory"
+      "n n" #'my/open-notes)
 
-(add-hook 'doom-after-init-hook
-  (lambda ()
-    (add-to-list '+doom-dashboard-menu-sections
-      '("Open notes"
-        :icon (nerd-icons-faicon "nf-fa-folder_open" :face 'doom-dashboard-menu-title)
-        :key "SPC n n"
-        :face 'doom-dashboard-menu-title
-        :action my/open-notes))))
+;; displaying file tree ascending to oldest
+(after! treemacs
+  (setq treemacs-sorting 'mod-time-desc))
 
-;; this function calls of the definition below it to add emacs to the splashscreen
-(defun my/open-emacs-notes ()
-  (interactive)
-  (find-file "~/shared/shared_notes/notes/emacs.org"))
+(after! elfeed-org
+  (setq rmh-elfeed-org-files (list "~/org/elfeed.org")))
 
-(add-hook 'doom-after-init-hook
-  (lambda ()
-    (add-to-list '+doom-dashboard-menu-sections
-      '("Open emacs notes"
-        :icon (nerd-icons-devicon"nf-dev-emacs" :face 'doom-dashboard-menu-title)
-        :key "SPC n e"
-        :face 'doom-dashboard-menu-title
-        :action my/open-emacs-notes))))
+;; turns off the prompt asking if you really want to quit
+(setq confirm-kill-emacs nil)
 
-;; this adds rainbow delimiters
+;; turned on, this hides the details such as permissions and dates inside of dired. turn back on with the ( key
+(after! dirvish
+;; dired lists newest to oldest
+  (setq dirvish-hide-details t))
+;; fallback for ordinary Dired buffers
+(after! dired
+  (setq dired-listing-switches "-Alht")
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (dired-hide-details-mode 1))
+            t))
+
+;; macOs dired grouping
+(setq ls-lisp-use-insert-directory-program nil
+      ls-lisp-dirs-first t)
+
+;; traversing wraped lines
+(after! evil
+  (setq evil-respect-visual-line-mode t))
+
+;; line wrapping
+(global-visual-line-mode 1)
+
+;; optimizing emacs*
+;; Increase line length and file size limits before disabling features
+
+(setq display-line-numbers-type 't)
+
+(add-hook 'doom-first-input-hook
+          (lambda ()
+            (setq-default mode-line-format nil)
+            (setq mode-line-format nil)))
+
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
