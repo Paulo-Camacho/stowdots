@@ -20,7 +20,9 @@
   "scm.diffDecorationsGutterWidth": 3,
   "explorer.decorations.colors": true,
   "explorer.decorations.badges": true,
-  "workbench.settings.applyToAllProfiles": [],
+  "workbench.settings.applyToAllProfiles": [
+    
+  ],
   // "window.zoomLevel": 0.5,
   "github.copilot.nextEditSuggestions.eagerness": "medium",
   "vim.useSystemClipboard": true,
@@ -31,6 +33,22 @@
       ],
       "after": [
         "^"
+      ]
+    },
+    {
+      "before": [
+        "J"
+      ],
+      "commands": [
+        "editor.action.moveLinesDownAction"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.moveLinesUpAction"
       ]
     },
     {
@@ -91,5 +109,6 @@
   "markdown": false,
   "scminput": false
 },
-"workbench.colorTheme": "Bearded Theme Milkshake Vanilla Banana",
+"workbench.colorTheme": "cursor anysphere theme",
+"C_Cpp.intelliSenseEngine": "disabled",
 }

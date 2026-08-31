@@ -16,5 +16,6 @@
   "explorer.decorations.colors": true,
   "explorer.decorations.badges": true,
   "claudeCode.preferredLocation": "panel",
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "cursor.composer.queueMessageDefaultBehavior": "steer"
 }
