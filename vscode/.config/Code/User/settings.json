@@ -1,5 +1,4 @@
 {
-  "editor.fontLigatures": true,
   "debug.onTaskErrors": "debugAnyway",
   "workbench.editorAssociations": {
     "*.copilotmd": "vscode.markdown.preview.editor",
@@ -20,10 +19,8 @@
   "scm.diffDecorationsGutterWidth": 3,
   "explorer.decorations.colors": true,
   "explorer.decorations.badges": true,
-  "workbench.settings.applyToAllProfiles": [
-    
-  ],
-  // "window.zoomLevel": 0.5,
+  "workbench.settings.applyToAllProfiles": [],
+  "window.zoomLevel": 1,
   "github.copilot.nextEditSuggestions.eagerness": "medium",
   "vim.useSystemClipboard": true,
   "vim.visualModeKeyBindings": [
@@ -99,10 +96,12 @@
   "vim.highlightedyank.duration": 300,
   "explorer.confirmDragAndDrop": false,
 "workbench.iconTheme": "bearded-icons",
-"editor.fontFamily": "''Iosevka Nerd Font Mono', JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+// "editor.fontFamily": "Iosevka Nerd Font Mono', JetBrains Mono', monospace",
+"editor.fontFamily": "Iosevka Nerd Font Mono",
 "editor.fontSize": 12,
 "chat.fontSize": 12,
 "terminal.integrated.fontFamily": "Iosevka Nerd Font Mono",
+  "editor.fontLigatures": true,
 "github.copilot.enable": {
   "*": false,
   "plaintext": false,
