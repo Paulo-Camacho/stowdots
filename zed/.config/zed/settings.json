@@ -220,14 +220,14 @@
 //     }
 //   },
   "icon_theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "VSCode Icons for Zed (Light Angular)",
     "dark": "Zed (Default)"
   },
   "ui_font_size": 16,
   "buffer_font_size": 14,
   "theme": {
-    "mode": "light",
+    "mode": "dark",
     "light": "8008 Light",
     "dark": "8008 Dark",
   },

@@ -34,3 +34,7 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 -- mode list omits operator-pending on purpose so dj/yj keep working on whole real lines
 map({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "Down by display line" })
 map({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "Up by display line" })
+
+-- When text is snaked I can still navigate that "one" line
+map("n", "j", "gj", { silent = true, desc = "Down by display line" })
+map("n", "k", "gk", { silent = true, desc = "Up by display line" })

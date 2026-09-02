@@ -76,6 +76,24 @@
     },
     {
       "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k"
+      ]
+    },
+    {
+      "before": [
         "L"
       ],
       "after": [
@@ -108,6 +126,7 @@
   "markdown": false,
   "scminput": false
 },
-"workbench.colorTheme": "cursor anysphere theme",
 "C_Cpp.intelliSenseEngine": "disabled",
+"chat.viewSessions.orientation": "stacked",
+"workbench.colorTheme": "cursor anysphere theme",
 }
