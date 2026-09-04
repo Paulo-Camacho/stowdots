@@ -129,4 +129,5 @@
 "C_Cpp.intelliSenseEngine": "disabled",
 "chat.viewSessions.orientation": "stacked",
 "workbench.colorTheme": "cursor anysphere theme",
+"explorer.confirmDelete": false,
 }
