@@ -2,8 +2,11 @@ require('config.keymaps')
 require('config.options')
 require('config.autocmds')
 
-require('onedarkpro').setup() -- loading theme
-vim.cmd.colorscheme('onedark')           -- applying
+-- require('onedarkpro').setup() -- loading theme
+-- vim.cmd.colorscheme('onedark')           -- applying
+
+vim.opt.termguicolors = true
+vim.cmd.colorscheme("734")
 
 -- Coloring the Cursorline
 vim.api.nvim_set_hl(0, "CursorLine", {
