@@ -1,6 +1,6 @@
 hi clear
 if exists('syntax_on') | syntax reset | endif
-let g:colors_name = 'mydump'
+let g:colors_name = '734'
 highlight SpecialKey guifg=#505050
 highlight EndOfBuffer guifg=#505050
 highlight TermCursor cterm=reverse gui=reverse
