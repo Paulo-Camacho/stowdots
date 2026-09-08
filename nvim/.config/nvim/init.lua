@@ -6,12 +6,12 @@ require('config.autocmds')
 -- vim.cmd.colorscheme('onedark')           -- applying
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("734")
+vim.cmd.colorscheme("734-light")
 
 -- Coloring the Cursorline
-vim.api.nvim_set_hl(0, "CursorLine", {
-  bg = "#2c313c",
-})
+--vim.api.nvim_set_hl(0, "CursorLine", {
+--  bg = "#2c313c",
+--})
 -- vim.cmd.colorscheme('onedark_dark')   -- Black background
 -- vim.cmd.colorscheme('onedark_vivid')  -- More saturated
 -- vim.cmd.colorscheme('onelight')       -- Light
