@@ -113,7 +113,6 @@
   // "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
   "vim.highlightedyank.duration": 300,
   "explorer.confirmDragAndDrop": false,
-"workbench.iconTheme": "bearded-icons",
 // "editor.fontFamily": "Iosevka Nerd Font Mono', JetBrains Mono', monospace",
 "editor.fontFamily": "Iosevka Nerd Font Mono",
 "editor.fontSize": 12,
@@ -128,6 +127,6 @@
 },
 "C_Cpp.intelliSenseEngine": "disabled",
 "chat.viewSessions.orientation": "stacked",
-"workbench.colorTheme": "cursor anysphere theme",
+"workbench.colorTheme": "Quiet Light",
 "explorer.confirmDelete": false,
 }

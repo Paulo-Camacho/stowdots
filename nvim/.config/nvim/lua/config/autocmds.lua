@@ -3,7 +3,7 @@ local augroup = vim.api.nvim_create_augroup
 
 local yank_group = augroup("highlight-yank", { clear = true })
 
--- Yellow flash color for yanked text
+-- nice yellow highlight after hitting 'yank' commands
 local function set_yank_hl()
   vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#e5c07b", fg = "#282c34" })
 end
@@ -22,7 +22,7 @@ autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({
       higroup = "YankHighlight",  -- yellow group defined above
-      timeout = 500,              -- flash lasts 500ms
+      timeout = 500,              -- how long the flash highlight lasts in ms
     })
   end,
 })
@@ -41,7 +41,7 @@ autocmd({ "FileType" }, {
 	})
 
 	autocmd("BufReadPost", {
-		desc = "Jump to last pos when opening a file",
+		desc = "opens the file were you left off",
 		callback = function(args)
 			local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line("$")
 			local not_commit = vim.b[args.buf].filetype ~= "commit"
