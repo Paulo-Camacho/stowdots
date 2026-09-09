@@ -56,7 +56,7 @@ autocmd({ "FileType" }, {
 autocmd("FileType", {
   pattern = "*",
   callback = function(args)
-    -- Dognot enable auto-pairs in Markdown files
+    -- auto insert brackets or (quotes, but not inside of markdown files)
     if vim.bo[args.buf].filetype == "markdown" then
       return
     end

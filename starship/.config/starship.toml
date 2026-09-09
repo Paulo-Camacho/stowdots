@@ -1,0 +1,33 @@
+add_newline = true
+command_timeout = 200
+format = "[$git_branch$git_status PWD: $directory]($style)$character"
+
+[character]
+error_symbol = "[✗](bold purple)"
+success_symbol = "[❯](bold purple)"
+
+[directory]
+truncation_length = 0
+truncation_symbol = ""
+truncate_to_repo = false
+home_symbol = "~"
+style = "red"
+
+[git_branch]
+format = "[$branch]($style) "
+style = "italic cyan"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "cyan"
+ahead = "⇡${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+behind = "⇣${count} "
+conflicted = " "
+up_to_date = " "
+untracked = "? "
+modified = " "
+stashed = ""
+staged = ""
+renamed = ""
+deleted = ""
