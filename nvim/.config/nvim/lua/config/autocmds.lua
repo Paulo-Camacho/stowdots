@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local map = vim.keymap.set
 
 local yank_group = augroup("highlight-yank", { clear = true })
 
@@ -51,3 +52,27 @@ autocmd({ "FileType" }, {
 			end
 		end,
 	})
+
+autocmd("FileType", {
+  pattern = "*",
+  callback = function(args)
+    -- Dognot enable auto-pairs in Markdown files
+    if vim.bo[args.buf].filetype == "markdown" then
+      return
+    end
+
+    local opts = {
+      buffer = args.buf,
+      silent = true,
+    }
+
+
+    map("i", '"', '""<Left>', opts)
+    map("i", "'", "''<Left>", opts)
+end,
+})
+
+map("i", "(", "()<Left>", opts)
+map("i", "[", "[]<Left>", opts)
+map("i", "{", "{}<Left>", opts)
+map("i", "`", "``<Left>", opts)

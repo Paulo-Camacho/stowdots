@@ -67,7 +67,7 @@ highlight MsgArea guifg=#383838 guibg=#ffffff
 highlight! link FloatBorder NormalFloat
 highlight WinBar cterm=bold guifg=#5c5c5c guibg=#e0e0e0
 highlight WinBarNC cterm=bold guifg=#8c8c8c guibg=#f1f1f1
-highlight Cursor guifg=#ffffff guibg=#383838
+highlight Cursor guifg=#ffffff guibg=#000000
 highlight! link FloatTitle Title
 highlight! link FloatFooter FloatTitle
 highlight! link StatusLineTerm StatusLine
@@ -76,8 +76,8 @@ highlight! link StderrMsg ErrorMsg
 
 highlight RedrawDebugNormal cterm=reverse gui=reverse
 highlight Underlined cterm=underline gui=underline
-highlight lCursor guifg=#ffffff guibg=#383838
-highlight CursorIM guifg=#ffffff guibg=#383838
+highlight lCursor guifg=#ffffff guibg=#000000
+highlight CursorIM guifg=#ffffff guibg=#000000
 
 highlight Substitute guifg=#202020 guibg=#f7ca88
 highlight VisualNOS guifg=#a02b28
