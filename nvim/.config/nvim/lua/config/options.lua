@@ -14,6 +14,8 @@ opt.textwidth = 0          -- Prevent Neovim from inserting physical line breaks
 opt.clipboard = "unnamedplus" -- Share Neovim clipboard with the system clipboard
 opt.virtualedit = "all" -- allows you to navigate wrapped lines like if they were discrete lines
 
--- netrw
--- vim.g.netrw_sort_by = "time"          -- Sort files by modification time
--- vim.g.netrw_sort_direction = "reverse"  -- Put newest files at the top
+-- new splits open right / below instead of left / above. oil's preview uses
+-- these when it opens in a normal window (`nvim .`), the way float.preview_split
+-- controls it in the floating explorer.
+opt.splitright = true
+opt.splitbelow = true

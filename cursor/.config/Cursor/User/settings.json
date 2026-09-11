@@ -17,5 +17,6 @@
   "explorer.decorations.badges": true,
   "claudeCode.preferredLocation": "panel",
   "editor.wordWrap": "on",
-  "cursor.composer.queueMessageDefaultBehavior": "steer"
+  "cursor.composer.queueMessageDefaultBehavior": "steer",
+  "workbench.colorTheme": "Cursor Light"
 }

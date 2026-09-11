@@ -10,7 +10,7 @@ local function set_yank_hl()
 end
 set_yank_hl()
 
--- Re-apply after any colorscheme swap (colorschemes run `hi clear`)
+-- re-apply after any colorscheme swap
 autocmd("ColorScheme", {
   desc = "Keep yank highlight yellow after colorscheme change",
   group = yank_group,

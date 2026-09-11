@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 vim.g.mapleader = " "
 
--- (ergonomic)
+-- ergonomic
 map("n", ";", ":", { desc = "enter command mode with ;" })
 
 -- exit insert mode with jk
@@ -13,7 +13,7 @@ map({ "n", "v" }, "L", "$")
 
 -- remember when toast did with the date command and then used something to read it into neovim?
 -- map("n", "<leader>pd", "<cmd>pu=strftime('%c')<CR>", { desc = "Pasting today's date" })
--- Shout out Bread On Penguins! (:r <shell command here>)
+-- shout out Bread On Penguins! (:r <shell command here>)
 map("n", "<leader>pd", "<cmd>r!date<CR>", { desc = "Using terminal date command and injecting into Neovim" })
 -- print tick box -- 
 map("n", "<leader>pc", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
@@ -39,10 +39,33 @@ map("n", "k", "gk", { silent = true, desc = "Up by display line" })
 
 
 -- netrw quality of life
-map("n", "<leader>.", "<cmd>Ex<CR>", { desc = "open netrw" })
+-- map("n", "<leader>.", "<cmd>Ex<CR>", { desc = "open netrw" })
 
 -- buffer
 map("n", "<leader>bn", "<cmd>bn<CR>", { desc = "buffer next" })
 map("n", "<leader>bp", "<cmd>bp<CR>", { desc = "buffer previous" })
 map("n", "<leader>bk", "<cmd>bk<CR>", { desc = "buffer kill" })
+
+
+
+-- telescope
+-- wrapped in functions: keymaps.lua loads before plugins.lua, so telescope
+-- is not on the runtimepath yet at this point
+local function pick(name)
+	return function()
+		require("telescope.builtin")[name]()
+	end
+end
+
+map("n", "<leader>f", pick("find_files"), { desc = "find files" })
+map("n", "<leader>/", pick("live_grep"), { desc = "grep project" })
+map("n", "<leader><leader>", pick("buffers"), { desc = "buffers" })
+map("n", "<leader>sh", pick("help_tags"), { desc = "search help" })
+map("n", "<leader>sk", pick("keymaps"), { desc = "search keymaps" })
+map("n", "<leader>sd", pick("diagnostics"), { desc = "search diagnostics" })
+map("n", "<leader>sr", pick("resume"), { desc = "resume last picker" })
+map("n", "<leader>s.", pick("oldfiles"), { desc = "recent files" })
+
+-- oil
+map("n", "<leader>.", "<cmd>Oil --float --preview<cr>", { desc = "file explorer" })
 
