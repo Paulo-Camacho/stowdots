@@ -13,6 +13,7 @@ opt.linebreak = true       -- Wrap at word boundaries
 opt.textwidth = 0          -- Prevent Neovim from inserting physical line breaks
 opt.clipboard = "unnamedplus" -- Share Neovim clipboard with the system clipboard
 opt.virtualedit = "all" -- allows you to navigate wrapped lines like if they were discrete lines
+opt.smoothscroll = true -- scrolls by screen line instead of whole wrapped line
 
 -- new splits open right / below instead of left / above. oil's preview uses
 -- these when it opens in a normal window (`nvim .`), the way float.preview_split

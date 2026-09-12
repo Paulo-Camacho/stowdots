@@ -23,7 +23,7 @@ autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({
       higroup = "YankHighlight",  -- yellow group defined above
-      timeout = 500,              -- how long the flash highlight lasts in ms
+      timeout = 250,              -- how long the flash highlight lasts in ms
     })
   end,
 })
