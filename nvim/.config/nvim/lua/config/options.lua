@@ -1,17 +1,22 @@
 local opt = vim.opt
 
--- opt.number = true          -- Show absolute line number of current line
--- opt.relativenumber = true  -- Show relative line numbers for easier jumping
-opt.tabstop = 4            -- Number of spaces a tab counts for
-opt.shiftwidth = 4         -- Number of spaces for auto-indents
-opt.expandtab = true       -- Convert tabs to white spaces
-opt.smartcase = true       -- Case-sensitive search if capital letter is typed
-opt.cursorline = true      -- Highlight the current line
-opt.termguicolors = true   -- Enable 24-bit RGB terminal colors
-opt.wrap = true            -- Enable visual wrapping
-opt.linebreak = true       -- Wrap at word boundaries
-opt.textwidth = 0          -- Prevent Neovim from inserting physical line breaks
-opt.clipboard = "unnamedplus" -- Share Neovim clipboard with the system clipboard
+-- opt.number = true          -- line number
+-- opt.relativenumber = true  -- relative line numbers
+opt.tabstop = 4            -- number of spaces a tab counts for
+opt.shiftwidth = 4         -- number of spaces for auto-indents
+opt.expandtab = true       -- convert tabs to white spaces
+opt.smartcase = true       -- case-sensitive search if capital letter is typed
+opt.cursorline = true      -- highlight the current line
+opt.termguicolors = true   -- enable 24-bit RGB terminal colors
+-- attach highlight groups to each cursor mode so Neovim emits OSC 12 and
+-- drives the cursor color itself instead of inheriting the terminal's
+-- nonzero blinkon/blinkoff makes Neovim ask for a *blinking* cursor (DECSCUSR);
+-- the actual fade timing/easing is kitty's (cursor_blink_interval in kitty.conf)
+opt.guicursor = "n-v-c-sm:block-Cursor-blinkwait700-blinkon600-blinkoff600,i-ci-ve:ver25-Cursor-blinkwait700-blinkon600-blinkoff600,r-cr-o:hor20-Cursor-blinkwait700-blinkon600-blinkoff600"
+opt.wrap = true            -- enable visual wrapping
+opt.linebreak = true       -- wrap at word boundaries
+opt.textwidth = 0          -- prevent Neovim from inserting physical line breaks
+opt.clipboard = "unnamedplus" -- share Neovim clipboard with the system clipboard
 opt.virtualedit = "all" -- allows you to navigate wrapped lines like if they were discrete lines
 opt.smoothscroll = true -- scrolls by screen line instead of whole wrapped line
 

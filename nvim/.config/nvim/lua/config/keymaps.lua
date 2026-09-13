@@ -44,28 +44,46 @@ map("n", "k", "gk", { silent = true, desc = "Up by display line" })
 -- buffer
 map("n", "<leader>bn", "<cmd>bn<CR>", { desc = "buffer next" })
 map("n", "<leader>bp", "<cmd>bp<CR>", { desc = "buffer previous" })
-map("n", "<leader>bk", "<cmd>bk<CR>", { desc = "buffer kill" })
+map("n", "<leader>bk", "<cmd>bdelete<CR>", { desc = "buffer kill" })
 
 
 
 -- telescope
 -- wrapped in functions: keymaps.lua loads before plugins.lua, so telescope
 -- is not on the runtimepath yet at this point
+-- make sure that inside of init.lua plugins are loaded before keymap if you want to delete this helper function
 local function pick(name)
 	return function()
 		require("telescope.builtin")[name]()
-	end
+	end                  
 end
-
-map("n", "<leader>f", pick("find_files"), { desc = "find files" })
-map("n", "<leader>/", pick("live_grep"), { desc = "grep project" })
-map("n", "<leader><leader>", pick("buffers"), { desc = "buffers" })
+map("n", "<leader>.", pick("find_files"), { desc = "find files" })
+map("n", "<leader>/", pick("live_grep"), { desc = "grep dir you opened nvim in" })
+map("n", "<leader>sr", pick("oldfiles"), { desc = "recent files" })
+map("n", "<leader><leader>", pick("buffers"), { desc = "list buffers" })
 map("n", "<leader>sh", pick("help_tags"), { desc = "search help" })
 map("n", "<leader>sk", pick("keymaps"), { desc = "search keymaps" })
 map("n", "<leader>sd", pick("diagnostics"), { desc = "search diagnostics" })
-map("n", "<leader>sr", pick("resume"), { desc = "resume last picker" })
-map("n", "<leader>s.", pick("oldfiles"), { desc = "recent files" })
+map("n", "<leader>sl", pick("resume"), { desc = "resume last picker" })
 
 -- oil
-map("n", "<leader>.", "<cmd>Oil --float --preview<cr>", { desc = "file explorer" })
+map("n", "<leader>f", "<cmd>Oil --float --preview<cr>", { desc = "file explorer" })
 
+-- oil's own buffer-local keymaps. these are plain data (action names as
+-- strings), so they carry no dependency on oil being loaded -- plugins.lua
+-- reads this table and hands it to oil.setup().
+local M = {}
+
+M.oil = {
+	["<CR>"] = "actions.select",
+	["-"] = { "actions.parent", mode = "n" },
+	["<Esc>"] = { "actions.close", mode = "n" },
+	["q"] = { "actions.close", mode = "n" },
+	["<leader>f"] = { "actions.close", mode = "n" }, -- same key toggles it shut
+	["<C-p>"] = "actions.preview",
+	["<C-d>"] = "actions.preview_scroll_down",
+	["<C-u>"] = "actions.preview_scroll_up",
+	["."] = { "actions.toggle_hidden", mode = "n" },
+}
+
+return M

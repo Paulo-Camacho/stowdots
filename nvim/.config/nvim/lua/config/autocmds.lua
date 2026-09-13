@@ -21,9 +21,9 @@ autocmd("TextYankPost", {
   desc = "Highlight yanked text",
   group = yank_group,
   callback = function()
-    vim.highlight.on_yank({
+    vim.hl.on_yank({
       higroup = "YankHighlight",  -- yellow group defined above
-      timeout = 250,              -- how long the flash highlight lasts in ms
+      timeout = 100,              -- how long the flash highlight lasts in ms
     })
   end,
 })
@@ -55,24 +55,21 @@ autocmd({ "FileType" }, {
 
 autocmd("FileType", {
   pattern = "*",
+  desc = "auto-close brackets everywhere, quotes everywhere but markdown",
   callback = function(args)
-    -- auto insert brackets or (quotes, but not inside of markdown files)
+    local opts = { buffer = args.buf, silent = true }
+
+    map("i", "(", "()<Left>", opts)
+    map("i", "[", "[]<Left>", opts)
+    map("i", "{", "{}<Left>", opts)
+    map("i", "`", "``<Left>", opts)
+
+    -- apostrophes in prose make auto-paired quotes a nuisance in markdown
     if vim.bo[args.buf].filetype == "markdown" then
       return
     end
 
-    local opts = {
-      buffer = args.buf,
-      silent = true,
-    }
-
-
     map("i", '"', '""<Left>', opts)
     map("i", "'", "''<Left>", opts)
-end,
+  end,
 })
-
-map("i", "(", "()<Left>", opts)
-map("i", "[", "[]<Left>", opts)
-map("i", "{", "{}<Left>", opts)
-map("i", "`", "``<Left>", opts)

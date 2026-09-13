@@ -1,4 +1,24 @@
--- build hook must be registered BEFORE vim.pack.add(), or it misses the install
+-- you want to lazy load to avoid neovim trying to run a program that still needs to be loaded
+-- parsers treesitter should keep installed
+local ts_langs = {
+	"c", "python", "html", "css", "javascript", "typescript", "tsx",
+	"json", "jsdoc", "lua", "vim", "vimdoc", "markdown", "markdown_inline",
+}
+
+-- build hooks must be registered BEFORE vim.pack.add(), or they miss the install
+vim.api.nvim_create_autocmd("PackChanged", {
+	desc = "install treesitter parsers",
+	callback = function(ev)
+		if ev.data.spec.name == "nvim-treesitter" and ev.data.kind ~= "delete" then
+			-- deferred: this fires from inside vim.pack.add(), before the plugin
+			-- is on the runtimepath, so require() here would fail
+			vim.schedule(function()
+				require("nvim-treesitter").install(ts_langs)
+			end)
+		end
+	end,
+})
+
 vim.api.nvim_create_autocmd("PackChanged", {
 	desc = "compile telescope-fzf-native",
 	callback = function(ev)
@@ -17,9 +37,10 @@ vim.pack.add({
 	"https://github.com/nvim-lua/plenary.nvim", -- required by telescope
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim", -- optional, big speedup
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 })
 
--- icons : these icons are used inside of the oil view
+-- these icons are used inside of the oil view
 require("mini.icons").setup({})
 MiniIcons.mock_nvim_web_devicons() -- telescope looks for nvim-web-devicons
 
@@ -58,17 +79,9 @@ require("oil").setup({
 		},
 	},
 
-	keymaps = {
-		["<CR>"] = "actions.select",
-		["-"] = { "actions.parent", mode = "n" },
-		["q"] = { "actions.close", mode = "n" },
-		["<Esc>"] = { "actions.close", mode = "n" },
-		["<leader>."] = { "actions.close", mode = "n" }, -- same key toggles it shut
-		["<C-p>"] = "actions.preview",
-		["g."] = { "actions.toggle_hidden", mode = "n" },
-		["<C-d>"] = "actions.preview_scroll_down",
-		["<C-u>"] = "actions.preview_scroll_up",
-	},
+	-- defined in config.keymaps so every binding lives in one file
+	-- this file returns the table named oil
+	keymaps = require("config.keymaps").oil,
 })
 
 -- oil only opens a preview when asked. re-open it on every oil buffer so the
@@ -78,7 +91,23 @@ vim.api.nvim_create_autocmd("User", {
 	desc = "always show the oil preview split",
 	callback = vim.schedule_wrap(function(args)
 		local oil = require("oil")
-		if vim.api.nvim_get_current_buf() == args.data.buf and oil.get_cursor_entry() then
+		-- only act from the oil window itself
+		if vim.api.nvim_get_current_buf() ~= args.data.buf then
+			return
+		end
+		-- never fire while focus sits in the preview window
+		if vim.wo.previewwindow then
+			return
+		end
+		-- oil already debounces its own cursor moved previews. open_preview is
+		-- async and restores focus to whatever window was current when it was
+		-- called, so a second overlapping call can capture the preview window
+		-- as "previous" and leave the cursor stranded there. bail if oil has
+		-- a preview open already.
+		if require("oil.util").get_preview_win() then
+			return
+		end
+		if oil.get_cursor_entry() then
 			oil.open_preview()
 		end
 	end),
@@ -113,17 +142,31 @@ telescope.setup({
 			},
 		},
 	},
-	pickers = {
-		find_files = { hidden = true },
-	},
-	extensions = {
-		fzf = {
-			fuzzy = true,
-			override_generic_sorter = true,
-			override_file_sorter = true,
-			case_mode = "smart_case",
-		},
-	},
+    pickers = {
+        find_files = { hidden = true} -- telescope . files
+    },
+    extensions = {
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        },
+    },
 })
 
 pcall(telescope.load_extension, "fzf") -- no-op if make hasn't run yet
+
+-- treesitter highlighting, enabled per buffer. nvim-treesitter's `main` branch
+-- only installs parsers; it never touches highlighting itself. pcall means a
+-- missing or ABI-stale parser silently falls back to the regex syntax file
+-- instead of throwing on every buffer open.
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "start treesitter highlighting when a parser exists",
+    callback = function(ev)
+        local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].filetype)
+        if lang and pcall(vim.treesitter.start, ev.buf, lang) then
+            vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+    end,
+})

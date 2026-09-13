@@ -127,6 +127,6 @@
 },
 "C_Cpp.intelliSenseEngine": "disabled",
 "chat.viewSessions.orientation": "stacked",
-"workbench.colorTheme": "Quiet Light",
+"workbench.colorTheme": "Atom One Light",
 "explorer.confirmDelete": false,
 }

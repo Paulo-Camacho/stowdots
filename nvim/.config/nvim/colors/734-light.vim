@@ -25,7 +25,7 @@ highlight StatusLineNC cterm=NONE gui=NONE ctermfg=7 ctermbg=0 guifg=#8b8b8b gui
 highlight WinSeparator guifg=#dedede guibg=#dedede
 highlight VertSplit guifg=#dedede guibg=#dedede
 highlight Title cterm=bold guifg=#1a5fb4
-highlight Visual ctermfg=0 ctermbg=15 guibg=#ececec
+highlight Visual cterm=NONE gui=NONE ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000 blend=0
 
 highlight WarningMsg ctermfg=11 guifg=#c01c28
 highlight WildMenu guifg=#ed333b guibg=#f8e45c
@@ -67,7 +67,7 @@ highlight MsgArea guifg=#241f31 guibg=#fcfcfc
 highlight! link FloatBorder NormalFloat
 highlight WinBar cterm=bold guifg=#5e5c64 guibg=#ececec
 highlight WinBarNC cterm=bold guifg=#77767b guibg=#f2f2f2
-highlight Cursor guifg=#fcfcfc guibg=#000000
+highlight Cursor guifg=#14171c guibg=#ff6900
 highlight! link FloatTitle Title
 highlight! link FloatFooter FloatTitle
 highlight! link StatusLineTerm StatusLine
@@ -76,11 +76,11 @@ highlight! link StderrMsg ErrorMsg
 
 highlight RedrawDebugNormal cterm=reverse gui=reverse
 highlight Underlined cterm=underline gui=underline
-highlight lCursor guifg=#fcfcfc guibg=#000000
-highlight CursorIM guifg=#fcfcfc guibg=#000000
+highlight lCursor guifg=#14171c guibg=#ff6900
+highlight CursorIM guifg=#14171c guibg=#ff6900
 
 highlight Substitute guifg=#241f31 guibg=#f8e45c
-highlight VisualNOS guifg=#c01c28
+highlight VisualNOS cterm=NONE gui=NONE ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000 blend=0
 highlight Normal guifg=#241f31 guibg=#fcfcfc
 highlight Character guifg=#c01c28
 highlight Constant guifg=#c64600
