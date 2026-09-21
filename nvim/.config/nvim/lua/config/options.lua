@@ -1,12 +1,13 @@
 local opt = vim.opt
 
--- opt.number = true          -- line number
--- opt.relativenumber = true  -- relative line numbers
+opt.number = true          -- line number (<leader>ul toggles it)
+-- opt.relativenumber = true  -- relative line numbers; omarchy keeps these off,
+                              -- and the toggle is <leader>uL
 opt.tabstop = 4            -- number of spaces a tab counts for
 opt.shiftwidth = 4         -- number of spaces for auto-indents
 opt.expandtab = true       -- convert tabs to white spaces
 opt.smartcase = true       -- case-sensitive search if capital letter is typed
-opt.cursorline = true      -- highlight the current line
+opt.cursorline = false     -- no highlight on the current line (<leader>uc toggles it)
 opt.termguicolors = true   -- enable 24-bit RGB terminal colors
 -- attach highlight groups to each cursor mode so Neovim emits OSC 12 and
 -- drives the cursor color itself instead of inheriting the terminal's
@@ -25,3 +26,33 @@ opt.smoothscroll = true -- scrolls by screen line instead of whole wrapped line
 -- controls it in the floating explorer.
 opt.splitright = true
 opt.splitbelow = true
+
+-- ---------------------------------------------------------------------------
+-- the omarchy / LazyVim layer
+-- ---------------------------------------------------------------------------
+opt.signcolumn = "yes"     -- always reserve it, so git signs and diagnostics
+                           -- never shove the text sideways mid-edit
+opt.updatetime = 200       -- CursorHold fires this fast: lsp document highlight
+opt.timeoutlen = 400       -- how long which-key waits before showing its popup
+opt.scrolloff = 4          -- keep context above/below the cursor
+opt.sidescrolloff = 8
+opt.undofile = true        -- undo survives closing the file
+opt.undolevels = 10000
+opt.ignorecase = true      -- smartcase (already on) only bites with this set
+opt.confirm = true         -- ask instead of failing on :q with unsaved changes
+opt.splitkeep = "screen"   -- opening a split does not scroll the text you read
+opt.completeopt = "menu,menuone,noselect"
+opt.pumheight = 12         -- cap the completion menu instead of covering the file
+opt.inccommand = "nosplit" -- live preview of :s///
+opt.list = true            -- snacks' indent guides read better with these on
+opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
+opt.fillchars:append({ eob = " " }) -- no ~ column past the last line, which
+                                    -- is mostly visible on the dashboard and
+                                    -- behind the oil float
+
+-- omarchy sets both of these in its LazyVim config: no relative numbers, and
+-- format-on-save off by default (the toggle is <leader>uf, see config.format)
+opt.relativenumber = false
+
+-- session-ish niceties for a machine with real tooling on it
+vim.g.markdown_recommended_style = 0 -- stop the ftplugin forcing 4-space tabs
