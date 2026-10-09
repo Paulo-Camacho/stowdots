@@ -60,14 +60,25 @@ end
 map("n", "<leader>.", pick("find_files"), { desc = "find files" })
 map("n", "<leader>/", pick("live_grep"), { desc = "grep dir you opened nvim in" })
 map("n", "<leader>sr", pick("oldfiles"), { desc = "recent files" })
-map("n", "<leader><leader>", pick("buffers"), { desc = "list buffers" })
+-- find files under the current buffer's dir (oil's dir when inside oil),
+-- falling back to cwd for unnamed buffers
+map("n", "<leader><leader>", function()
+	local ok, oil = pcall(require, "oil")
+	local dir = ok and oil.get_current_dir() or vim.fn.expand("%:p:h")
+	if dir == "" then dir = vim.uv.cwd() end
+	require("telescope.builtin").find_files({
+		cwd = dir,
+		prompt_title = "files in " .. vim.fn.fnamemodify(dir, ":~"),
+	})
+end, { desc = "find files in buffer's dir" })
 map("n", "<leader>sh", pick("help_tags"), { desc = "search help" })
 map("n", "<leader>sk", pick("keymaps"), { desc = "search keymaps" })
 map("n", "<leader>sd", pick("diagnostics"), { desc = "search diagnostics" })
 map("n", "<leader>sl", pick("resume"), { desc = "resume last picker" })
 
--- oil
-map("n", "<leader>f", "<cmd>Oil --float --preview<cr>", { desc = "file explorer" })
+-- oil. `-` is the netrw reflex: one key, no leader, and inside the explorer
+-- the same key keeps walking up a directory (see the oil table below).
+map("n", "<leader>e", "<cmd>Oil --float --preview<cr>", { desc = "file explorer" })
 
 -- ===========================================================================
 -- the omarchy / LazyVim layer
@@ -150,6 +161,40 @@ map("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "quickfix list
 map("n", "<leader>xt", "<cmd>TodoTrouble<cr>", { desc = "todo comments" })
 map("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "search todo comments" })
 
+-- ------------------------------------------------------------ multicursor --
+-- <C-d> is VSCode's "add the next occurrence of this word to the selection":
+-- press it once to put a cursor on the word under the cursor, again for the
+-- next match, and keep going. `c`, `d`, `i` and friends then run at every
+-- cursor. <Esc> collapses back to one.
+--
+-- this takes <C-d> away from half-page-down. <C-f>/<C-b> still page, and
+-- <C-u> still scrolls up half a page.
+local function mc(fn, ...)
+	local args = { ... }
+	return function()
+		require("multicursor-nvim")[fn](unpack(args))
+	end
+end
+
+map({ "n", "x" }, "<C-d>", mc("matchAddCursor", 1), { desc = "cursor at next match" })
+map({ "n", "x" }, "<leader>mD", mc("matchAddCursor", -1), { desc = "cursor at previous match" })
+map({ "n", "x" }, "<leader>md", mc("matchSkipCursor", 1), { desc = "skip this match" })
+-- VSCode's ctrl+shift+L: one cursor on every occurrence in the buffer at once
+map({ "n", "x" }, "<leader>ma", mc("matchAllAddCursors"), { desc = "cursor on every match" })
+-- a column of cursors, like alt+click-dragging down a gutter
+map({ "n", "x" }, "<leader>mj", mc("lineAddCursor", 1), { desc = "add cursor below" })
+map({ "n", "x" }, "<leader>mk", mc("lineAddCursor", -1), { desc = "add cursor above" })
+map({ "n", "x" }, "<leader>ms", mc("splitCursors"), { desc = "split selection by regex" })
+map("x", "<leader>mv", mc("visualToCursors"), { desc = "cursor on each selected line" })
+-- park every extra cursor without losing them; <Esc> then brings them back
+map({ "n", "x" }, "<C-q>", mc("toggleCursor"), { desc = "freeze/unfreeze cursors" })
+map("n", "<leader>mr", mc("restoreCursors"), { desc = "restore the last cursor set" })
+
+-- click to place extra cursors
+map("n", "<C-LeftMouse>", mc("handleMouse"), { desc = "add cursor at click" })
+map("n", "<C-LeftDrag>", mc("handleMouseDrag"), { desc = "drag a cursor selection" })
+map("n", "<C-LeftRelease>", mc("handleMouseRelease"), { desc = "finish cursor drag" })
+
 -- code
 map({ "n", "v" }, "<leader>cf", function()
 	require("conform").format({ async = true, lsp_format = "fallback" })
@@ -209,7 +254,6 @@ M.oil = {
 	["-"] = { "actions.parent", mode = "n" },
 	["<Esc>"] = { "actions.close", mode = "n" },
 	["q"] = { "actions.close", mode = "n" },
-	["<leader>f"] = { "actions.close", mode = "n" }, -- same key toggles it shut
 	["<C-p>"] = "actions.preview",
 	["<C-d>"] = "actions.preview_scroll_down",
 	["<C-u>"] = "actions.preview_scroll_up",

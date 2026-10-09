@@ -2,12 +2,12 @@ local opt = vim.opt
 
 opt.number = true          -- line number (<leader>ul toggles it)
 -- opt.relativenumber = true  -- relative line numbers; omarchy keeps these off,
+opt.cursorline = true
                               -- and the toggle is <leader>uL
 opt.tabstop = 4            -- number of spaces a tab counts for
 opt.shiftwidth = 4         -- number of spaces for auto-indents
 opt.expandtab = true       -- convert tabs to white spaces
 opt.smartcase = true       -- case-sensitive search if capital letter is typed
-opt.cursorline = false     -- no highlight on the current line (<leader>uc toggles it)
 opt.termguicolors = true   -- enable 24-bit RGB terminal colors
 -- attach highlight groups to each cursor mode so Neovim emits OSC 12 and
 -- drives the cursor color itself instead of inheriting the terminal's
@@ -49,7 +49,6 @@ opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 opt.fillchars:append({ eob = " " }) -- no ~ column past the last line, which
                                     -- is mostly visible on the dashboard and
                                     -- behind the oil float
-
 -- omarchy sets both of these in its LazyVim config: no relative numbers, and
 -- format-on-save off by default (the toggle is <leader>uf, see config.format)
 opt.relativenumber = false

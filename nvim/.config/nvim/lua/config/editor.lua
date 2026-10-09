@@ -72,6 +72,7 @@ wk.add({
 	{ "<leader>b", group = "buffer" },
 	{ "<leader>c", group = "code" },
 	{ "<leader>g", group = "git" },
+	{ "<leader>m", group = "multicursor" },
 	{ "<leader>p", group = "print/paste" },
 	{ "<leader>s", group = "search" },
 	{ "<leader>u", group = "toggle ui" },
@@ -160,6 +161,44 @@ require("mini.surround").setup({
 		replace = "gsr",
 		update_n_lines = "gsn",
 	},
+})
+
+-- ----------------------------------------------------------- multicursor ---
+local mc = require("multicursor-nvim")
+mc.setup()
+
+-- mappings that only exist while there is more than one cursor, so they can
+-- overlap with the global ones (<Esc> normally just clears the search highlight)
+mc.addKeymapLayer(function(layer)
+	layer({ "n", "x" }, "<left>", mc.prevCursor, { desc = "previous cursor" })
+	layer({ "n", "x" }, "<right>", mc.nextCursor, { desc = "next cursor" })
+	layer({ "n", "x" }, "<leader>mx", mc.deleteCursor, { desc = "delete this cursor" })
+	-- first <Esc> re-enables disabled cursors, second one drops back to a
+	-- single cursor. matches how <C-q> parks them.
+	layer("n", "<Esc>", function()
+		if not mc.cursorsEnabled() then
+			mc.enableCursors()
+		else
+			mc.clearCursors()
+		end
+	end, { desc = "clear cursors" })
+end)
+
+local function set_multicursor_hl()
+	-- reverse video reads as a real cursor in both 734 variants; the rest ride
+	-- on groups the colorscheme already defines
+	vim.api.nvim_set_hl(0, "MultiCursorCursor", { reverse = true })
+	vim.api.nvim_set_hl(0, "MultiCursorVisual", { link = "Visual" })
+	vim.api.nvim_set_hl(0, "MultiCursorSign", { link = "SignColumn" })
+	vim.api.nvim_set_hl(0, "MultiCursorMatchPreview", { link = "Search" })
+	vim.api.nvim_set_hl(0, "MultiCursorDisabledCursor", { reverse = true, bold = true })
+	vim.api.nvim_set_hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
+	vim.api.nvim_set_hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
+end
+set_multicursor_hl()
+vim.api.nvim_create_autocmd("ColorScheme", {
+	desc = "keep the extra cursors visible after a theme swap",
+	callback = set_multicursor_hl,
 })
 
 -- ------------------------------------------- treesitter textobjects (main) ---
