@@ -71,6 +71,7 @@ map("n", "<leader><leader>", function()
 		prompt_title = "files in " .. vim.fn.fnamemodify(dir, ":~"),
 	})
 end, { desc = "find files in buffer's dir" })
+map("n", "<leader>bl", pick("buffers"), { desc = "buffer list" })
 map("n", "<leader>sh", pick("help_tags"), { desc = "search help" })
 map("n", "<leader>sk", pick("keymaps"), { desc = "search keymaps" })
 map("n", "<leader>sd", pick("diagnostics"), { desc = "search diagnostics" })
@@ -78,7 +79,20 @@ map("n", "<leader>sl", pick("resume"), { desc = "resume last picker" })
 
 -- oil. `-` is the netrw reflex: one key, no leader, and inside the explorer
 -- the same key keeps walking up a directory (see the oil table below).
-map("n", "<leader>e", "<cmd>Oil --float --preview<cr>", { desc = "file explorer" })
+-- a toggle, same split view as `nvim .`. a bare `:Oil` from inside oil opens
+-- the parent dir, so pressing it again walked up a level each time; from the
+-- preview window it opened a second explorer there.
+map("n", "<leader>e", function()
+	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		local buf = vim.api.nvim_win_get_buf(win)
+		if vim.bo[buf].filetype == "oil" and not vim.wo[win].previewwindow then
+			vim.api.nvim_set_current_win(win)
+			require("oil").close()
+			return
+		end
+	end
+	require("oil").open()
+end, { desc = "file explorer" })
 
 -- ===========================================================================
 -- the omarchy / LazyVim layer

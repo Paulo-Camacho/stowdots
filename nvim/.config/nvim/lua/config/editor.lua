@@ -29,7 +29,7 @@ require("snacks").setup({
 				{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
 				{ icon = " ", key = "g", desc = "Grep", action = ":lua require('telescope.builtin').live_grep()" },
 				{ icon = " ", key = "r", desc = "Recent files", action = ":lua require('telescope.builtin').oldfiles()" },
-				{ icon = " ", key = "e", desc = "File explorer", action = ":Oil --float --preview" },
+				{ icon = " ", key = "e", desc = "File explorer", action = ":Oil" },
 				{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 			},
 		},

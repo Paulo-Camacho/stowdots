@@ -10,6 +10,11 @@ local function set_yank_hl()
 end
 set_yank_hl()
 
+vim.api.nvim_create_autocmd("InsertLeave", {
+  pattern = "*",
+  command = "silent! update",
+})
+
 -- re-apply after any colorscheme swap
 autocmd("ColorScheme", {
   desc = "Keep yank highlight yellow after colorscheme change",

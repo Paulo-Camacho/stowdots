@@ -1,5 +1,3 @@
--- stamped before anything else loads; the dashboard subtracts it to show how
--- long startup took (config.editor). vim.pack has no stats module of its own.
 _G.NVIM_START = vim.uv.hrtime()
 
 require('config.keymaps')
@@ -10,4 +8,5 @@ require('config.plugins')
 require("config.statusline").setup()
 
 vim.opt.termguicolors = true
+vim.g.theme734_yank = false -- config.autocmds already flashes yanks yellow
 vim.cmd.colorscheme("734")

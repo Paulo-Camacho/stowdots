@@ -70,6 +70,9 @@ vim.pack.add({
 	"https://github.com/nvim-mini/mini.surround",
 	-- the 1.0 branch is the one the author supports; main is the dev branch
 	{ src = "https://github.com/jake-stewart/multicursor.nvim", version = "1.0" },
+
+	-- colorscheme (734 + 734-light), loaded by init.lua
+	"git@github.com:Paulo-Camacho/734.git",
 })
 
 -- these icons are used inside of the oil view
@@ -238,47 +241,79 @@ require("oil").setup({
 	keymaps = require("config.keymaps").oil,
 })
 
+-- the file list in split mode: a third of the screen, but never so narrow
+-- that names get cut off
+local function oil_list_width()
+	return math.max(30, math.floor(vim.o.columns * 0.3))
+end
+
 -- oil only opens a preview when asked. re-open it on every oil buffer so the
 -- split survives navigating into a subdirectory.
+local ensure_oil_preview = vim.schedule_wrap(function(buf)
+	local oil = require("oil")
+	-- only act from the oil window itself
+	if vim.api.nvim_get_current_buf() ~= buf then
+		return
+	end
+	-- never fire while focus sits in the preview window
+	if vim.wo.previewwindow then
+		return
+	end
+	-- park the cursor on a real entry first. oil lands on line 1, which is
+	-- `../`, so the preview would fill with the parent directory -- your
+	-- whole home folder, when you open oil from the dashboard. this runs
+	-- before the preview check below because `--preview` has already opened
+	-- one by now; moving the cursor is what refreshes it
+	-- (preview_win.update_on_cursor_moved). navigating up with `-` is
+	-- unaffected: there oil puts the cursor on the directory you came from.
+	local entry = oil.get_cursor_entry()
+	if entry and entry.name == ".." and vim.api.nvim_buf_line_count(buf) > 1 then
+		pcall(vim.api.nvim_win_set_cursor, 0, { 2, 0 })
+		entry = oil.get_cursor_entry()
+	end
+
+	-- oil already debounces its own cursor moved previews. open_preview is
+	-- async and restores focus to whatever window was current when it was
+	-- called, so a second overlapping call can capture the preview window
+	-- as "previous" and leave the cursor stranded there. bail if oil has
+	-- a preview open already.
+	if require("oil.util").get_preview_win() then
+		return
+	end
+
+	if entry then
+		-- oil splits 50/50 and has no width option, so shrink the list
+		-- afterwards to give the preview most of the screen. floats size
+		-- themselves (float.preview_split), so leave those alone.
+		local oil_win = vim.api.nvim_get_current_win()
+		oil.open_preview(nil, function(err)
+			if err or vim.api.nvim_win_get_config(oil_win).relative ~= "" then
+				return
+			end
+			pcall(vim.api.nvim_win_set_width, oil_win, oil_list_width())
+		end)
+	end
+end)
+
+-- OilEnter fires once, when oil first reads a directory
 vim.api.nvim_create_autocmd("User", {
 	pattern = "OilEnter",
 	desc = "always show the oil preview split",
-	callback = vim.schedule_wrap(function(args)
-		local oil = require("oil")
-		-- only act from the oil window itself
-		if vim.api.nvim_get_current_buf() ~= args.data.buf then
-			return
+	callback = function(args)
+		ensure_oil_preview(args.data.buf)
+	end,
+})
+-- reopening a directory oil still has loaded (<leader>e twice) skips OilEnter,
+-- so catch the buffer coming back into a window too. before the first read
+-- there is no entry under the cursor yet, so this is a no-op and OilEnter
+-- does the work.
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	desc = "show the oil preview split when an oil buffer is reopened",
+	callback = function(args)
+		if vim.bo[args.buf].filetype == "oil" then
+			ensure_oil_preview(args.buf)
 		end
-		-- never fire while focus sits in the preview window
-		if vim.wo.previewwindow then
-			return
-		end
-		-- park the cursor on a real entry first. oil lands on line 1, which is
-		-- `../`, so the preview would fill with the parent directory -- your
-		-- whole home folder, when you open oil from the dashboard. this runs
-		-- before the preview check below because `--preview` has already opened
-		-- one by now; moving the cursor is what refreshes it
-		-- (preview_win.update_on_cursor_moved). navigating up with `-` is
-		-- unaffected: there oil puts the cursor on the directory you came from.
-		local entry = oil.get_cursor_entry()
-		if entry and entry.name == ".." and vim.api.nvim_buf_line_count(args.data.buf) > 1 then
-			pcall(vim.api.nvim_win_set_cursor, 0, { 2, 0 })
-			entry = oil.get_cursor_entry()
-		end
-
-		-- oil already debounces its own cursor moved previews. open_preview is
-		-- async and restores focus to whatever window was current when it was
-		-- called, so a second overlapping call can capture the preview window
-		-- as "previous" and leave the cursor stranded there. bail if oil has
-		-- a preview open already.
-		if require("oil.util").get_preview_win() then
-			return
-		end
-
-		if entry then
-			oil.open_preview()
-		end
-	end),
+	end,
 })
 
 -- telescope
