@@ -1,7 +1,7 @@
 {
   "plugins": {
     "734": {
-      "rev": "2aa0034d1c3c7dbe6e01c1a9c4e2ae9d880bf6de",
+      "rev": "d6707925c814198e01e8671ffdc6e66b49c3aa63",
       "src": "git@github.com:Paulo-Camacho/734.git"
     },
     "blink.cmp": {

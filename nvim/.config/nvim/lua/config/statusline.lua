@@ -37,7 +37,7 @@ local cmp = {
 
 
 	diagnostic_status = function()
-		local ok = ' λ '
+		local ok = ' cwd => '
 		local ignore = { ['c'] = true, ['t'] = true }
 		local mode = vim.api.nvim_get_mode().mode
 		if ignore[mode] then return ok end
