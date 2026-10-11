@@ -10,9 +10,19 @@ local function set_yank_hl()
 end
 set_yank_hl()
 
-vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = "*",
-  command = "silent! update",
+local autosave_group = augroup("autosave", { clear = true })
+
+autocmd({ "InsertLeave", "TextChanged", "FocusLost", "BufLeave" }, {
+  desc = "Auto-save on leaving insert, normal-mode edits, focus loss, buffer switch",
+  group = autosave_group,
+  callback = function(args)
+    local bo = vim.bo[args.buf]
+    -- skip unnamed, readonly, special buffers (help, quickfix, terminal, etc)
+    if bo.modified and bo.modifiable and not bo.readonly
+      and bo.buftype == "" and vim.api.nvim_buf_get_name(args.buf) ~= "" then
+      vim.api.nvim_buf_call(args.buf, function() vim.cmd("silent! update") end)
+    end
+  end,
 })
 
 -- re-apply after any colorscheme swap

@@ -40,6 +40,7 @@ opt.undofile = true        -- undo survives closing the file
 opt.undolevels = 10000
 opt.ignorecase = true      -- smartcase (already on) only bites with this set
 opt.confirm = true         -- ask instead of failing on :q with unsaved changes
+opt.autowriteall = true    -- also save on :next, :make, :!cmd, buffer switches
 opt.splitkeep = "screen"   -- opening a split does not scroll the text you read
 opt.completeopt = "menu,menuone,noselect"
 opt.pumheight = 12         -- cap the completion menu instead of covering the file
