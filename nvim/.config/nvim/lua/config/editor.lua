@@ -9,7 +9,7 @@
 require("snacks").setup({
 	bigfile = { enabled = true },   -- strip treesitter/lsp off huge files
 	quickfile = { enabled = true }, -- render the file before plugins load
-	indent = { enabled = true },    -- indent guides + current scope
+	indent = { enabled = true, scope = { enabled = false } }, -- indent guides, no current-scope highlight
 	input = { enabled = true },     -- pretty vim.ui.input, used by lsp rename
 	notifier = { enabled = true, timeout = 3000 },
 	scope = { enabled = true },
@@ -87,8 +87,8 @@ require("gitsigns").setup({
 	signs = {
 		add = { text = "▎" },
 		change = { text = "▎" },
-		delete = { text = "" },
-		topdelete = { text = "" },
+		delete = { text = "▁" },
+		topdelete = { text = "▔" },
 		changedelete = { text = "▎" },
 		untracked = { text = "▎" },
 	},

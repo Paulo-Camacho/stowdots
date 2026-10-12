@@ -3,9 +3,9 @@ local opt = vim.opt
 opt.number = true          -- line number (<leader>ul toggles it)
 -- opt.relativenumber = true  -- relative line numbers; omarchy keeps these off,
 opt.cursorline = true
-                              -- and the toggle is <leader>uL
-opt.tabstop = 4            -- number of spaces a tab counts for
-opt.shiftwidth = 4         -- number of spaces for auto-indents
+-- and the toggle is <leader>uL
+opt.tabstop = 2            -- number of spaces a tab counts for
+opt.shiftwidth = 2         -- number of spaces for auto-indents
 opt.expandtab = true       -- convert tabs to white spaces
 opt.smartcase = true       -- case-sensitive search if capital letter is typed
 opt.termguicolors = true   -- enable 24-bit RGB terminal colors
@@ -32,7 +32,7 @@ opt.splitbelow = true
 -- the omarchy / LazyVim layer
 -- ---------------------------------------------------------------------------
 opt.signcolumn = "yes"     -- always reserve it, so git signs and diagnostics
-                           -- never shove the text sideways mid-edit
+-- never shove the text sideways mid-edit
 opt.updatetime = 200       -- CursorHold fires this fast: lsp document highlight
 opt.timeoutlen = 400       -- how long which-key waits before showing its popup
 opt.scrolloff = 4          -- keep context above/below the cursor
@@ -49,8 +49,8 @@ opt.inccommand = "nosplit" -- live preview of :s///
 opt.list = true            -- snacks' indent guides read better with these on
 opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 opt.fillchars:append({ eob = " " }) -- no ~ column past the last line, which
-                                    -- is mostly visible on the dashboard and
-                                    -- behind the oil float
+-- is mostly visible on the dashboard and
+-- behind the oil float
 -- omarchy sets both of these in its LazyVim config: no relative numbers, and
 -- format-on-save off by default (the toggle is <leader>uf, see config.format)
 opt.relativenumber = false

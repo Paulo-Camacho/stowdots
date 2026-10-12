@@ -6,16 +6,16 @@ local cmp = {
 	mode = function()
 		local mode = vim.api.nvim_get_mode().mode
 		local modes = {
-			n = 'NORMAL',
-			i = 'INSERT',
-			ic = 'INSERT',
-			v = 'VISUAL',
-			V = 'V-LINE',
-			['\22'] = 'V-BLOCK',
-			c = 'COMMAND',
-			R = 'REPLACE',
-			t = 'TERMINAL',
-			nt = 'NORMAL'
+			n = 'normal',
+			i = 'insert',
+			ic = 'insert',
+			v = 'visual',
+			V = 'v-line',
+			['\22'] = 'v-block',
+			c = 'command',
+			R = 'replace',
+			t = 'terminal',
+			nt = 'normal'
 		}
 		local name = modes[mode] or mode
 
@@ -37,7 +37,7 @@ local cmp = {
 
 
 	diagnostic_status = function()
-		local ok = ' cwd => '
+		local ok = ' no errors '
 		local ignore = { ['c'] = true, ['t'] = true }
 		local mode = vim.api.nvim_get_mode().mode
 		if ignore[mode] then return ok end
@@ -48,10 +48,12 @@ local cmp = {
 
 		local result = ''
 		if errors > 0 then
-			result = result .. hi_pattern:format('DiagnosticError', ' ✘ ' .. errors)
+			-- result = result .. hi_pattern:format('DiagnosticError', ' ✘ ' .. errors)
+			result = result .. hi_pattern:format('DiagnosticError', ' errors:' .. errors)
 		end
 		if warnings > 0 then
-			result = result .. hi_pattern:format('DiagnosticWarn', ' ▲ ' .. warnings)
+			-- result = result .. hi_pattern:format('DiagnosticWarn', ' ▲ ' .. warnings)
+			result = result .. hi_pattern:format('DiagnosticWarn', ' warnings:' .. warnings)
 		end
 		if result == '' then
 			result = ok

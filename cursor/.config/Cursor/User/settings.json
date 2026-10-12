@@ -5,7 +5,7 @@
     "<D-v>": false
   },
   "terminal.integrated.enableMultiLinePasteWarning": "never",
-  "window.autoDetectColorScheme": false,
+  "window.autoDetectColorScheme": true,
   "git.autofetch": true,
   "workbench.settings.applyToAllProfiles": [
     "vim.smartRelativeLine"
@@ -18,5 +18,5 @@
   "claudeCode.preferredLocation": "panel",
   "editor.wordWrap": "on",
   "cursor.composer.queueMessageDefaultBehavior": "steer",
-  "workbench.colorTheme": "Cursor Light"
+  "workbench.colorTheme": "Cursor Dark"
 }

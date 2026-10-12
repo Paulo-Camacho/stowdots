@@ -16,16 +16,19 @@ map({ "n", "v" }, "L", "$")
 -- shout out Bread On Penguins! (:r <shell command here>)
 map("n", "<leader>pd", "<cmd>r!date<CR>", { desc = "Using terminal date command and injecting into Neovim" })
 -- print tick box -- 
-map("n", "<leader>pc", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
+map("n", "<leader>pt", "0i- [ ] ", { noremap = true, silent = true, desc = "Insert a TODO tick box" })
 -- print check tick box -- 
 map("n", "<leader>px", "F[lrx<ESC>", { noremap = true, silent = true, desc = "Check a TODO tick box" })
 
 -- move entire lines --
-map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"})
-map("v", "J", ":m '>+1<CR>gv=gv", { desc = "shift selected line down"})
+-- map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"})
+-- map("v", "J", ":m '>+1<CR>gv=gv", { desc = "shift selected line down"})
 
--- just type ; to go into command mode --
-map("n", ";", ":", { desc = "CMD enter command mode" })
+-- moving visually selected lines via JK
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "move line down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "move line up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "move line down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "move line up" })
 
 -- wrapped line navigation --
 -- bare j/k walk display lines; a count (5j) still jumps real lines to match the gutter
@@ -33,13 +36,6 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "Down by display line" })
 map({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "Up by display line" })
 
--- when text is snaked I can still navigate that "one" line
-map("n", "j", "gj", { silent = true, desc = "Down by display line" })
-map("n", "k", "gk", { silent = true, desc = "Up by display line" })
-
-
--- netrw quality of life
--- map("n", "<leader>.", "<cmd>Ex<CR>", { desc = "open netrw" })
 
 -- buffer
 map("n", "<leader>bn", "<cmd>bn<CR>", { desc = "buffer next" })
@@ -47,15 +43,15 @@ map("n", "<leader>bp", "<cmd>bp<CR>", { desc = "buffer previous" })
 map("n", "<leader>bk", "<cmd>bdelete<CR>", { desc = "buffer kill" })
 
 
-
 -- telescope
 -- wrapped in functions: keymaps.lua loads before plugins.lua, so telescope
 -- is not on the runtimepath yet at this point
 -- make sure that inside of init.lua plugins are loaded before keymap if you want to delete this helper function
+-- GREP KEYMAPS
 local function pick(name)
 	return function()
 		require("telescope.builtin")[name]()
-	end                  
+	end
 end
 map("n", "<leader>.", pick("find_files"), { desc = "find files" })
 map("n", "<leader>/", pick("live_grep"), { desc = "grep dir you opened nvim in" })
@@ -71,14 +67,12 @@ map("n", "<leader><leader>", function()
 		prompt_title = "files in " .. vim.fn.fnamemodify(dir, ":~"),
 	})
 end, { desc = "find files in buffer's dir" })
-map("n", "<leader>bl", pick("buffers"), { desc = "buffer list" })
+map("n", "<leader>l", pick("buffers"), { desc = "buffer list" })
 map("n", "<leader>sh", pick("help_tags"), { desc = "search help" })
 map("n", "<leader>sk", pick("keymaps"), { desc = "search keymaps" })
 map("n", "<leader>sd", pick("diagnostics"), { desc = "search diagnostics" })
-map("n", "<leader>sl", pick("resume"), { desc = "resume last picker" })
+map("n", "<leader>r", pick("resume"), { desc = "resume last picker" })
 
--- oil. `-` is the netrw reflex: one key, no leader, and inside the explorer
--- the same key keeps walking up a directory (see the oil table below).
 -- a toggle, same split view as `nvim .`. a bare `:Oil` from inside oil opens
 -- the parent dir, so pressing it again walked up a level each time; from the
 -- preview window it opened a second explorer there.
@@ -100,25 +94,8 @@ end, { desc = "file explorer" })
 -- plugin keymaps are wrapped in functions for the same reason the telescope
 -- ones above are: this file is required before config.plugins runs.
 
--- clear the search highlight instead of just beeping
 map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "clear search highlight" })
 
--- window navigation
-map("n", "<C-h>", "<C-w>h", { desc = "window left" })
-map("n", "<C-j>", "<C-w>j", { desc = "window down" })
-map("n", "<C-k>", "<C-w>k", { desc = "window up" })
-map("n", "<C-l>", "<C-w>l", { desc = "window right" })
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "taller window" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "shorter window" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "narrower window" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "wider window" })
-
--- move lines without selecting first. visual K/J above already do the
--- selected-block version.
-map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "move line down" })
-map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "move line up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "move line down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "move line up" })
 
 -- buffers
 map("n", "<leader>bo", function()
@@ -242,7 +219,7 @@ map("n", "<leader>ud", function()
 	vim.notify("diagnostics: " .. tostring(on))
 end, { desc = "toggle diagnostics" })
 
-map("n", "<leader>uh", function()
+map("n", "<leader>sp", function()
 	local on = not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
 	vim.lsp.inlay_hint.enable(on, { bufnr = 0 })
 	vim.notify("inlay hints: " .. tostring(on))
@@ -257,6 +234,17 @@ map("n", "<leader>ub", function()
 	vim.cmd.colorscheme(light and "734" or "734-light")
 	require("config.statusline").setup() -- statusline hl groups are theme-derived
 end, { desc = "toggle light/dark theme" })
+
+
+-- window navigation
+map("n", "<C-h>", "<C-w>h", { desc = "window left" })
+map("n", "<C-j>", "<C-w>j", { desc = "window down" })
+map("n", "<C-k>", "<C-w>k", { desc = "window up" })
+map("n", "<C-l>", "<C-w>l", { desc = "window right" })
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "taller window" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "shorter window" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "narrower window" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "wider window" })
 
 -- oil's own buffer-local keymaps. these are plain data (action names as
 -- strings), so they carry no dependency on oil being loaded -- plugins.lua
