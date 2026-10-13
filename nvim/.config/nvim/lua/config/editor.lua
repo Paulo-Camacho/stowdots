@@ -18,7 +18,7 @@ require("snacks").setup({
 	lazygit = { enabled = true },
 	terminal = { enabled = true },
 
-	scroll = { enabled = false },   -- omarchy: no smooth-scroll animation
+	scroll = { enabled = true },   -- omarchy: no smooth-scroll animation
 	picker = { enabled = false },   -- telescope owns this
 	explorer = { enabled = false }, -- oil owns this
 	dashboard = {
