@@ -11,7 +11,7 @@ vim.opt.termguicolors = true
 
 -- dev mode: load 734 from the local repo and hot-reload on change.
 -- NVIM_734_DEV=0 nvim falls back to the vim.pack copy.
-local theme_dev = vim.fn.expand("~/projects/734")
+local theme_dev = vim.fn.expand("~/Projects/734")
 if vim.env.NVIM_734_DEV ~= "0" and vim.uv.fs_stat(theme_dev) then
 	vim.opt.rtp:prepend(theme_dev)
 

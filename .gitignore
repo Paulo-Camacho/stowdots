@@ -2,3 +2,12 @@
 
 # Zed prompt-library state (binary LMDB, machine-local)
 zed/.config/zed/prompts/
+
+# VS Code: ~/.config/Code is stow-folded into this repo, so only track real config
+vscode/.config/Code/*
+!vscode/.config/Code/User/
+vscode/.config/Code/User/*
+!vscode/.config/Code/User/settings.json
+!vscode/.config/Code/User/keybindings.json
+!vscode/.config/Code/User/extensions.txt
+!vscode/.config/Code/User/snippets/
