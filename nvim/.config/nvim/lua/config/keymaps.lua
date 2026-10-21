@@ -131,8 +131,8 @@ map({ "n", "t" }, "<C-_>", function() require("snacks").terminal.toggle() end, {
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "leave terminal mode" })
 
 -- flash: hop anywhere on screen with two keys
-map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "flash jump" })
-map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "flash treesitter" })
+map({ "x", "o" }, "s", function() require("flash").jump() end, { desc = "flash jump" })
+map({ "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "flash treesitter" })
 map("o", "r", function() require("flash").remote() end, { desc = "remote flash" })
 
 -- diagnostics + quickfix
@@ -233,7 +233,6 @@ map("n", "<leader>un", function() require("snacks").notifier.hide() end, { desc 
 map("n", "<leader>ub", function()
 	local light = vim.g.colors_name == "734-light"
 	vim.cmd.colorscheme(light and "734" or "734-light")
-	require("config.statusline").setup() -- statusline hl groups are theme-derived
 end, { desc = "toggle light/dark theme" })
 
 

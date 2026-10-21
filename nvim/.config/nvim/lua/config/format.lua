@@ -36,7 +36,7 @@ conform.setup({
 	end,
 
 	formatters = {
-		-- match the 4-space, expandtab defaults in config.options
+		-- 4-space indents for C and shell (vim itself uses 2, see config.options)
 		clang_format = {
 			prepend_args = { "--style={BasedOnStyle: llvm, IndentWidth: 4}" },
 		},

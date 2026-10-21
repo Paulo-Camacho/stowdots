@@ -4,8 +4,7 @@
 
 -- ---------------------------------------------------------------- snacks ---
 -- snacks is a bundle. only the pieces that do not duplicate oil/telescope are
--- on: picker and explorer stay off, and `scroll` is off the way omarchy ships
--- it (lua/plugins/snacks-animated-scrolling-off.lua).
+-- on: picker and explorer stay off.
 require("snacks").setup({
 	bigfile = { enabled = true },   -- strip treesitter/lsp off huge files
 	quickfile = { enabled = true }, -- render the file before plugins load
@@ -18,7 +17,7 @@ require("snacks").setup({
 	lazygit = { enabled = true },
 	terminal = { enabled = true },
 
-	scroll = { enabled = true },   -- omarchy: no smooth-scroll animation
+	scroll = { enabled = true },    -- smooth-scroll animation
 	picker = { enabled = false },   -- telescope owns this
 	explorer = { enabled = false }, -- oil owns this
 	dashboard = {
@@ -204,38 +203,35 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 -- ------------------------------------------- treesitter textobjects (main) ---
 -- the `main` branch exposes plain lua functions instead of installing its own
 -- mappings, so the keymaps are spelled out here.
-local ok_to, textobjects = pcall(require, "nvim-treesitter-textobjects")
-if ok_to then
-	textobjects.setup({
-		select = { lookahead = true },
-		move = { set_jumps = true },
-	})
+require("nvim-treesitter-textobjects").setup({
+	select = { lookahead = true },
+	move = { set_jumps = true },
+})
 
-	local select = require("nvim-treesitter-textobjects.select")
-	local move = require("nvim-treesitter-textobjects.move")
+local select = require("nvim-treesitter-textobjects.select")
+local move = require("nvim-treesitter-textobjects.move")
 
-	local function sel(lhs, obj, desc)
-		vim.keymap.set({ "x", "o" }, lhs, function()
-			select.select_textobject(obj, "textobjects")
-		end, { desc = desc, silent = true })
-	end
-
-	sel("af", "@function.outer", "a function")
-	sel("if", "@function.inner", "inner function")
-	sel("ac", "@class.outer", "a class")
-	sel("ic", "@class.inner", "inner class")
-	sel("al", "@loop.outer", "a loop")
-	sel("il", "@loop.inner", "inner loop")
-	sel("a/", "@comment.outer", "a comment")
-
-	local function goto_map(lhs, fn, obj, desc)
-		vim.keymap.set({ "n", "x", "o" }, lhs, function()
-			move[fn](obj, "textobjects")
-		end, { desc = desc, silent = true })
-	end
-
-	goto_map("]f", "goto_next_start", "@function.outer", "next function")
-	goto_map("[f", "goto_previous_start", "@function.outer", "prev function")
-	goto_map("]c", "goto_next_start", "@class.outer", "next class")
-	goto_map("[c", "goto_previous_start", "@class.outer", "prev class")
+local function sel(lhs, obj, desc)
+	vim.keymap.set({ "x", "o" }, lhs, function()
+		select.select_textobject(obj, "textobjects")
+	end, { desc = desc, silent = true })
 end
+
+sel("af", "@function.outer", "a function")
+sel("if", "@function.inner", "inner function")
+sel("ac", "@class.outer", "a class")
+sel("ic", "@class.inner", "inner class")
+sel("al", "@loop.outer", "a loop")
+sel("il", "@loop.inner", "inner loop")
+sel("a/", "@comment.outer", "a comment")
+
+local function goto_map(lhs, fn, obj, desc)
+	vim.keymap.set({ "n", "x", "o" }, lhs, function()
+		move[fn](obj, "textobjects")
+	end, { desc = desc, silent = true })
+end
+
+goto_map("]f", "goto_next_start", "@function.outer", "next function")
+goto_map("[f", "goto_previous_start", "@function.outer", "prev function")
+goto_map("]c", "goto_next_start", "@class.outer", "next class")
+goto_map("[c", "goto_previous_start", "@class.outer", "prev class")

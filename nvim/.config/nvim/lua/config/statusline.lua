@@ -88,34 +88,33 @@ local cmp = {
 	end,
 
 	setup = function()
-		-- set the hl groups
-		-- TODO: rerun on every theme change
-		vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
-		vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
-
-		for _, group in ipairs({ "String", "Label", "Function", "WarningMsg", "Removed" }) do
-			local ok, hl = pcall(vim.api.nvim_get_hl_by_name, group, true)
-			if ok then
-				vim.api.nvim_set_hl(0, group .. "Bold", { fg = hl.foreground, bg = hl.background or "NONE", bold = true })
+		-- the hl groups are derived from the theme, so rebuild them on every swap
+		local function set_hl()
+			vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+			vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
+			for _, group in ipairs({ "String", "Label", "Function", "WarningMsg", "Removed" }) do
+				local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+				vim.api.nvim_set_hl(0, group .. "Bold", { fg = hl.fg, bg = hl.bg, bold = true })
 			end
 		end
+		set_hl()
+		vim.api.nvim_create_autocmd("ColorScheme", {
+			desc = "rebuild statusline hl groups after a theme swap",
+			callback = set_hl,
+		})
+
 		-- build the statusline
 		local statusline = {
-			'%{%v:lua._statusline_component("mode")%} ',
-			'%{%v:lua._statusline_component("diagnostic_status")%} ',
+			'%{%v:lua._statusline_cmp.mode()%} ',
+			'%{%v:lua._statusline_cmp.diagnostic_status()%} ',
 			-- %< marks where to truncate first, so a long path loses leading
 			-- directories instead of the filename
-			'%<%{%v:lua._statusline_component("filepath")%} ',
+			'%<%{%v:lua._statusline_cmp.filepath()%} ',
 			'%r', '%m',
 			'%=',
 			'%{&filetype} ',
-			'%{%v:lua._statusline_component("position")%}'
+			'%{%v:lua._statusline_cmp.position()%}'
 		}
-		-- to unalias stuff
-		function _G._statusline_component(name)
-			return _G._statusline_cmp[name]()
-		end
-
 		vim.o.statusline = table.concat(statusline, '')
 		vim.o.laststatus = 2
 	end

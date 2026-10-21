@@ -2,9 +2,8 @@
 -- config files, vim.lsp.enable() turns them on, and mason-lspconfig calls
 -- vim.lsp.enable() for every server mason has installed.
 
--- servers mason installs for us. clangd is deliberately absent: macOS already
--- ships one at /usr/bin/clangd that knows about the SDK headers, and a mason
--- copy would shadow it.
+-- servers mason installs for us. clangd is deliberately absent: the system
+-- one at /usr/bin/clangd is used instead, and a mason copy would shadow it.
 local ensure_servers = {
 	"lua_ls",
 	"pyright",
@@ -139,11 +138,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- clangd only: jump between foo.c and foo.h
 		if client and client.name == "clangd" then
 			map("n", "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "switch source/header")
-		end
-
-		-- inlay hints off by default; <leader>uh toggles them (config.keymaps)
-		if client and client:supports_method("textDocument/inlayHint") then
-			vim.lsp.inlay_hint.enable(false, { bufnr = buf })
 		end
 
 		-- highlight other uses of the symbol under the cursor

@@ -1,9 +1,8 @@
 local opt = vim.opt
 
 opt.number = true          -- line number (<leader>ul toggles it)
--- opt.relativenumber = true  -- relative line numbers; omarchy keeps these off,
+-- relative numbers stay off, the way omarchy ships them; <leader>uL toggles them
 opt.cursorline = true
--- and the toggle is <leader>uL
 opt.tabstop = 2            -- number of spaces a tab counts for
 opt.shiftwidth = 2         -- number of spaces for auto-indents
 opt.expandtab = true       -- convert tabs to white spaces
@@ -51,9 +50,6 @@ opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 opt.fillchars:append({ eob = " " }) -- no ~ column past the last line, which
 -- is mostly visible on the dashboard and
 -- behind the oil float
--- omarchy sets both of these in its LazyVim config: no relative numbers, and
--- format-on-save off by default (the toggle is <leader>uf, see config.format)
-opt.relativenumber = false
 
 -- session-ish niceties for a machine with real tooling on it
 vim.g.markdown_recommended_style = 0 -- stop the ftplugin forcing 4-space tabs

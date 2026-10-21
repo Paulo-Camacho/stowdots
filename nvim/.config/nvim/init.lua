@@ -7,8 +7,6 @@ require('config.plugins')
 
 require("config.statusline").setup()
 
-vim.opt.termguicolors = true
-
 -- dev mode: load 734 from the local repo and hot-reload on change.
 -- NVIM_734_DEV=0 nvim falls back to the vim.pack copy.
 local theme_dev = vim.fn.expand("~/Projects/734")
