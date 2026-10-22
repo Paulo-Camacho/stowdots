@@ -8,7 +8,7 @@ map("n", ";", ":", { desc = "enter command mode with ;" })
 map("i", "jk", "<ESC>")
 
 -- mapping end of line and start of line to H and L (ergonomic)
-map({ "n", "v" }, "H", "0")
+map({ "n", "v" }, "H", "_")
 map({ "n", "v" }, "L", "$")
 
 -- remember when toast did with the date command and then used something to read it into neovim?
@@ -230,7 +230,7 @@ map("n", "<leader>un", function() require("snacks").notifier.hide() end, { desc 
 
 -- the two 734 variants, swapped in place. omarchy does this from the system
 -- theme; here it is a key.
-map("n", "<leader>ub", function()
+map("n", "<leader>ct", function()
 	local light = vim.g.colors_name == "734-light"
 	vim.cmd.colorscheme(light and "734" or "734-light")
 end, { desc = "toggle light/dark theme" })

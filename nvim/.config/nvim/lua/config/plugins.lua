@@ -117,8 +117,7 @@ local function oil_breadcrumb(bufnr)
 end
 
 -- winbar is re-evaluated on every redraw, so this has to be cheap and has to
--- work out which window it is drawing for -- vim.g.statusline_winid, the same
--- trick config.statusline uses.
+-- work out which window it is drawing for, via vim.g.statusline_winid.
 function _G.oil_winbar()
 	local win = vim.g.statusline_winid
 	local buf = win and vim.api.nvim_win_is_valid(win) and vim.api.nvim_win_get_buf(win) or 0

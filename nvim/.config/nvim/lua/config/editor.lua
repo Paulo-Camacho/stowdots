@@ -146,8 +146,12 @@ require("ts-comments").setup({})
 
 -- ------------------------------------------------------------ mini pieces ---
 -- better a/i textobjects: ci( works across lines, va) picks the nearest pair,
--- plus `f` for a function call and `a` for an argument
-require("mini.ai").setup({ n_lines = 500 })
+-- plus `a` for an argument. af/if and al/il belong to treesitter textobjects
+-- (function definition, loop) below, so mini.ai's "last" prefix is switched off.
+require("mini.ai").setup({
+	n_lines = 500,
+	mappings = { around_last = "", inside_last = "" },
+})
 
 -- surround, under `gs` so it does not eat flash's `s`
 require("mini.surround").setup({
@@ -225,9 +229,15 @@ sel("al", "@loop.outer", "a loop")
 sel("il", "@loop.inner", "inner loop")
 sel("a/", "@comment.outer", "a comment")
 
+-- in a diff window ]c/[c keep vim's own meaning (next/prev change), the same
+-- fallback ]h/[h use in the gitsigns section
 local function goto_map(lhs, fn, obj, desc)
 	vim.keymap.set({ "n", "x", "o" }, lhs, function()
-		move[fn](obj, "textobjects")
+		if lhs:sub(2) == "c" and vim.wo.diff then
+			vim.cmd.normal({ lhs, bang = true })
+		else
+			move[fn](obj, "textobjects")
+		end
 	end, { desc = desc, silent = true })
 end
 
