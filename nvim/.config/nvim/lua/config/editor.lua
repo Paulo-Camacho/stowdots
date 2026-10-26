@@ -166,6 +166,13 @@ require("mini.surround").setup({
 	},
 })
 
+-- auto-close pairs. typing { inserts {}, and <CR> between them opens an
+-- indented line with } pushed below. blink's "enter" preset falls back to
+-- this <CR> when the completion menu is closed.
+require("mini.pairs").setup({
+	modes = { insert = true, command = false, terminal = false },
+})
+
 -- ----------------------------------------------------------- multicursor ---
 local mc = require("multicursor-nvim")
 mc.setup()

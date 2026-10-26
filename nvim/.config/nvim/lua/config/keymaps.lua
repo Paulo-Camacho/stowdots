@@ -53,12 +53,12 @@ local function pick(name)
 		require("telescope.builtin")[name]()
 	end
 end
-map("n", "<leader>.", pick("find_files"), { desc = "find files" })
+map("n", "<leader><leader>", pick("find_files"), { desc = "find files" })
 map("n", "<leader>/", pick("live_grep"), { desc = "grep dir you opened nvim in" })
 map("n", "<leader>sr", pick("oldfiles"), { desc = "recent files" })
 -- find files under the current buffer's dir (oil's dir when inside oil),
 -- falling back to cwd for unnamed buffers
-map("n", "<leader><leader>", function()
+map("n", "<leader>.", function()
 	local ok, oil = pcall(require, "oil")
 	local dir = ok and oil.get_current_dir() or vim.fn.expand("%:p:h")
 	if dir == "" then dir = vim.uv.cwd() end

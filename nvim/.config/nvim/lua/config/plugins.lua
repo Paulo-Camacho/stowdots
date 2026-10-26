@@ -68,6 +68,7 @@ vim.pack.add({
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/nvim-mini/mini.ai",
 	"https://github.com/nvim-mini/mini.surround",
+	"https://github.com/nvim-mini/mini.pairs",
 	-- the 1.0 branch is the one the author supports; main is the dev branch
 	{ src = "https://github.com/jake-stewart/multicursor.nvim", version = "1.0" },
 
