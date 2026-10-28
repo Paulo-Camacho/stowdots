@@ -20,15 +20,17 @@ map("n", "<leader>pt", "0i- [ ] ", { noremap = true, silent = true, desc = "Inse
 -- print check tick box -- 
 map("n", "<leader>px", "F[lrx<ESC>", { noremap = true, silent = true, desc = "Check a TODO tick box" })
 
--- move entire lines --
--- map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"})
--- map("v", "J", ":m '>+1<CR>gv=gv", { desc = "shift selected line down"})
+-- move entire highlighted lines inside of visual mode via J/K --
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "shift selected line up"})
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "shift selected line down"})
+
+
 
 -- moving visually selected lines via JK
-map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "move line down" })
-map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "move line up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "move line down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "move line up" })
+-- map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "move line down" })
+-- map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "move line up" })
+-- map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "move line down" })
+-- map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "move line up" })
 
 -- wrapped line navigation --
 -- bare j/k walk display lines; a count (5j) still jumps real lines to match the gutter
