@@ -4,7 +4,7 @@ local ts_langs = {
 	"c", "cpp", "python", "html", "css", "javascript", "typescript", "tsx",
 	"json", "jsonc", "jsdoc", "lua", "luadoc", "vim", "vimdoc", "markdown",
 	"markdown_inline", "bash", "diff", "git_config", "gitcommit", "gitignore",
-	"make", "cmake", "query", "regex", "toml", "yaml", "xml",
+	"make", "cmake", "query", "regex", "toml", "yaml", "xml", "java",
 }
 
 -- build hooks must be registered BEFORE vim.pack.add(), or they miss the install
