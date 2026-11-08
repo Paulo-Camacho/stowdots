@@ -9,8 +9,12 @@ require("snacks").setup({
 	bigfile = { enabled = true },   -- strip treesitter/lsp off huge files
 	quickfile = { enabled = true }, -- render the file before plugins load
 	indent = { enabled = true, scope = { enabled = false } }, -- indent guides, no current-scope highlight
-	input = { enabled = true },     -- pretty vim.ui.input, used by lsp rename
-	notifier = { enabled = true, timeout = 3000 },
+	input = { enabled = true, icon = "" }, -- pretty vim.ui.input, used by lsp rename
+	notifier = {
+		enabled = true,
+		timeout = 3000,
+		icons = { error = "", warn = "", info = "", debug = "", trace = "" },
+	},
 	scope = { enabled = true },
 	statuscolumn = { enabled = true },
 	words = { enabled = true },     -- ]] / [[ between lsp references
@@ -24,12 +28,12 @@ require("snacks").setup({
 		enabled = true,
 		preset = {
 			keys = {
-				{ icon = " ", key = "f", desc = "Find file", action = ":lua require('telescope.builtin').find_files()" },
-				{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
-				{ icon = " ", key = "g", desc = "Grep", action = ":lua require('telescope.builtin').live_grep()" },
-				{ icon = " ", key = "r", desc = "Recent files", action = ":lua require('telescope.builtin').oldfiles()" },
-				{ icon = " ", key = "e", desc = "File explorer", action = ":Oil" },
-				{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+				{ key = "f", desc = "Find file", action = ":lua require('telescope.builtin').find_files()" },
+				{ key = "n", desc = "New file", action = ":ene | startinsert" },
+				{ key = "g", desc = "Grep", action = ":lua require('telescope.builtin').live_grep()" },
+				{ key = "r", desc = "Recent files", action = ":lua require('telescope.builtin').oldfiles()" },
+				{ key = "e", desc = "File explorer", action = ":Oil" },
+				{ key = "q", desc = "Quit", action = ":qa" },
 			},
 		},
 		sections = {
@@ -50,9 +54,8 @@ require("snacks").setup({
 					align = "center",
 					padding = 1,
 					text = {
-						{ "󱐋 ", hl = "special" },
 						{ ("%d plugins"):format(loaded), hl = "footer" },
-						{ ("  in %.0fms"):format(ms), hl = "footer" },
+						{ (" in %.0fms"):format(ms), hl = "footer" },
 					},
 				}
 			end,

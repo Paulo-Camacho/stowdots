@@ -48,7 +48,7 @@ vim.lsp.config("lua_ls", {
 			runtime = { version = "LuaJIT" },
 			workspace = { checkThirdParty = false },
 			-- stop it asking which library `vim` comes from on every config file
-			diagnostics = { globals = { "vim", "MiniIcons" } },
+			diagnostics = { globals = { "vim" } },
 			completion = { callSnippet = "Replace" },
 			telemetry = { enable = false },
 		},

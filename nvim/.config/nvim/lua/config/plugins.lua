@@ -36,7 +36,6 @@ vim.api.nvim_create_autocmd("PackChanged", {
 vim.pack.add({
 	-- files, finding, syntax
 	"https://github.com/stevearc/oil.nvim",
-	"https://github.com/nvim-mini/mini.icons",
 	"https://github.com/nvim-lua/plenary.nvim", -- required by telescope
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim", -- optional, big speedup
@@ -75,10 +74,6 @@ vim.pack.add({
 	-- colorscheme (734 + 734-light), loaded by init.lua
 	"git@github.com:Paulo-Camacho/734.git",
 })
-
--- these icons are used inside of the oil view
-require("mini.icons").setup({})
-MiniIcons.mock_nvim_web_devicons() -- telescope looks for nvim-web-devicons
 
 -- oil
 -- an oil buffer is a file list, not text. oil's own defaults already drop the
@@ -137,7 +132,7 @@ function _G.oil_winbar()
 		trimmed = true
 	end
 
-	local out = { "%#OilWinbarIcon# 󰉋 %<" }
+	local out = { " %<" }
 	if trimmed then
 		table.insert(out, "%#OilWinbarSep#… › ")
 	end
@@ -154,7 +149,6 @@ end
 
 local function set_oil_hl()
 	-- derived from the theme rather than hardcoded, so <leader>ub still works
-	vim.api.nvim_set_hl(0, "OilWinbarIcon", { link = "Directory" })
 	vim.api.nvim_set_hl(0, "OilWinbarPath", { link = "Comment" })
 	vim.api.nvim_set_hl(0, "OilWinbarSep", { link = "NonText" })
 	vim.api.nvim_set_hl(0, "OilWinbarCurrent", { link = "Directory", bold = true })
@@ -183,6 +177,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 require("oil").setup({
 	default_file_explorer = true, -- replaces netrw
+	columns = {}, -- names only, no icon column
 	win_options = oil_win_options,
 
 	view_options = {
@@ -208,7 +203,7 @@ require("oil").setup({
 			if type(parts) ~= "table" or #parts == 0 then
 				return ""
 			end
-			return " 󰉋  " .. table.concat(parts, " › ") .. " "
+			return " " .. table.concat(parts, " › ") .. " "
 		end,
 	},
 
@@ -321,6 +316,7 @@ local telescope = require("telescope")
 telescope.setup({
 	defaults = {
 		path_display = { "truncate" },
+		disable_devicons = true,
 		sorting_strategy = "ascending",
 		layout_strategy = "horizontal",
 		layout_config = {

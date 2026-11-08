@@ -28,6 +28,8 @@ require("blink.cmp").setup({
 			border = "rounded",
 			draw = {
 				treesitter = { "lsp" }, -- highlight the labels like real code
+				-- kind as text instead of a nerd-font kind icon
+				columns = { { "label", "label_description", gap = 1 }, { "kind" } },
 			},
 		},
 		-- inline preview of the selected item, but not while a snippet is
