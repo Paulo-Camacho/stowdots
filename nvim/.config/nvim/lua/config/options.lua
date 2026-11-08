@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.number = true          -- line number (<leader>ul toggles it)
+opt.number = false -- line number (<leader>ul toggles it)
 -- relative numbers stay off, the way omarchy ships them; <leader>uL toggles them
 opt.cursorline = true
 opt.tabstop = 2            -- number of spaces a tab counts for

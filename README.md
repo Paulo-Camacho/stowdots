@@ -1,4 +1,4 @@
-These are my personal dot files, take a look.
+personal dot files
 
 - requirements
     - neovim (0.12+, the config uses `vim.pack` and `vim.lsp.config`)
@@ -19,3 +19,14 @@ These are my personal dot files, take a look.
     - `format.lua`     conform; format-on-save is off, `<leader>uf` toggles it
     - `editor.lua`     snacks, which-key, gitsigns, flash, trouble, mini.*
     - `statusline.lua` hand-rolled statusline
+
+- vscode / vscodium
+    - stow these with `--no-folding` so only the config files get linked and
+      the editor's caches and state stay out of the repo:
+        - $ stow --no-folding vscode vscodium
+    - linux reads ~/.config/Code and ~/.config/VSCodium natively
+    - macOS hardcodes ~/Library/Application Support/VSCodium, so on a new mac
+      move it under ~/.config once (quit VSCodium first, before stowing):
+        - $ d=~/Library/Application\ Support/VSCodium
+        - $ mv "$d" ~/.config/VSCodium && ln -s ~/.config/VSCodium "$d"
+        - $ rm ~/.config/VSCodium/User/settings.json   (stow won't overwrite it)
