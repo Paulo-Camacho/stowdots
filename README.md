@@ -30,3 +30,9 @@ personal dot files
         - $ d=~/Library/Application\ Support/VSCodium
         - $ mv "$d" ~/.config/VSCodium && ln -s ~/.config/VSCodium "$d"
         - $ rm ~/.config/VSCodium/User/settings.json   (stow won't overwrite it)
+
+- tern
+    - only `settings.json` is tracked; daemon, session, and cache state stays
+      machine-local in `~/.config/tern`
+    - preserve an existing config and link it into place:
+        - $ stow --adopt --no-folding tern
