@@ -18,5 +18,6 @@
     "files.autoSave": "afterDelay",
     "editor.lineNumbers": "off",
     "editor.glyphMargin": false,
-    "terminal.integrated.initialHint": false
+    "terminal.integrated.initialHint": false,
+    "vim.useSystemClipboard": true,
 }
