@@ -32,4 +32,4 @@ if vim.env.NVIM_734_DEV ~= "0" and vim.uv.fs_stat(theme_dev) then
 	end
 end
 
-vim.cmd.colorscheme("734")
+vim.cmd.colorscheme("734-light")
