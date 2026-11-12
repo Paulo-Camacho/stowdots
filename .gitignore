@@ -11,3 +11,12 @@ vscode/.config/Code/User/*
 !vscode/.config/Code/User/keybindings.json
 !vscode/.config/Code/User/extensions.txt
 !vscode/.config/Code/User/snippets/
+
+# VSCodium: ~/.config/VSCodium is stow-folded into this repo, so only track real config
+vscodium/.config/VSCodium/*
+!vscodium/.config/VSCodium/User/
+vscodium/.config/VSCodium/User/*
+!vscodium/.config/VSCodium/User/settings.json
+!vscodium/.config/VSCodium/User/keybindings.json
+!vscodium/.config/VSCodium/User/extensions.txt
+!vscodium/.config/VSCodium/User/snippets/
