@@ -1,18 +1,19 @@
 -- :h statusline to see options
 local M = {}
 
--- name, hl group. the *Bold groups are built in setup()
+-- name, hl group. Colors are the theme's job: these are the mode groups
+-- colorschemes define for statuslines, and the bar itself is StatusLine
 local modes = {
-	n = { 'normal', 'Bold' },
-	nt = { 'normal', 'Removed' },
-	i = { 'insert', 'StringBold' },
-	ic = { 'insert', 'StringBold' },
-	v = { 'visual', 'LabelBold' },
-	V = { 'v-line', 'LabelBold' },
-	['\22'] = { 'v-block', 'LabelBold' },
-	c = { 'command', 'FunctionBold' },
-	R = { 'replace', 'WarningMsgBold' },
-	t = { 'terminal', 'RemovedBold' },
+	n = { 'normal', 'MiniStatuslineModeNormal' },
+	nt = { 'normal', 'MiniStatuslineModeOther' },
+	i = { 'insert', 'MiniStatuslineModeInsert' },
+	ic = { 'insert', 'MiniStatuslineModeInsert' },
+	v = { 'visual', 'MiniStatuslineModeVisual' },
+	V = { 'v-line', 'MiniStatuslineModeVisual' },
+	['\22'] = { 'v-block', 'MiniStatuslineModeVisual' },
+	c = { 'command', 'MiniStatuslineModeCommand' },
+	R = { 'replace', 'MiniStatuslineModeReplace' },
+	t = { 'terminal', 'MiniStatuslineModeOther' },
 }
 
 function M.mode()
@@ -40,21 +41,6 @@ function M.filepath()
 end
 
 function M.setup()
-	-- the hl groups are derived from the theme, so rebuild them on every swap
-	local function set_hl()
-		vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE' })
-		vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'NONE' })
-		for _, group in ipairs({ 'String', 'Label', 'Function', 'WarningMsg', 'Removed' }) do
-			local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
-			vim.api.nvim_set_hl(0, group .. 'Bold', { fg = hl.fg, bg = hl.bg, bold = true })
-		end
-	end
-	set_hl()
-	vim.api.nvim_create_autocmd('ColorScheme', {
-		desc = 'rebuild statusline hl groups after a theme swap',
-		callback = set_hl,
-	})
-
 	-- %{%...%} re-reads the result as statusline items (for the %#hl# codes);
 	-- plain %{...} inserts the path as text, so a % in a filename is safe.
 	-- %< marks where to truncate first, so a long path loses leading
