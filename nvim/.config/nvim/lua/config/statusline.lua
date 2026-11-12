@@ -63,7 +63,8 @@ function M.setup()
 	vim.o.statusline = '%{%' .. sl .. 'mode()%} '
 		.. '%{%' .. sl .. 'diagnostics()%} '
 		.. '%<%{' .. sl .. 'filepath()} %r%m'
-		.. '%=%{&filetype}  %3l:%-2c '
+		-- shiftwidth() is the effective indent: it resolves sw=0 to tabstop
+		.. "%=%{&expandtab ? 'spaces' : 'tabs'}:%{shiftwidth()}  %{&filetype}  %3l:%-2c "
 end
 
 return M
