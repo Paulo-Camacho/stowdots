@@ -36,9 +36,8 @@ require("mason-tool-installer").setup({
 
 -- every server inherits blink's completion capabilities (snippets, resolve
 -- support, label details). `*` is the wildcard config vim.lsp merges first.
-local ok_blink, blink = pcall(require, "blink.cmp")
 vim.lsp.config("*", {
-	capabilities = ok_blink and blink.get_lsp_capabilities({}, false) or nil,
+	capabilities = require("blink.cmp").get_lsp_capabilities({}, false),
 })
 
 -- per-server overrides layered on top of nvim-lspconfig's defaults
@@ -106,7 +105,7 @@ vim.o.winborder = "rounded"
 -- buffer-local keymaps. these live here rather than in config.keymaps because
 -- they only exist once a server actually attaches to the buffer.
 vim.api.nvim_create_autocmd("LspAttach", {
-	desc = "LSP buffer-local keymaps and inlay hints",
+	desc = "LSP buffer-local keymaps and document highlight",
 	callback = function(ev)
 		local buf = ev.buf
 		local function map(mode, lhs, rhs, desc)
@@ -114,9 +113,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		local function pick(name, opts)
-			return function()
-				require("telescope.builtin")[name](opts or {})
-			end
+			return function() require("telescope.builtin")[name](opts or {}) end
 		end
 
 		map("n", "gd", pick("lsp_definitions"), "goto definition")
@@ -130,7 +127,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("n", "K", vim.lsp.buf.hover, "hover docs")
 		map({ "i", "n" }, "<C-s>", vim.lsp.buf.signature_help, "signature help")
 		map("n", "<leader>cr", vim.lsp.buf.rename, "rename symbol")
-		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "code action")
+		map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, "code action")
 		map("n", "<leader>cd", vim.diagnostic.open_float, "line diagnostics")
 
 		local client = vim.lsp.get_client_by_id(ev.data.client_id)

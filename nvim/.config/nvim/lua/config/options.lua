@@ -1,56 +1,61 @@
 local opt = vim.opt
 
-opt.number = false -- line number (<leader>ul toggles it)
--- relative numbers stay off, the way omarchy ships them; <leader>uL toggles them
+-- line numbers are off; <leader>ul / <leader>uL toggle absolute / relative
 opt.cursorline = true
-opt.tabstop = 2            -- number of spaces a tab counts for
-opt.shiftwidth = 2         -- number of spaces for auto-indents
-opt.expandtab = true       -- convert tabs to white spaces
-opt.smartcase = true       -- case-sensitive search if capital letter is typed
-opt.termguicolors = true   -- enable 24-bit RGB terminal colors
--- attach highlight groups to each cursor mode so Neovim emits OSC 12 and
--- drives the cursor color itself instead of inheriting the terminal's
--- nonzero blinkon/blinkoff makes Neovim ask for a *blinking* cursor (DECSCUSR);
--- the actual fade timing/easing is kitty's (cursor_blink_interval in kitty.conf)
-opt.guicursor = "n-v-c-sm:block-Cursor-blinkwait700-blinkon600-blinkoff600,i-ci-ve:ver25-Cursor-blinkwait700-blinkon600-blinkoff600,r-cr-o:hor20-Cursor-blinkwait700-blinkon600-blinkoff600"
-opt.wrap = true            -- enable visual wrapping
-opt.linebreak = true       -- wrap at word boundaries
-opt.textwidth = 0          -- prevent Neovim from inserting physical line breaks
-opt.clipboard = "unnamedplus" -- share Neovim clipboard with the system clipboard
-opt.virtualedit = "all" -- allows you to navigate wrapped lines like if they were discrete lines
-opt.smoothscroll = true -- scrolls by screen line instead of whole wrapped line
-opt.showmode = false
+opt.signcolumn = "yes" -- always reserved, so signs never shove the text sideways
+opt.showmode = false -- the statusline shows the mode
+opt.termguicolors = true
 
--- new splits open right / below instead of left / above. oil's preview uses
--- these when it opens in a normal window (`nvim .`), the way float.preview_split
--- controls it in the floating explorer.
+-- attach a highlight group to each cursor mode so nvim emits OSC 12 and drives
+-- the cursor color itself instead of inheriting the terminal's. nonzero
+-- blinkon/blinkoff asks for a blinking cursor (DECSCUSR); the fade timing is
+-- kitty's (cursor_blink_interval in kitty.conf).
+local blink = "-Cursor-blinkwait700-blinkon600-blinkoff600"
+opt.guicursor = {
+	"n-v-c-sm:block" .. blink,
+	"i-ci-ve:ver25" .. blink,
+	"r-cr-o:hor20" .. blink,
+}
+
+-- indentation
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+vim.g.markdown_recommended_style = 0 -- stop the ftplugin forcing 4-space tabs
+
+-- wrapping: soft-wrap at word boundaries, never insert real line breaks
+opt.wrap = true
+opt.linebreak = true
+opt.textwidth = 0
+opt.virtualedit = "all" -- the cursor may sit past the end of a line
+
+-- search
+opt.ignorecase = true
+opt.smartcase = true -- case-sensitive once the pattern has a capital
+opt.inccommand = "nosplit" -- live preview of :s///
+
+-- splits open right / below. oil's preview uses these in a normal window
+-- (`nvim .`); float.preview_split controls it in the floating explorer.
 opt.splitright = true
 opt.splitbelow = true
+opt.splitkeep = "screen" -- opening a split does not scroll the text you read
 
--- ---------------------------------------------------------------------------
--- the omarchy / LazyVim layer
--- ---------------------------------------------------------------------------
-opt.signcolumn = "yes"     -- always reserve it, so git signs and diagnostics
--- never shove the text sideways mid-edit
-opt.updatetime = 200       -- CursorHold fires this fast: lsp document highlight
-opt.timeoutlen = 400       -- how long which-key waits before showing its popup
-opt.scrolloff = 4          -- keep context above/below the cursor
-opt.sidescrolloff = 8
-opt.undofile = true        -- undo survives closing the file
+-- files
+opt.clipboard = "unnamedplus" -- share the system clipboard
+opt.undofile = true -- undo survives closing the file
 opt.undolevels = 10000
-opt.ignorecase = true      -- smartcase (already on) only bites with this set
-opt.confirm = true         -- ask instead of failing on :q with unsaved changes
-opt.autowriteall = true    -- also save on :next, :make, :!cmd, buffer switches
-opt.swapfile = false       -- autosave keeps the file on disk current anyway
-opt.splitkeep = "screen"   -- opening a split does not scroll the text you read
-opt.completeopt = "menu,menuone,noselect"
-opt.pumheight = 12         -- cap the completion menu instead of covering the file
-opt.inccommand = "nosplit" -- live preview of :s///
-opt.list = true            -- snacks' indent guides read better with these on
-opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
-opt.fillchars:append({ eob = " " }) -- no ~ column past the last line, which
--- is mostly visible on the dashboard and
--- behind the oil float
+opt.confirm = true -- ask instead of failing on :q with unsaved changes
+opt.autowriteall = true -- also save on :next, :make, :!cmd, buffer switches
+opt.swapfile = false -- autosave (config.autocmds) keeps the file on disk current
 
--- session-ish niceties for a machine with real tooling on it
-vim.g.markdown_recommended_style = 0 -- stop the ftplugin forcing 4-space tabs
+-- timing
+opt.updatetime = 200 -- CursorHold delay: lsp document highlight
+opt.timeoutlen = 400 -- how long which-key waits before showing its popup
+
+-- ui
+opt.scrolloff = 4
+opt.sidescrolloff = 8
+opt.pumheight = 12 -- cap the completion menu instead of covering the file
+opt.list = true -- snacks' indent guides read better with these on
+opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
+opt.fillchars:append({ eob = " " }) -- no ~ column past the last line

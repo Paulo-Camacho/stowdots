@@ -1,137 +1,132 @@
 {
   "debug.onTaskErrors": "debugAnyway",
+
   "workbench.editorAssociations": {
-    "*.copilotmd": "vscode.markdown.preview.editor",
+    "*.copilotmd": "vscode.markdown.preview.editor"
   },
+
   "svelte.enable-ts-plugin": true,
+
   "files.autoSave": "afterDelay",
-  "editor.minimap.enabled": false,
-  "terminal.integrated.initialHint": false,
-  "workbench.startupEditor": "none",
+
   "git.autofetch": true,
+
   "claudeCode.preferredLocation": "panel",
+
   "security.workspace.trust.enabled": false,
   "security.workspace.trust.startupPrompt": "never",
   "security.workspace.trust.banner": "never",
   "security.workspace.trust.emptyWindow": true,
   "security.workspace.trust.untrustedFiles": "open",
-  "editor.wordWrap": "on",
-  "explorer.compactFolders": false,
-  "redhat.telemetry.enabled": false,
+
+  "window.commandCenter": false,
   "window.title": "${activeEditorLong}${separator}${rootName}${separator}${appName}",
-  "scm.diffDecorations": "all",
-  "scm.diffDecorationsGutterWidth": 3,
+  "window.zoomLevel": 1,
+
+  "workbench.activityBar.location": "default",
+  "workbench.statusBar.visible": true,
+  "workbench.editor.showTabs": "multiple",
+  "workbench.layoutControl.enabled": false,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.browser.showInTitleBar": false,
+  "workbench.startupEditor": "none",
+  "workbench.preferredHighContrastLightColorTheme": "Visual Studio Light",
+  "workbench.iconTheme": null,
+  "workbench.tree.enableStickyScroll": false,
+  "workbench.settings.applyToAllProfiles": [],
+  "workbench.colorTheme": "Omarchy",
+
+  "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": "'calt', 'liga'",
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": false,
+  "editor.lineNumbers": "off",
+  "editor.glyphMargin": false,
+  "editor.wordWrap": "on",
+
+  "chat.fontSize": 12,
+  "chat.viewSessions.orientation": "stacked",
+
+  "breadcrumbs.enabled": false,
+
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
+  "terminal.integrated.fontLigatures.enabled": true,
+  "terminal.integrated.initialHint": false,
+
+  "explorer.compactFolders": false,
   "explorer.decorations.colors": true,
   "explorer.decorations.badges": true,
-  "workbench.settings.applyToAllProfiles": [],
-  "window.zoomLevel": 1,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+
+  "scm.diffDecorations": "all",
+  "scm.diffDecorationsGutterWidth": 3,
+
+  "redhat.telemetry.enabled": false,
+
   "github.copilot.nextEditSuggestions.eagerness": "medium",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+
+  "C_Cpp.intelliSenseEngine": "disabled",
+
   "vim.useSystemClipboard": true,
-  "vim.visualModeKeyBindings": [
-    {
-      "before": [
-        "H"
-      ],
-      "after": [
-        "^"
-      ]
-    },
-    {
-      "before": [
-        "J"
-      ],
-      "commands": [
-        "editor.action.moveLinesDownAction"
-      ]
-    },
-    {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "editor.action.moveLinesUpAction"
-      ]
-    },
-    {
-      "before": [
-        "L"
-      ],
-      "after": [
-        "$"
-      ]
-    },
-    {
-      "before": [
-        ";"
-      ],
-      "after": [
-        ":"
-      ]
-    }
-  ],
-  "vim.normalModeKeyBindings": [
-    {
-      "before": [
-        "H"
-      ],
-      "after": [
-        "^"
-      ]
-    },
-    {
-      "before": [
-        "j"
-      ],
-      "after": [
-        "g",
-        "j"
-      ]
-    },
-    {
-      "before": [
-        "k"
-      ],
-      "after": [
-        "g",
-        "k"
-      ]
-    },
-    {
-      "before": [
-        "L"
-      ],
-      "after": [
-        "$"
-      ]
-    },
-    {
-      "before": [
-        ";"
-      ],
-      "after": [
-        ":"
-      ]
-    }
-  ],
   "vim.highlightedyank.enable": true,
   // "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
   "vim.highlightedyank.duration": 300,
-  "explorer.confirmDragAndDrop": false,
-// "editor.fontFamily": "Iosevka Nerd Font Mono', JetBrains Mono', monospace",
-"editor.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
-"editor.fontSize": 12,
-"chat.fontSize": 12,
-"terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
-    "terminal.integrated.fontLigatures.enabled": true,
-  "editor.fontLigatures": "'calt', 'liga'",
-"github.copilot.enable": {
-  "*": false,
-  "plaintext": false,
-  "markdown": false,
-  "scminput": false
-},
-"C_Cpp.intelliSenseEngine": "disabled",
-"chat.viewSessions.orientation": "stacked",
-"workbench.colorTheme": "Omarchy",
-"explorer.confirmDelete": false,
+
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["J"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": [";"],
+      "after": [":"]
+    }
+  ],
+
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": [";"],
+      "after": [":"]
+    }
+  ],
+  "chat.titleBar.openInAgentsWindow.enabled": false
+
+  // Alternative font:
+  // "editor.fontFamily": "'Iosevka Nerd Font Mono', 'JetBrains Mono', monospace"
 }

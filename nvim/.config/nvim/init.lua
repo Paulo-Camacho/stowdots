@@ -1,10 +1,9 @@
-_G.NVIM_START = vim.uv.hrtime()
+_G.NVIM_START = vim.uv.hrtime() -- read by the dashboard's startup-time line
 
-require('config.keymaps')
-require('config.options')
-require('config.autocmds')
-require('config.plugins')
-
+require("config.keymaps") -- sets mapleader, so it goes first
+require("config.options")
+require("config.autocmds")
+require("config.plugins")
 require("config.statusline").setup()
 
 -- dev mode: load 734 from the local repo and hot-reload on change.
@@ -21,10 +20,10 @@ if vim.env.NVIM_734_DEV ~= "0" and vim.uv.fs_stat(theme_dev) then
 		end
 	end
 
-	local pending = vim.uv.new_timer()
+	local pending = assert(vim.uv.new_timer())
 	for _, sub in ipairs({ "colors", "lua" }) do
-		local w = vim.uv.new_fs_event()
-		w:start(theme_dev .. "/" .. sub, {}, function()
+		local watcher = assert(vim.uv.new_fs_event())
+		watcher:start(theme_dev .. "/" .. sub, {}, function()
 			-- debounce: one save can fire several events
 			pending:stop()
 			pending:start(50, 0, vim.schedule_wrap(reload))

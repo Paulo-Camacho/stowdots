@@ -1,12 +1,13 @@
 -- the omarchy/LazyVim editor layer: hunks, hints, hops, hunting TODOs.
 -- global keymaps for these live in config.keymaps; anything buffer-local
--- stays here, next to the plugin that creates the buffer.
+-- stays here, next to the plugin that creates the buffer. auto-pairs are in
+-- config.pairs.
 
 -- ---------------------------------------------------------------- snacks ---
 -- snacks is a bundle. only the pieces that do not duplicate oil/telescope are
 -- on: picker and explorer stay off.
 require("snacks").setup({
-	bigfile = { enabled = true },   -- strip treesitter/lsp off huge files
+	bigfile = { enabled = true }, -- strip treesitter/lsp off huge files
 	quickfile = { enabled = true }, -- render the file before plugins load
 	indent = { enabled = true, scope = { enabled = false } }, -- indent guides, no current-scope highlight
 	input = { enabled = true, icon = "" }, -- pretty vim.ui.input, used by lsp rename
@@ -17,12 +18,12 @@ require("snacks").setup({
 	},
 	scope = { enabled = true },
 	statuscolumn = { enabled = true },
-	words = { enabled = true },     -- ]] / [[ between lsp references
+	words = { enabled = true }, -- ]] / [[ between lsp references
 	lazygit = { enabled = true },
 	terminal = { enabled = true },
 
-	scroll = { enabled = true },    -- smooth-scroll animation
-	picker = { enabled = false },   -- telescope owns this
+	scroll = { enabled = true }, -- smooth-scroll animation
+	picker = { enabled = false }, -- telescope owns this
 	explorer = { enabled = false }, -- oil owns this
 	dashboard = {
 		enabled = true,
@@ -43,13 +44,8 @@ require("snacks").setup({
 			-- require("lazy.stats") and throws inside UIEnter without it, which
 			-- killed the whole dashboard. vim.pack can answer the same question.
 			function()
-				local ms = (vim.uv.hrtime() - (_G.NVIM_START or vim.uv.hrtime())) / 1e6
-				local loaded = 0
-				for _, plugin in ipairs(vim.pack.get()) do
-					if plugin.active then
-						loaded = loaded + 1
-					end
-				end
+				local ms = (vim.uv.hrtime() - _G.NVIM_START) / 1e6
+				local loaded = #vim.tbl_filter(function(plugin) return plugin.active end, vim.pack.get())
 				return {
 					align = "center",
 					padding = 1,
@@ -96,29 +92,24 @@ require("gitsigns").setup({
 	},
 	on_attach = function(buf)
 		local gs = require("gitsigns")
-		local function map(mode, lhs, rhs, desc)
-			vim.keymap.set(mode, lhs, rhs, { buffer = buf, desc = desc })
-		end
+		local function map(mode, lhs, rhs, desc) vim.keymap.set(mode, lhs, rhs, { buffer = buf, desc = desc }) end
 
 		-- hunk navigation. inside a diff buffer ]c/[c already do this, so fall
 		-- back to them rather than fighting vim's own mapping.
-		map("n", "]h", function()
-			if vim.wo.diff then
-				vim.cmd.normal({ "]c", bang = true })
-			else
-				gs.nav_hunk("next")
+		local function nav_hunk(direction, diff_key)
+			return function()
+				if vim.wo.diff then
+					vim.cmd.normal({ diff_key, bang = true })
+				else
+					gs.nav_hunk(direction)
+				end
 			end
-		end, "next hunk")
-		map("n", "[h", function()
-			if vim.wo.diff then
-				vim.cmd.normal({ "[c", bang = true })
-			else
-				gs.nav_hunk("prev")
-			end
-		end, "prev hunk")
+		end
+		map("n", "]h", nav_hunk("next", "]c"), "next hunk")
+		map("n", "[h", nav_hunk("prev", "[c"), "prev hunk")
 
-		map({ "n", "v" }, "<leader>gs", gs.stage_hunk, "stage hunk")
-		map({ "n", "v" }, "<leader>gr", gs.reset_hunk, "reset hunk")
+		map({ "n", "x" }, "<leader>gs", gs.stage_hunk, "stage hunk")
+		map({ "n", "x" }, "<leader>gr", gs.reset_hunk, "reset hunk")
 		map("n", "<leader>gS", gs.stage_buffer, "stage buffer")
 		map("n", "<leader>gR", gs.reset_buffer, "reset buffer")
 		map("n", "<leader>gp", gs.preview_hunk_inline, "preview hunk")
@@ -140,12 +131,12 @@ require("flash").setup({
 require("trouble").setup({ focus = true })
 
 -- --------------------------------------------------------- todo-comments ---
-require("todo-comments").setup({ signs = true })
+require("todo-comments").setup()
 
 -- ------------------------------------------------------------ ts-comments ---
 -- nvim 0.12 comments with gc already; this only teaches it the right comment
 -- string for embedded languages (jsx inside tsx, lua inside vimscript, ...)
-require("ts-comments").setup({})
+require("ts-comments").setup()
 
 -- ------------------------------------------------------------ mini pieces ---
 -- better a/i textobjects: ci( works across lines, va) picks the nearest pair,
@@ -169,14 +160,8 @@ require("mini.surround").setup({
 	},
 })
 
--- auto-close pairs. typing { inserts {}, and <CR> between them opens an
--- indented line with } pushed below. blink's "enter" preset falls back to
--- this <CR> when the completion menu is closed.
-require("mini.pairs").setup({
-	modes = { insert = true, command = false, terminal = false },
-})
-
--- ----------------------------------------------------------- multicursor ---
+-- ------------------------------------------------------------ multicursor ---
+-- global keymaps are in config.keymaps
 local mc = require("multicursor-nvim")
 mc.setup()
 
@@ -226,9 +211,12 @@ local select = require("nvim-treesitter-textobjects.select")
 local move = require("nvim-treesitter-textobjects.move")
 
 local function sel(lhs, obj, desc)
-	vim.keymap.set({ "x", "o" }, lhs, function()
-		select.select_textobject(obj, "textobjects")
-	end, { desc = desc, silent = true })
+	vim.keymap.set(
+		{ "x", "o" },
+		lhs,
+		function() select.select_textobject(obj, "textobjects") end,
+		{ desc = desc, silent = true }
+	)
 end
 
 sel("af", "@function.outer", "a function")
